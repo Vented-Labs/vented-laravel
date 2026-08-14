@@ -23,7 +23,7 @@ it('loads typed package configuration', function (): void {
         ->and($configuration->connectTimeout)->toBeInt()->toBe(10)
         ->and($configuration->retryTimes)->toBeInt()->toBe(2)
         ->and($configuration->retryDelayMilliseconds)->toBeInt()->toBe(0)
-        ->and(Vented::version())->toBe('0.1.0');
+        ->and(Vented::version())->toBe(trim((string) file_get_contents(dirname(__DIR__).'/VERSION')));
 });
 
 it('resolves the public client through the namespaced facade', function (): void {

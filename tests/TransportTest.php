@@ -32,7 +32,7 @@ it('constructs encoded authenticated JSON API requests', function (): void {
             && $request->hasHeader('Authorization', 'Bearer test-api-key')
             && $request->hasHeader('Accept', 'application/vnd.api+json')
             && $request->hasHeader('Content-Type', 'application/vnd.api+json')
-            && $request->hasHeader('User-Agent', 'vented-laravel/0.1.0');
+            && $request->hasHeader('User-Agent', 'vented-laravel/'.Vented::version());
     });
 });
 
