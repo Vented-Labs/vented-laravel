@@ -20,6 +20,9 @@ use Vented\Resources\DevelopersResource;
 use Vented\Resources\DnsZoneBindingsResource;
 use Vented\Resources\DnsZoneRecordsResource;
 use Vented\Resources\DnsZonesResource;
+use Vented\Resources\EnvironmentsResource;
+use Vented\Resources\EnvironmentTransferPresetsResource;
+use Vented\Resources\EnvironmentTransfersResource;
 use Vented\Resources\IntegrationsResource;
 use Vented\Resources\MemberInvitationsResource;
 use Vented\Resources\MembersResource;
@@ -116,6 +119,21 @@ trait ResourceAccessors
     public function dnsZones(): DnsZonesResource
     {
         return new DnsZonesResource($this);
+    }
+
+    public function environmentTransferPresets(): EnvironmentTransferPresetsResource
+    {
+        return new EnvironmentTransferPresetsResource($this);
+    }
+
+    public function environmentTransfers(): EnvironmentTransfersResource
+    {
+        return new EnvironmentTransfersResource($this);
+    }
+
+    public function environments(): EnvironmentsResource
+    {
+        return new EnvironmentsResource($this);
     }
 
     public function integrations(): IntegrationsResource

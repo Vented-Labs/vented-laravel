@@ -23,10 +23,10 @@ final readonly class BlockStoragesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BlockStorageData>
      */
-    public function create(string $project, StoreBlockStorageData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, StoreBlockStorageData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/block-storages')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/block-storages')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'block_storages',
@@ -45,10 +45,10 @@ final readonly class BlockStoragesResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $storage, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $storage, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/block-storages/{storage}')
-            ->withPathParameters(['project' => $project, 'storage' => $storage])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/block-storages/{storage}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage])
             ->withQuery($query);
 
         return $operation->noContent();
@@ -62,27 +62,27 @@ final readonly class BlockStoragesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BlockStorageData>
      */
-    public function find(string $project, string $storage, array $query = []): ResourceResult
+    public function find(string $project, string $environment, string $storage, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/block-storages/{storage}')
-            ->withPathParameters(['project' => $project, 'storage' => $storage])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/block-storages/{storage}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): BlockStorageData => BlockStorageData::fromArray(self::attributes($resource, true)));
     }
 
     /**
-     * List block storage volumes for a project
+     * List block storage volumes for an environment
      *
      * Operation: projects.block-storages.index
      *
      * @param  array<string, mixed>  $query
      * @return CollectionResult<BlockStorageData>
      */
-    public function list(string $project, array $query = []): CollectionResult
+    public function list(string $project, string $environment, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/block-storages')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/block-storages')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): BlockStorageData => BlockStorageData::fromArray(self::attributes($resource, true)));

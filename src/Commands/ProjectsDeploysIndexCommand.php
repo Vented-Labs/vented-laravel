@@ -8,9 +8,9 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsDeploysIndexCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:deploys:list {project : project path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+    protected $signature = 'vented:deploys:list {project : project path parameter} {environment : environment path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
-    protected $description = 'List deploys for a project';
+    protected $description = 'List deploys for an environment';
 
     protected function operationId(): string
     {

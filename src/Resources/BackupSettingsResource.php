@@ -21,10 +21,10 @@ final readonly class BackupSettingsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BackupSettingsData>
      */
-    public function find(string $project, array $query = []): ResourceResult
+    public function find(string $project, string $environment, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/backup-settings')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/backup-settings')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): BackupSettingsData => BackupSettingsData::fromArray(self::attributes($resource, true)));
@@ -38,10 +38,10 @@ final readonly class BackupSettingsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BackupSettingsData>
      */
-    public function update(string $project, UpdateBackupSettingsData $data, array $query = []): ResourceResult
+    public function update(string $project, string $environment, UpdateBackupSettingsData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('PATCH', '/projects/{project}/backup-settings')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/backup-settings')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'backup_settings',

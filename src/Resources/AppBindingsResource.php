@@ -23,10 +23,10 @@ final readonly class AppBindingsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BindingData>
      */
-    public function create(string $project, string $app, StoreBindingData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, string $app, StoreBindingData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/apps/{app}/bindings')
-            ->withPathParameters(['project' => $project, 'app' => $app])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/apps/{app}/bindings')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
             ->withBody([
                 'data' => [
                     'type' => 'bindings',
@@ -45,10 +45,10 @@ final readonly class AppBindingsResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $app, string $binding, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $app, string $binding, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/apps/{app}/bindings/{binding}')
-            ->withPathParameters(['project' => $project, 'app' => $app, 'binding' => $binding])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/apps/{app}/bindings/{binding}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app, 'binding' => $binding])
             ->withQuery($query);
 
         return $operation->noContent();
@@ -62,10 +62,10 @@ final readonly class AppBindingsResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<BindingData>
      */
-    public function list(string $project, string $app, array $query = []): CollectionResult
+    public function list(string $project, string $environment, string $app, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/apps/{app}/bindings')
-            ->withPathParameters(['project' => $project, 'app' => $app])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/bindings')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): BindingData => BindingData::fromArray(self::attributes($resource, true)));

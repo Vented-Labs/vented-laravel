@@ -8,7 +8,7 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsStoragesFilesDownloadCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:storage-files:download {project : project path parameter} {storage : storage path parameter} {file : file path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response} {--output= : Destination path, or - for stdout}';
+    protected $signature = 'vented:storage-files:download {project : project path parameter} {environment : environment path parameter} {storage : storage path parameter} {file : file path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response} {--output= : Destination path, or - for stdout}';
 
     protected $description = 'Download a file';
 

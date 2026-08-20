@@ -8,7 +8,7 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsStoragesFileContentsShowCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:storage-file-contents:show {project : project path parameter} {storage : storage path parameter} {file : file path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+    protected $signature = 'vented:storage-file-contents:show {project : project path parameter} {environment : environment path parameter} {storage : storage path parameter} {file : file path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
     protected $description = 'Read a file';
 

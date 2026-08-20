@@ -20,10 +20,10 @@ final readonly class AppDeployResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<DeployTriggerData>
      */
-    public function list(string $project, string $app, array $query = []): CollectionResult
+    public function list(string $project, string $environment, string $app, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/apps/{app}/deploy')
-            ->withPathParameters(['project' => $project, 'app' => $app])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/deploy')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): DeployTriggerData => DeployTriggerData::fromArray(self::attributes($resource, true)));

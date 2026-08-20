@@ -8,7 +8,7 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsServicesBindingsCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:service-bindings:list {project : project path parameter} {service : service path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+    protected $signature = 'vented:service-bindings:list {project : project path parameter} {environment : environment path parameter} {service : service path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
     protected $description = 'List bindings for a service';
 

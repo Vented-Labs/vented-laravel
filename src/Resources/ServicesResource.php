@@ -24,10 +24,10 @@ final readonly class ServicesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<ServiceData>
      */
-    public function configuration(string $project, string $service, array $query = []): ResourceResult
+    public function configuration(string $project, string $environment, string $service, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/services/{service}/configuration')
-            ->withPathParameters(['project' => $project, 'service' => $service])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/services/{service}/configuration')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): ServiceData => ServiceData::fromArray(self::attributes($resource, true)));
@@ -41,10 +41,10 @@ final readonly class ServicesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<ServiceData>
      */
-    public function create(string $project, StoreServiceData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, StoreServiceData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/services')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/services')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'services',
@@ -63,10 +63,10 @@ final readonly class ServicesResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $service, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $service, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/services/{service}')
-            ->withPathParameters(['project' => $project, 'service' => $service])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/services/{service}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
             ->withQuery($query);
 
         return $operation->noContent();
@@ -80,27 +80,27 @@ final readonly class ServicesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<ServiceData>
      */
-    public function find(string $project, string $service, array $query = []): ResourceResult
+    public function find(string $project, string $environment, string $service, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/services/{service}')
-            ->withPathParameters(['project' => $project, 'service' => $service])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/services/{service}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): ServiceData => ServiceData::fromArray(self::attributes($resource, true)));
     }
 
     /**
-     * List services for a project
+     * List services for an environment
      *
      * Operation: projects.services.index
      *
      * @param  array<string, mixed>  $query
      * @return PaginatedResult<ServiceData>
      */
-    public function list(string $project, array $query = []): PaginatedResult
+    public function list(string $project, string $environment, array $query = []): PaginatedResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/services')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/services')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->paginated(static fn (array $resource): ServiceData => ServiceData::fromArray(self::attributes($resource, true)));
@@ -114,10 +114,10 @@ final readonly class ServicesResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<ServiceData>
      */
-    public function update(string $project, string $service, UpdateServiceData $data, array $query = []): ResourceResult
+    public function update(string $project, string $environment, string $service, UpdateServiceData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('PATCH', '/projects/{project}/services/{service}')
-            ->withPathParameters(['project' => $project, 'service' => $service])
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/services/{service}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
             ->withBody([
                 'data' => [
                     'type' => 'services',

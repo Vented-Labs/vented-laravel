@@ -8,7 +8,7 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsDeployTriggersUpdateCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:deploy-triggers:update {project : project path parameter} {deployTrigger : deployTrigger path parameter} {--data= : JSON attributes or @path/to/file.json} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+    protected $signature = 'vented:deploy-triggers:update {project : project path parameter} {environment : environment path parameter} {deployTrigger : deployTrigger path parameter} {--data= : JSON attributes or @path/to/file.json} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
     protected $description = 'Update a deploy trigger';
 

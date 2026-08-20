@@ -20,10 +20,10 @@ final readonly class DeployTemplatesResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<DeployTemplateData>
      */
-    public function list(string $project, array $query = []): CollectionResult
+    public function list(string $project, string $environment, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/deploys/templates')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/deploys/templates')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): DeployTemplateData => DeployTemplateData::fromArray(self::attributes($resource, true)));

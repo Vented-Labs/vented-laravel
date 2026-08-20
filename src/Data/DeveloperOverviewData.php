@@ -8,6 +8,7 @@ final readonly class DeveloperOverviewData
 {
     public function __construct(
         public int $cron_job_count,
+        public string $environment_id,
         public int $git_integration_count,
         public int $integration_count,
         public string $project_id,
@@ -21,6 +22,7 @@ final readonly class DeveloperOverviewData
     {
         return new self(
             cron_job_count: (int) $data['cron_job_count'],
+            environment_id: (string) $data['environment_id'],
             git_integration_count: (int) $data['git_integration_count'],
             integration_count: (int) $data['integration_count'],
             project_id: (string) $data['project_id'],
@@ -35,6 +37,7 @@ final readonly class DeveloperOverviewData
     {
         $data = [];
         $data['cron_job_count'] = $this->cron_job_count;
+        $data['environment_id'] = $this->environment_id;
         $data['git_integration_count'] = $this->git_integration_count;
         $data['integration_count'] = $this->integration_count;
         $data['project_id'] = $this->project_id;

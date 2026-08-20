@@ -11,6 +11,7 @@ final readonly class BackupSettingsData
      */
     public function __construct(
         public string $id,
+        public string $project_id,
         public array $settings,
     ) {}
 
@@ -21,6 +22,7 @@ final readonly class BackupSettingsData
     {
         return new self(
             id: (string) $data['id'],
+            project_id: (string) $data['project_id'],
             settings: self::objectValue($data['settings']),
         );
     }
@@ -32,6 +34,7 @@ final readonly class BackupSettingsData
     {
         $data = [];
         $data['id'] = $this->id;
+        $data['project_id'] = $this->project_id;
         $data['settings'] = $this->settings;
 
         return $data;

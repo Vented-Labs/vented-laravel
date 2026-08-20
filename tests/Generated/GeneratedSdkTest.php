@@ -16,14 +16,14 @@ use Vented\Vented;
 it('publishes one unique generated resource action and command per operation', function (): void {
     $operations = OperationRegistry::all();
 
-    expect($operations)->toHaveCount(96)
-        ->and(array_unique(array_column($operations, 'operationId')))->toHaveCount(96)
+    expect($operations)->toHaveCount(108)
+        ->and(array_unique(array_column($operations, 'operationId')))->toHaveCount(108)
         ->and(array_unique(array_map(
             static fn (array $operation): string => $operation['resource'].'.'.$operation['action'],
             $operations,
-        )))->toHaveCount(96)
-        ->and(array_unique(array_column($operations, 'commandName')))->toHaveCount(96)
-        ->and(CommandRegistry::all())->toHaveCount(96);
+        )))->toHaveCount(108)
+        ->and(array_unique(array_column($operations, 'commandName')))->toHaveCount(108)
+        ->and(CommandRegistry::all())->toHaveCount(108);
 });
 
 it('makes representative generated project calls with typed results and canonical documents', function (): void {
@@ -35,13 +35,17 @@ it('makes representative generated project calls with typed results and canonica
                     'type' => 'projects',
                     'attributes' => [
                         'created_at' => '2026-01-01T00:00:00Z',
-                        'desired_status' => null,
                         'is_new' => false,
-                        'is_synced' => true,
-                        'location_id' => 'location-1',
                         'name' => 'Listed project',
-                        'status' => 'active',
-                        'synced_at' => '2026-01-01T00:00:00Z',
+                        'production_environment' => [
+                            'id' => 'environment-1',
+                            'name' => 'Production',
+                            'slug' => 'production',
+                            'type' => 'production',
+                            'location_id' => 'location-1',
+                            'status' => 'active',
+                            'desired_status' => 'active',
+                        ],
                     ],
                 ]],
             ])
@@ -51,18 +55,22 @@ it('makes representative generated project calls with typed results and canonica
                     'type' => 'projects',
                     'attributes' => [
                         'created_at' => '2026-01-01T00:00:00Z',
-                        'desired_status' => null,
                         'is_new' => true,
-                        'is_synced' => false,
-                        'location_id' => 'location-1',
                         'name' => 'Example',
-                        'status' => 'pending',
-                        'synced_at' => null,
+                        'production_environment' => [
+                            'id' => 'environment-2',
+                            'name' => 'Production',
+                            'slug' => 'production',
+                            'type' => 'production',
+                            'location_id' => 'location-1',
+                            'status' => 'pending',
+                            'desired_status' => 'active',
+                        ],
                     ],
                 ],
             ], 201),
         '*/platform-locations' => Http::response(['data' => []]),
-        '*/projects/project-1/deploys' => Http::response([
+        '*/projects/project-1/production/deploys' => Http::response([
             'data' => [],
             'meta' => [
                 'total' => 0,
@@ -85,10 +93,11 @@ it('makes representative generated project calls with typed results and canonica
     ));
     $deleted = $client->projects()->delete('project/a');
     $locations = $client->platformLocations()->list();
-    $deploys = $client->deploys()->list('project-1');
+    $deploys = $client->deploys()->list('project-1', 'production');
 
     expect($listed)->toBeInstanceOf(CollectionResult::class)
         ->and($listed->data[0]->id)->toBe('project-list-1')
+        ->and($listed->data[0]->production_environment->slug)->toBe('production')
         ->and($created)->toBeInstanceOf(ResourceResult::class)
         ->and($created->data)->toBeInstanceOf(ProjectData::class)
         ->and($created->data->id)->toBe('project-1')
@@ -105,6 +114,7 @@ it('makes representative generated project calls with typed results and canonica
         ]);
 
     Http::assertSent(fn (Request $request): bool => str_ends_with($request->url(), '/projects/project%2Fa'));
+    Http::assertSent(fn (Request $request): bool => str_ends_with($request->url(), '/projects/project-1/production/deploys'));
 });
 
 it('exposes only options applicable to each generated command', function (): void {

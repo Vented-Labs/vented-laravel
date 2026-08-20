@@ -121,6 +121,6 @@ it('uses bounded static state only for immutable process metadata', function ():
 
     expect($versionProperties)->toHaveCount(1)
         ->and($versionProperties[0]->getName())->toBe('current')
-        ->and(OperationRegistry::OPERATIONS)->toHaveCount(96)
-        ->and(CommandRegistry::COMMANDS)->toHaveCount(96);
+        ->and(OperationRegistry::OPERATIONS)->toHaveCount(108)
+        ->and(CommandRegistry::COMMANDS)->toHaveCount(108);
 });

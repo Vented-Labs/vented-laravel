@@ -13,17 +13,17 @@ final readonly class DevelopersResource
     public function __construct(private Vented $client) {}
 
     /**
-     * Show the Developers overview for a project
+     * Show the Developers overview for an environment
      *
      * Operation: projects.developers.index
      *
      * @param  array<string, mixed>  $query
      * @return ResourceResult<DeveloperOverviewData>
      */
-    public function list(string $project, array $query = []): ResourceResult
+    public function list(string $project, string $environment, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/developers')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/developers')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): DeveloperOverviewData => DeveloperOverviewData::fromArray(self::attributes($resource, false)));

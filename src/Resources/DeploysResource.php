@@ -22,10 +22,10 @@ final readonly class DeploysResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<DeployData>
      */
-    public function create(string $project, StoreDeployData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, StoreDeployData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/deploys')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/deploys')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'deploys',
@@ -38,17 +38,17 @@ final readonly class DeploysResource
     }
 
     /**
-     * List deploys for a project
+     * List deploys for an environment
      *
      * Operation: projects.deploys.index
      *
      * @param  array<string, mixed>  $query
      * @return PaginatedResult<DeployData>
      */
-    public function list(string $project, array $query = []): PaginatedResult
+    public function list(string $project, string $environment, array $query = []): PaginatedResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/deploys')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/deploys')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->paginated(static fn (array $resource): DeployData => DeployData::fromArray(self::attributes($resource, true)));

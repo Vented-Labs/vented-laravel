@@ -24,10 +24,10 @@ final readonly class DeployTriggersResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<DeployTriggerData>
      */
-    public function create(string $project, StoreDeployTriggerData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, StoreDeployTriggerData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/deploy-triggers')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/deploy-triggers')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'deploy_triggers',
@@ -46,27 +46,27 @@ final readonly class DeployTriggersResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $deployTrigger, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $deployTrigger, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/deploy-triggers/{deployTrigger}')
-            ->withPathParameters(['project' => $project, 'deployTrigger' => $deployTrigger])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/deploy-triggers/{deployTrigger}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'deployTrigger' => $deployTrigger])
             ->withQuery($query);
 
         return $operation->noContent();
     }
 
     /**
-     * List deploy triggers for a project
+     * List deploy triggers for an environment
      *
      * Operation: projects.deploy-triggers.index
      *
      * @param  array<string, mixed>  $query
      * @return CollectionResult<DeployTriggerData>
      */
-    public function list(string $project, array $query = []): CollectionResult
+    public function list(string $project, string $environment, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/deploy-triggers')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/deploy-triggers')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): DeployTriggerData => DeployTriggerData::fromArray(self::attributes($resource, true)));
@@ -80,10 +80,10 @@ final readonly class DeployTriggersResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<DeployTriggerData>
      */
-    public function update(string $project, string $deployTrigger, UpdateDeployTriggerData $data, array $query = []): ResourceResult
+    public function update(string $project, string $environment, string $deployTrigger, UpdateDeployTriggerData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('PATCH', '/projects/{project}/deploy-triggers/{deployTrigger}')
-            ->withPathParameters(['project' => $project, 'deployTrigger' => $deployTrigger])
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/deploy-triggers/{deployTrigger}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'deployTrigger' => $deployTrigger])
             ->withBody([
                 'data' => [
                     'type' => 'deploy_triggers',

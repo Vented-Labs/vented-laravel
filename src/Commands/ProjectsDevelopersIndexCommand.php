@@ -8,9 +8,9 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsDevelopersIndexCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:developers:list {project : project path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+    protected $signature = 'vented:developers:list {project : project path parameter} {environment : environment path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
-    protected $description = 'Show the Developers overview for a project';
+    protected $description = 'Show the Developers overview for an environment';
 
     protected function operationId(): string
     {

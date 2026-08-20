@@ -20,10 +20,10 @@ final readonly class AppDomainsResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<AppBindingData>
      */
-    public function list(string $project, string $app, array $query = []): CollectionResult
+    public function list(string $project, string $environment, string $app, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/apps/{app}/domains')
-            ->withPathParameters(['project' => $project, 'app' => $app])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/domains')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): AppBindingData => AppBindingData::fromArray(self::attributes($resource, true)));

@@ -12,6 +12,7 @@ final readonly class UpdateAppBindingData
     public function __construct(
         public string $bindable_id,
         public BindableType $bindable_type,
+        public string $environment_id,
         public string $hostname,
         public ?int $port,
         public PortType $port_type,
@@ -25,6 +26,7 @@ final readonly class UpdateAppBindingData
         return new self(
             bindable_id: (string) $data['bindable_id'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            environment_id: (string) $data['environment_id'],
             hostname: (string) $data['hostname'],
             port: $data['port'] === null ? null : (int) $data['port'],
             port_type: PortType::from((string) $data['port_type']),
@@ -39,6 +41,7 @@ final readonly class UpdateAppBindingData
         $data = [];
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['environment_id'] = $this->environment_id;
         $data['hostname'] = $this->hostname;
         $data['port'] = $this->port === null ? null : $this->port;
         $data['port_type'] = $this->port_type->value;

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class StoreProjectSshKeyData
+final readonly class StoreEnvironmentData
 {
     public function __construct(
-        public string $ssh_key_id,
+        public string $location_id,
+        public string $name,
     ) {}
 
     /**
@@ -16,7 +17,8 @@ final readonly class StoreProjectSshKeyData
     public static function fromArray(array $data): self
     {
         return new self(
-            ssh_key_id: (string) $data['ssh_key_id'],
+            location_id: (string) $data['location_id'],
+            name: (string) $data['name'],
         );
     }
 
@@ -26,7 +28,8 @@ final readonly class StoreProjectSshKeyData
     public function toArray(): array
     {
         $data = [];
-        $data['ssh_key_id'] = $this->ssh_key_id;
+        $data['location_id'] = $this->location_id;
+        $data['name'] = $this->name;
 
         return $data;
     }

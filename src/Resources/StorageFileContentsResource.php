@@ -21,10 +21,10 @@ final readonly class StorageFileContentsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<FileContentData>
      */
-    public function find(string $project, string $storage, string $file, array $query = []): ResourceResult
+    public function find(string $project, string $environment, string $storage, string $file, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/storages/{storage}/file-contents/{file}')
-            ->withPathParameters(['project' => $project, 'storage' => $storage, 'file' => $file])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/storages/{storage}/file-contents/{file}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): FileContentData => FileContentData::fromArray(self::attributes($resource, false)));
@@ -38,10 +38,10 @@ final readonly class StorageFileContentsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<FileContentData>
      */
-    public function update(string $project, string $storage, string $file, UpdateFileContentData $data, array $query = []): ResourceResult
+    public function update(string $project, string $environment, string $storage, string $file, UpdateFileContentData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('PUT', '/projects/{project}/storages/{storage}/file-contents/{file}')
-            ->withPathParameters(['project' => $project, 'storage' => $storage, 'file' => $file])
+        $operation = $this->client->operation('PUT', '/projects/{project}/{environment}/storages/{storage}/file-contents/{file}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
             ->withBody([
                 'data' => [
                     'type' => 'file_contents',

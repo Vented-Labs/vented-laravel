@@ -8,7 +8,7 @@ use Vented\Console\GeneratedCommand;
 
 final class ProjectsServicesDestroyCommand extends GeneratedCommand
 {
-    protected $signature = 'vented:services:delete {project : project path parameter} {service : service path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response} {--force : Skip destructive operation confirmation}';
+    protected $signature = 'vented:services:delete {project : project path parameter} {environment : environment path parameter} {service : service path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response} {--force : Skip destructive operation confirmation}';
 
     protected $description = 'Remove a service';
 

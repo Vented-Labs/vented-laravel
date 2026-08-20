@@ -58,6 +58,18 @@ use Vented\Commands\ProjectsDnsZonesShowCommand;
 use Vented\Commands\ProjectsDnsZonesStatusCommand;
 use Vented\Commands\ProjectsDnsZonesStoreCommand;
 use Vented\Commands\ProjectsDnsZonesUpdateCommand;
+use Vented\Commands\ProjectsEnvironmentsDestroyCommand;
+use Vented\Commands\ProjectsEnvironmentsIndexCommand;
+use Vented\Commands\ProjectsEnvironmentsShowCommand;
+use Vented\Commands\ProjectsEnvironmentsStoreCommand;
+use Vented\Commands\ProjectsEnvironmentsUpdateCommand;
+use Vented\Commands\ProjectsEnvironmentTransferPresetsDestroyCommand;
+use Vented\Commands\ProjectsEnvironmentTransferPresetsStoreCommand;
+use Vented\Commands\ProjectsEnvironmentTransferPresetsUpdateCommand;
+use Vented\Commands\ProjectsEnvironmentTransfersIndexCommand;
+use Vented\Commands\ProjectsEnvironmentTransfersShowCommand;
+use Vented\Commands\ProjectsEnvironmentTransfersStoreCommand;
+use Vented\Commands\ProjectsEnvironmentTransfersUpdateCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
 use Vented\Commands\ProjectsIntegrationsIndexCommand;
@@ -159,6 +171,18 @@ final class CommandRegistry
         ProjectsDnsZonesStatusCommand::class,
         ProjectsDnsZonesStoreCommand::class,
         ProjectsDnsZonesUpdateCommand::class,
+        ProjectsEnvironmentTransferPresetsDestroyCommand::class,
+        ProjectsEnvironmentTransferPresetsStoreCommand::class,
+        ProjectsEnvironmentTransferPresetsUpdateCommand::class,
+        ProjectsEnvironmentTransfersIndexCommand::class,
+        ProjectsEnvironmentTransfersShowCommand::class,
+        ProjectsEnvironmentTransfersStoreCommand::class,
+        ProjectsEnvironmentTransfersUpdateCommand::class,
+        ProjectsEnvironmentsDestroyCommand::class,
+        ProjectsEnvironmentsIndexCommand::class,
+        ProjectsEnvironmentsShowCommand::class,
+        ProjectsEnvironmentsStoreCommand::class,
+        ProjectsEnvironmentsUpdateCommand::class,
         ProjectsIndexCommand::class,
         ProjectsIntegrationsDestroyCommand::class,
         ProjectsIntegrationsIndexCommand::class,

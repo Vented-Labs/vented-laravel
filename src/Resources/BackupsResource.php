@@ -23,10 +23,10 @@ final readonly class BackupsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<BackupData>
      */
-    public function create(string $project, StoreBackupData $data, array $query = []): ResourceResult
+    public function create(string $project, string $environment, StoreBackupData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/backups')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/backups')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
                     'type' => 'backups',
@@ -45,27 +45,27 @@ final readonly class BackupsResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $backup, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $backup, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/backups/{backup}')
-            ->withPathParameters(['project' => $project, 'backup' => $backup])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/backups/{backup}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'backup' => $backup])
             ->withQuery($query);
 
         return $operation->noContent();
     }
 
     /**
-     * List project backups
+     * List environment backups
      *
      * Operation: projects.backups.index
      *
      * @param  array<string, mixed>  $query
      * @return PaginatedResult<BackupData>
      */
-    public function list(string $project, array $query = []): PaginatedResult
+    public function list(string $project, string $environment, array $query = []): PaginatedResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/backups')
-            ->withPathParameters(['project' => $project])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/backups')
+            ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
         return $operation->paginated(static fn (array $resource): BackupData => BackupData::fromArray(self::attributes($resource, true)));

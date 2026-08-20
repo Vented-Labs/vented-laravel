@@ -23,10 +23,10 @@ final readonly class StorageFilesResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<FileResourceData>
      */
-    public function create(string $project, string $storage, StoreFileData $data, array $query = []): CollectionResult
+    public function create(string $project, string $environment, string $storage, StoreFileData $data, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('POST', '/projects/{project}/storages/{storage}/files')
-            ->withPathParameters(['project' => $project, 'storage' => $storage])
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/storages/{storage}/files')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage])
             ->withBody([
                 'data' => [
                     'type' => 'files',
@@ -45,10 +45,10 @@ final readonly class StorageFilesResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function delete(string $project, string $storage, string $file, array $query = []): NoContentResult
+    public function delete(string $project, string $environment, string $storage, string $file, array $query = []): NoContentResult
     {
-        $operation = $this->client->operation('DELETE', '/projects/{project}/storages/{storage}/files/{file}')
-            ->withPathParameters(['project' => $project, 'storage' => $storage, 'file' => $file])
+        $operation = $this->client->operation('DELETE', '/projects/{project}/{environment}/storages/{storage}/files/{file}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
             ->withQuery($query);
 
         return $operation->noContent();
@@ -61,10 +61,10 @@ final readonly class StorageFilesResource
      *
      * @param  array<string, mixed>  $query
      */
-    public function download(string $project, string $storage, string $file, array $query = []): BinaryResult
+    public function download(string $project, string $environment, string $storage, string $file, array $query = []): BinaryResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/storages/{storage}/files/{file}/download')
-            ->withPathParameters(['project' => $project, 'storage' => $storage, 'file' => $file])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/storages/{storage}/files/{file}/download')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
             ->withQuery($query)
             ->withHeaders(['Accept' => 'application/octet-stream']);
 
@@ -79,10 +79,10 @@ final readonly class StorageFilesResource
      * @param  array<string, mixed>  $query
      * @return CollectionResult<FileResourceData>
      */
-    public function list(string $project, string $storage, array $query = []): CollectionResult
+    public function list(string $project, string $environment, string $storage, array $query = []): CollectionResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/storages/{storage}/files')
-            ->withPathParameters(['project' => $project, 'storage' => $storage])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/storages/{storage}/files')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage])
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): FileResourceData => FileResourceData::fromArray(self::attributes($resource, false)));

@@ -20,10 +20,10 @@ final readonly class ServiceBackupsResource
      * @param  array<string, mixed>  $query
      * @return PaginatedResult<BackupData>
      */
-    public function list(string $project, string $service, array $query = []): PaginatedResult
+    public function list(string $project, string $environment, string $service, array $query = []): PaginatedResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/services/{service}/backups')
-            ->withPathParameters(['project' => $project, 'service' => $service])
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/services/{service}/backups')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
             ->withQuery($query);
 
         return $operation->paginated(static fn (array $resource): BackupData => BackupData::fromArray(self::attributes($resource, true)));

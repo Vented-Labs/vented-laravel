@@ -13,12 +13,15 @@ use Vented\Data\StoreBindingData;
 use Vented\Data\StoreBlockStorageData;
 use Vented\Data\StoreDeployData;
 use Vented\Data\StoreDeployTriggerData;
+use Vented\Data\StoreEnvironmentData;
+use Vented\Data\StoreEnvironmentSshKeyData;
+use Vented\Data\StoreEnvironmentTransferData;
+use Vented\Data\StoreEnvironmentTransferPresetData;
 use Vented\Data\StoreFileData;
 use Vented\Data\StoreIntegrationData;
 use Vented\Data\StoreInviteData;
 use Vented\Data\StoreObjectStorageData;
 use Vented\Data\StoreProjectData;
-use Vented\Data\StoreProjectSshKeyData;
 use Vented\Data\StoreRecordData;
 use Vented\Data\StoreServiceData;
 use Vented\Data\StoreZoneData;
@@ -26,6 +29,9 @@ use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
 use Vented\Data\UpdateDeployTriggerData;
+use Vented\Data\UpdateEnvironmentData;
+use Vented\Data\UpdateEnvironmentTransferData;
+use Vented\Data\UpdateEnvironmentTransferPresetData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateProjectData;
@@ -67,159 +73,191 @@ final class GeneratedCommandDispatcher
             ),
             'projects.apps.bindings' => $client->appBindings()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.bindings.destroy' => $client->appBindings()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 binding: self::stringPath($path, 'binding'),
                 query: $query,
             ),
             'projects.apps.bindings.store' => $client->appBindings()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 data: StoreBindingData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.configuration' => $client->apps()->configuration(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.deploy' => $client->appDeploy()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.destroy' => $client->apps()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.domains' => $client->appDomains()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.index' => $client->apps()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.apps.restart' => $client->apps()->restart(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.show' => $client->apps()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.start' => $client->apps()->start(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.stop' => $client->apps()->stop(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.storage' => $client->apps()->storage(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.store' => $client->apps()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreAppData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.update' => $client->apps()->update(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 data: UpdateAppData::fromArray($data),
                 query: $query,
             ),
             'projects.backup-settings.show' => $client->backupSettings()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.backup-settings.update' => $client->backupSettings()->update(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: UpdateBackupSettingsData::fromArray($data),
                 query: $query,
             ),
             'projects.backups.destroy' => $client->backups()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 backup: self::stringPath($path, 'backup'),
                 query: $query,
             ),
             'projects.backups.index' => $client->backups()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.backups.store' => $client->backups()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreBackupData::fromArray($data),
                 query: $query,
             ),
             'projects.block-storages.backups' => $client->blockStorageBackups()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.block-storages.destroy' => $client->blockStorages()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.block-storages.index' => $client->blockStorages()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.block-storages.show' => $client->blockStorages()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.block-storages.store' => $client->blockStorages()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreBlockStorageData::fromArray($data),
                 query: $query,
             ),
             'projects.deploy-triggers.destroy' => $client->deployTriggers()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 deployTrigger: self::stringPath($path, 'deployTrigger'),
                 query: $query,
             ),
             'projects.deploy-triggers.index' => $client->deployTriggers()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.deploy-triggers.store' => $client->deployTriggers()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreDeployTriggerData::fromArray($data),
                 query: $query,
             ),
             'projects.deploy-triggers.update' => $client->deployTriggers()->update(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 deployTrigger: self::stringPath($path, 'deployTrigger'),
                 data: UpdateDeployTriggerData::fromArray($data),
                 query: $query,
             ),
             'projects.deploys.index' => $client->deploys()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.deploys.store' => $client->deploys()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreDeployData::fromArray($data),
                 query: $query,
             ),
             'projects.deploys.templates.index' => $client->deployTemplates()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.destroy' => $client->projects()->delete(
@@ -228,6 +266,7 @@ final class GeneratedCommandDispatcher
             ),
             'projects.developers.index' => $client->developers()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.dns.zones.bindings.destroy' => $client->dnsZoneBindings()->delete(
@@ -313,6 +352,74 @@ final class GeneratedCommandDispatcher
                 data: UpdateZoneData::fromArray($data),
                 query: $query,
             ),
+            'projects.environment-transfer-presets.destroy' => $client->environmentTransferPresets()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                transferPreset: self::stringPath($path, 'transferPreset'),
+                query: $query,
+            ),
+            'projects.environment-transfer-presets.store' => $client->environmentTransferPresets()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreEnvironmentTransferPresetData::fromArray($data),
+                query: $query,
+            ),
+            'projects.environment-transfer-presets.update' => $client->environmentTransferPresets()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                transferPreset: self::stringPath($path, 'transferPreset'),
+                data: UpdateEnvironmentTransferPresetData::fromArray($data),
+                query: $query,
+            ),
+            'projects.environment-transfers.index' => $client->environmentTransfers()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.environment-transfers.show' => $client->environmentTransfers()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                transfer: self::stringPath($path, 'transfer'),
+                query: $query,
+            ),
+            'projects.environment-transfers.store' => $client->environmentTransfers()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreEnvironmentTransferData::fromArray($data),
+                query: $query,
+            ),
+            'projects.environment-transfers.update' => $client->environmentTransfers()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                transfer: self::stringPath($path, 'transfer'),
+                data: UpdateEnvironmentTransferData::fromArray($data),
+                query: $query,
+            ),
+            'projects.environments.destroy' => $client->environments()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.environments.index' => $client->environments()->list(
+                project: self::stringPath($path, 'project'),
+                query: $query,
+            ),
+            'projects.environments.show' => $client->environments()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.environments.store' => $client->environments()->create(
+                project: self::stringPath($path, 'project'),
+                data: StoreEnvironmentData::fromArray($data),
+                query: $query,
+            ),
+            'projects.environments.update' => $client->environments()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: UpdateEnvironmentData::fromArray($data),
+                query: $query,
+            ),
             'projects.index' => $client->projects()->list(
                 query: $query,
             ),
@@ -366,25 +473,30 @@ final class GeneratedCommandDispatcher
             ),
             'projects.object-storages.backups' => $client->objectStorageBackups()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.object-storages.destroy' => $client->objectStorages()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.object-storages.index' => $client->objectStorages()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.object-storages.show' => $client->objectStorages()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.object-storages.store' => $client->objectStorages()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreObjectStorageData::fromArray($data),
                 query: $query,
             ),
@@ -407,52 +519,62 @@ final class GeneratedCommandDispatcher
             ),
             'projects.services.backups' => $client->serviceBackups()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.bindings' => $client->serviceBindings()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.bindings.destroy' => $client->serviceBindings()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 binding: self::stringPath($path, 'binding'),
                 query: $query,
             ),
             'projects.services.bindings.store' => $client->serviceBindings()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 data: StoreBindingData::fromArray($data),
                 query: $query,
             ),
             'projects.services.configuration' => $client->services()->configuration(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.destroy' => $client->services()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.index' => $client->services()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.services.show' => $client->services()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.store' => $client->services()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 data: StoreServiceData::fromArray($data),
                 query: $query,
             ),
             'projects.services.update' => $client->services()->update(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
                 data: UpdateServiceData::fromArray($data),
                 query: $query,
@@ -468,26 +590,31 @@ final class GeneratedCommandDispatcher
             ),
             'projects.ssh-keys.destroy' => $client->sshKeys()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 sshKey: self::stringPath($path, 'sshKey'),
                 query: $query,
             ),
             'projects.ssh-keys.index' => $client->sshKeys()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.ssh-keys.store' => $client->sshKeys()->create(
                 project: self::stringPath($path, 'project'),
-                data: StoreProjectSshKeyData::fromArray($data),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreEnvironmentSshKeyData::fromArray($data),
                 query: $query,
             ),
             'projects.storages.file-contents.show' => $client->storageFileContents()->find(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 file: self::stringPath($path, 'file'),
                 query: $query,
             ),
             'projects.storages.file-contents.update' => $client->storageFileContents()->update(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 file: self::stringPath($path, 'file'),
                 data: UpdateFileContentData::fromArray($data),
@@ -495,23 +622,27 @@ final class GeneratedCommandDispatcher
             ),
             'projects.storages.files.destroy' => $client->storageFiles()->delete(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 file: self::stringPath($path, 'file'),
                 query: $query,
             ),
             'projects.storages.files.download' => $client->storageFiles()->download(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 file: self::stringPath($path, 'file'),
                 query: $query,
             ),
             'projects.storages.files.index' => $client->storageFiles()->list(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
             'projects.storages.files.store' => $client->storageFiles()->create(
                 project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 data: StoreFileData::fromArray($data),
                 query: $query,

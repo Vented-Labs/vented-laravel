@@ -12,6 +12,7 @@ final readonly class AppBindingData
     public function __construct(
         public string $bindable_id,
         public BindableType $bindable_type,
+        public EnvironmentRef $environment,
         public string $hostname,
         public string $id,
         public ?int $port,
@@ -28,6 +29,7 @@ final readonly class AppBindingData
         return new self(
             bindable_id: (string) $data['bindable_id'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            environment: EnvironmentRef::fromArray(self::objectValue($data['environment'])),
             hostname: (string) $data['hostname'],
             id: (string) $data['id'],
             port: $data['port'] === null ? null : (int) $data['port'],
@@ -45,6 +47,7 @@ final readonly class AppBindingData
         $data = [];
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['environment'] = $this->environment->toArray();
         $data['hostname'] = $this->hostname;
         $data['id'] = $this->id;
         $data['port'] = $this->port === null ? null : $this->port;
@@ -53,5 +56,18 @@ final readonly class AppBindingData
         $data['zone_id'] = $this->zone_id;
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 }
