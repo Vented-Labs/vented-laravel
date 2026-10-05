@@ -14,6 +14,7 @@ final readonly class ObjectStorageProviderOption
         public string $label,
         public array $regions,
         public bool $requiresCredentials,
+        public bool $supportsProvisioning,
         public bool $supportsRegions,
         public string $value,
     ) {}
@@ -28,6 +29,7 @@ final readonly class ObjectStorageProviderOption
             label: (string) $data['label'],
             regions: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['regions'])),
             requiresCredentials: (bool) $data['requiresCredentials'],
+            supportsProvisioning: (bool) $data['supportsProvisioning'],
             supportsRegions: (bool) $data['supportsRegions'],
             value: (string) $data['value'],
         );
@@ -43,6 +45,7 @@ final readonly class ObjectStorageProviderOption
         $data['label'] = $this->label;
         $data['regions'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->regions);
         $data['requiresCredentials'] = $this->requiresCredentials;
+        $data['supportsProvisioning'] = $this->supportsProvisioning;
         $data['supportsRegions'] = $this->supportsRegions;
         $data['value'] = $this->value;
 

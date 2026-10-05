@@ -13,8 +13,10 @@ final readonly class ServiceData
         public string $name,
         public string $status,
         public string $status_color,
+        public ?ResourceTelemetry $telemetry,
         public string $type,
         public string $type_name,
+        public string $updated_at,
     ) {}
 
     /**
@@ -29,8 +31,10 @@ final readonly class ServiceData
             name: (string) $data['name'],
             status: (string) $data['status'],
             status_color: (string) $data['status_color'],
+            telemetry: $data['telemetry'] === null ? null : ResourceTelemetry::fromArray(self::objectValue($data['telemetry'])),
             type: (string) $data['type'],
             type_name: (string) $data['type_name'],
+            updated_at: (string) $data['updated_at'],
         );
     }
 
@@ -46,9 +50,24 @@ final readonly class ServiceData
         $data['name'] = $this->name;
         $data['status'] = $this->status;
         $data['status_color'] = $this->status_color;
+        $data['telemetry'] = $this->telemetry === null ? null : $this->telemetry->toArray();
         $data['type'] = $this->type;
         $data['type_name'] = $this->type_name;
+        $data['updated_at'] = $this->updated_at;
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 }

@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.3.0 - 2026-10-05
+
+- Regenerated resource and metadata DTOs for telemetry, locations, plan catalog and usage, and storage capabilities.
+- Added DNS redirect status to record read/write DTOs.
+- Preserved unavailable object-storage statistics as nullable values.
+
 ## 0.2.0 - 2026-08-18
 
 - Added project environment, configuration transfer, and reusable transfer-preset resources.

@@ -11,6 +11,7 @@ final readonly class UpdateRecordData
     public function __construct(
         public string $name,
         public ?int $priority,
+        public ?string $status,
         public ?int $ttl,
         public DnsRecordType $type,
         public string $value,
@@ -24,6 +25,7 @@ final readonly class UpdateRecordData
         return new self(
             name: (string) $data['name'],
             priority: $data['priority'] === null ? null : (int) $data['priority'],
+            status: $data['status'] === null ? null : (string) $data['status'],
             ttl: $data['ttl'] === null ? null : (int) $data['ttl'],
             type: DnsRecordType::from((string) $data['type']),
             value: (string) $data['value'],
@@ -38,6 +40,7 @@ final readonly class UpdateRecordData
         $data = [];
         $data['name'] = $this->name;
         $data['priority'] = $this->priority === null ? null : $this->priority;
+        $data['status'] = $this->status === null ? null : $this->status;
         $data['ttl'] = $this->ttl === null ? null : $this->ttl;
         $data['type'] = $this->type->value;
         $data['value'] = $this->value;

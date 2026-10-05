@@ -12,6 +12,7 @@ final readonly class DnsRecordData
         public string $id,
         public string $name,
         public ?int $priority,
+        public ?string $status,
         public bool $system_generated,
         public ?int $ttl,
         public DnsRecordType $type,
@@ -27,6 +28,7 @@ final readonly class DnsRecordData
             id: (string) $data['id'],
             name: (string) $data['name'],
             priority: $data['priority'] === null ? null : (int) $data['priority'],
+            status: $data['status'] === null ? null : (string) $data['status'],
             system_generated: (bool) $data['system_generated'],
             ttl: $data['ttl'] === null ? null : (int) $data['ttl'],
             type: DnsRecordType::from((string) $data['type']),
@@ -43,6 +45,7 @@ final readonly class DnsRecordData
         $data['id'] = $this->id;
         $data['name'] = $this->name;
         $data['priority'] = $this->priority === null ? null : $this->priority;
+        $data['status'] = $this->status === null ? null : $this->status;
         $data['system_generated'] = $this->system_generated;
         $data['ttl'] = $this->ttl === null ? null : $this->ttl;
         $data['type'] = $this->type->value;

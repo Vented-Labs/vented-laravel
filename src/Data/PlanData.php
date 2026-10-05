@@ -12,9 +12,12 @@ final readonly class PlanData
     public function __construct(
         public int $apps,
         public int $backups,
+        public ?PlanCatalogData $catalog,
+        public int $environments,
         public string $id,
         public int $members,
         public ?string $plan,
+        public ?PlanSampleUsageData $sample_usage,
         public int $services,
         public int $storages,
         public array $usage,
@@ -28,9 +31,12 @@ final readonly class PlanData
         return new self(
             apps: (int) $data['apps'],
             backups: (int) $data['backups'],
+            catalog: $data['catalog'] === null ? null : PlanCatalogData::fromArray(self::objectValue($data['catalog'])),
+            environments: (int) $data['environments'],
             id: (string) $data['id'],
             members: (int) $data['members'],
             plan: $data['plan'] === null ? null : (string) $data['plan'],
+            sample_usage: $data['sample_usage'] === null ? null : PlanSampleUsageData::fromArray(self::objectValue($data['sample_usage'])),
             services: (int) $data['services'],
             storages: (int) $data['storages'],
             usage: array_map(static fn (mixed $value): PlanUsageItemData => PlanUsageItemData::fromArray(self::objectValue($value)), self::listValue($data['usage'])),
@@ -45,9 +51,12 @@ final readonly class PlanData
         $data = [];
         $data['apps'] = $this->apps;
         $data['backups'] = $this->backups;
+        $data['catalog'] = $this->catalog === null ? null : $this->catalog->toArray();
+        $data['environments'] = $this->environments;
         $data['id'] = $this->id;
         $data['members'] = $this->members;
         $data['plan'] = $this->plan === null ? null : $this->plan;
+        $data['sample_usage'] = $this->sample_usage === null ? null : $this->sample_usage->toArray();
         $data['services'] = $this->services;
         $data['storages'] = $this->storages;
         $data['usage'] = array_map(static fn (PlanUsageItemData $value) => $value->toArray(), $this->usage);

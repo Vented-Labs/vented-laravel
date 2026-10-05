@@ -26,6 +26,8 @@ final readonly class AppData
         public string $status_color,
         public ?string $status_error,
         public AppStatus $status_raw,
+        public ?ResourceTelemetry $telemetry,
+        public string $updated_at,
     ) {}
 
     /**
@@ -46,6 +48,8 @@ final readonly class AppData
             status_color: (string) $data['status_color'],
             status_error: $data['status_error'] === null ? null : (string) $data['status_error'],
             status_raw: AppStatus::from((string) $data['status_raw']),
+            telemetry: $data['telemetry'] === null ? null : ResourceTelemetry::fromArray(self::objectValue($data['telemetry'])),
+            updated_at: (string) $data['updated_at'],
         );
     }
 
@@ -67,6 +71,8 @@ final readonly class AppData
         $data['status_color'] = $this->status_color;
         $data['status_error'] = $this->status_error === null ? null : $this->status_error;
         $data['status_raw'] = $this->status_raw->value;
+        $data['telemetry'] = $this->telemetry === null ? null : $this->telemetry->toArray();
+        $data['updated_at'] = $this->updated_at;
 
         return $data;
     }

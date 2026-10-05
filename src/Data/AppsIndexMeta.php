@@ -7,7 +7,10 @@ namespace Vented\Data;
 final readonly class AppsIndexMeta
 {
     public function __construct(
+        public bool $can_update,
         public AppsIndexMetaFormOptions $form_options,
+        public string $location_id,
+        public ?string $location_name,
     ) {}
 
     /**
@@ -16,7 +19,10 @@ final readonly class AppsIndexMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            can_update: (bool) $data['can_update'],
             form_options: AppsIndexMetaFormOptions::fromArray(self::objectValue($data['form_options'])),
+            location_id: (string) $data['location_id'],
+            location_name: $data['location_name'] === null ? null : (string) $data['location_name'],
         );
     }
 
@@ -26,7 +32,10 @@ final readonly class AppsIndexMeta
     public function toArray(): array
     {
         $data = [];
+        $data['can_update'] = $this->can_update;
         $data['form_options'] = $this->form_options->toArray();
+        $data['location_id'] = $this->location_id;
+        $data['location_name'] = $this->location_name === null ? null : $this->location_name;
 
         return $data;
     }
