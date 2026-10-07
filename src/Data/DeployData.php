@@ -18,8 +18,7 @@ final readonly class DeployData
         public ?string $message,
         public ?string $ref,
         public ?string $started_at,
-        public string $status,
-        public string $status_color,
+        public StatusData $status,
         public ?DeployTriggerRef $trigger,
         public DeployTriggerType $trigger_type,
         public ?UserRef $triggered_by,
@@ -40,8 +39,7 @@ final readonly class DeployData
             message: $data['message'] === null ? null : (string) $data['message'],
             ref: $data['ref'] === null ? null : (string) $data['ref'],
             started_at: $data['started_at'] === null ? null : (string) $data['started_at'],
-            status: (string) $data['status'],
-            status_color: (string) $data['status_color'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             trigger: $data['trigger'] === null ? null : DeployTriggerRef::fromArray(self::objectValue($data['trigger'])),
             trigger_type: DeployTriggerType::from((string) $data['trigger_type']),
             triggered_by: $data['triggered_by'] === null ? null : UserRef::fromArray(self::objectValue($data['triggered_by'])),
@@ -63,8 +61,7 @@ final readonly class DeployData
         $data['message'] = $this->message === null ? null : $this->message;
         $data['ref'] = $this->ref === null ? null : $this->ref;
         $data['started_at'] = $this->started_at === null ? null : $this->started_at;
-        $data['status'] = $this->status;
-        $data['status_color'] = $this->status_color;
+        $data['status'] = $this->status->toArray();
         $data['trigger'] = $this->trigger === null ? null : $this->trigger->toArray();
         $data['trigger_type'] = $this->trigger_type->value;
         $data['triggered_by'] = $this->triggered_by === null ? null : $this->triggered_by->toArray();

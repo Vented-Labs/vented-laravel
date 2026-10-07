@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-use Vented\Enums\StorageStatus;
-
 final readonly class BlockStorageData
 {
     public function __construct(
@@ -14,7 +12,7 @@ final readonly class BlockStorageData
         public string $id,
         public string $name,
         public ?int $size_gb,
-        public StorageStatus $status,
+        public StatusData $status,
         public ?string $status_error,
         public StorageClassRef $storage_class,
         public ?float $usage,
@@ -32,7 +30,7 @@ final readonly class BlockStorageData
             id: (string) $data['id'],
             name: (string) $data['name'],
             size_gb: $data['size_gb'] === null ? null : (int) $data['size_gb'],
-            status: StorageStatus::from((string) $data['status']),
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             status_error: $data['status_error'] === null ? null : (string) $data['status_error'],
             storage_class: StorageClassRef::fromArray(self::objectValue($data['storage_class'])),
             usage: $data['usage'] === null ? null : (float) $data['usage'],
@@ -51,7 +49,7 @@ final readonly class BlockStorageData
         $data['id'] = $this->id;
         $data['name'] = $this->name;
         $data['size_gb'] = $this->size_gb === null ? null : $this->size_gb;
-        $data['status'] = $this->status->value;
+        $data['status'] = $this->status->toArray();
         $data['status_error'] = $this->status_error === null ? null : $this->status_error;
         $data['storage_class'] = $this->storage_class->toArray();
         $data['usage'] = $this->usage === null ? null : $this->usage;

@@ -11,8 +11,7 @@ final readonly class ServiceData
         public ?string $icon,
         public string $id,
         public string $name,
-        public string $status,
-        public string $status_color,
+        public StatusData $status,
         public ?ResourceTelemetry $telemetry,
         public string $type,
         public string $type_name,
@@ -29,8 +28,7 @@ final readonly class ServiceData
             icon: $data['icon'] === null ? null : (string) $data['icon'],
             id: (string) $data['id'],
             name: (string) $data['name'],
-            status: (string) $data['status'],
-            status_color: (string) $data['status_color'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             telemetry: $data['telemetry'] === null ? null : ResourceTelemetry::fromArray(self::objectValue($data['telemetry'])),
             type: (string) $data['type'],
             type_name: (string) $data['type_name'],
@@ -48,8 +46,7 @@ final readonly class ServiceData
         $data['icon'] = $this->icon === null ? null : $this->icon;
         $data['id'] = $this->id;
         $data['name'] = $this->name;
-        $data['status'] = $this->status;
-        $data['status_color'] = $this->status_color;
+        $data['status'] = $this->status->toArray();
         $data['telemetry'] = $this->telemetry === null ? null : $this->telemetry->toArray();
         $data['type'] = $this->type;
         $data['type_name'] = $this->type_name;

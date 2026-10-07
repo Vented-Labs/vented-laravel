@@ -8,6 +8,7 @@ final readonly class DeploysIndexMeta
 {
     public function __construct(
         public DeploysIndexMetaFormOptions $form_options,
+        public ?DeploysIndexMetaStats $stats,
     ) {}
 
     /**
@@ -17,6 +18,7 @@ final readonly class DeploysIndexMeta
     {
         return new self(
             form_options: DeploysIndexMetaFormOptions::fromArray(self::objectValue($data['form_options'])),
+            stats: $data['stats'] === null ? null : DeploysIndexMetaStats::fromArray(self::objectValue($data['stats'])),
         );
     }
 
@@ -27,6 +29,7 @@ final readonly class DeploysIndexMeta
     {
         $data = [];
         $data['form_options'] = $this->form_options->toArray();
+        $data['stats'] = $this->stats === null ? null : $this->stats->toArray();
 
         return $data;
     }

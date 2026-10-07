@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vented\Data;
 
 use Vented\Enums\EnvironmentTransferAction;
-use Vented\Enums\EnvironmentTransferItemStatus;
 use Vented\Enums\EnvironmentTransferResourceType;
 
 final readonly class EnvironmentTransferItemData
@@ -38,9 +37,7 @@ final readonly class EnvironmentTransferItemData
         public array $selected_secret_fields,
         public string $source_resource_id,
         public array $specification,
-        public EnvironmentTransferItemStatus $status,
-        public string $status_color,
-        public string $status_label,
+        public StatusData $status,
         public array $target_options,
         public ?string $target_resource_id,
         public array $warnings,
@@ -67,9 +64,7 @@ final readonly class EnvironmentTransferItemData
             selected_secret_fields: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['selected_secret_fields'])),
             source_resource_id: (string) $data['source_resource_id'],
             specification: self::objectValue($data['specification']),
-            status: EnvironmentTransferItemStatus::from((string) $data['status']),
-            status_color: (string) $data['status_color'],
-            status_label: (string) $data['status_label'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             target_options: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['target_options'])),
             target_resource_id: $data['target_resource_id'] === null ? null : (string) $data['target_resource_id'],
             warnings: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['warnings'])),
@@ -97,9 +92,7 @@ final readonly class EnvironmentTransferItemData
         $data['selected_secret_fields'] = $this->selected_secret_fields;
         $data['source_resource_id'] = $this->source_resource_id;
         $data['specification'] = $this->specification;
-        $data['status'] = $this->status->value;
-        $data['status_color'] = $this->status_color;
-        $data['status_label'] = $this->status_label;
+        $data['status'] = $this->status->toArray();
         $data['target_options'] = $this->target_options;
         $data['target_resource_id'] = $this->target_resource_id === null ? null : $this->target_resource_id;
         $data['warnings'] = $this->warnings;

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Vented\Data;
 
 use Vented\Enums\EnvironmentDesiredStatus;
-use Vented\Enums\EnvironmentStatus;
 use Vented\Enums\EnvironmentType;
 
 final readonly class EnvironmentData
 {
     public function __construct(
+        public ?int $apps_count,
         public bool $can_delete,
         public bool $can_update,
         public string $created_at,
@@ -20,10 +20,9 @@ final readonly class EnvironmentData
         public ?string $location_name,
         public string $name,
         public string $project_id,
+        public ?int $services_count,
         public string $slug,
-        public EnvironmentStatus $status,
-        public string $status_color,
-        public string $status_label,
+        public StatusData $status,
         public EnvironmentType $type,
     ) {}
 
@@ -33,6 +32,7 @@ final readonly class EnvironmentData
     public static function fromArray(array $data): self
     {
         return new self(
+            apps_count: $data['apps_count'] === null ? null : (int) $data['apps_count'],
             can_delete: (bool) $data['can_delete'],
             can_update: (bool) $data['can_update'],
             created_at: (string) $data['created_at'],
@@ -42,10 +42,9 @@ final readonly class EnvironmentData
             location_name: $data['location_name'] === null ? null : (string) $data['location_name'],
             name: (string) $data['name'],
             project_id: (string) $data['project_id'],
+            services_count: $data['services_count'] === null ? null : (int) $data['services_count'],
             slug: (string) $data['slug'],
-            status: EnvironmentStatus::from((string) $data['status']),
-            status_color: (string) $data['status_color'],
-            status_label: (string) $data['status_label'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             type: EnvironmentType::from((string) $data['type']),
         );
     }
@@ -56,6 +55,7 @@ final readonly class EnvironmentData
     public function toArray(): array
     {
         $data = [];
+        $data['apps_count'] = $this->apps_count === null ? null : $this->apps_count;
         $data['can_delete'] = $this->can_delete;
         $data['can_update'] = $this->can_update;
         $data['created_at'] = $this->created_at;
@@ -65,12 +65,24 @@ final readonly class EnvironmentData
         $data['location_name'] = $this->location_name === null ? null : $this->location_name;
         $data['name'] = $this->name;
         $data['project_id'] = $this->project_id;
+        $data['services_count'] = $this->services_count === null ? null : $this->services_count;
         $data['slug'] = $this->slug;
-        $data['status'] = $this->status->value;
-        $data['status_color'] = $this->status_color;
-        $data['status_label'] = $this->status_label;
+        $data['status'] = $this->status->toArray();
         $data['type'] = $this->type->value;
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 }

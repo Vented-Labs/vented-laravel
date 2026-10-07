@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vented\Data;
 
 use Vented\Enums\ObjectStorageProvider;
-use Vented\Enums\StorageStatus;
 
 final readonly class ObjectStorageData
 {
@@ -18,7 +17,7 @@ final readonly class ObjectStorageData
         public string $name,
         public ?ObjectStorageProvider $provider,
         public ?string $region,
-        public ?StorageStatus $status,
+        public ?StatusData $status,
     ) {}
 
     /**
@@ -35,7 +34,7 @@ final readonly class ObjectStorageData
             name: (string) $data['name'],
             provider: $data['provider'] === null ? null : ObjectStorageProvider::from((string) $data['provider']),
             region: $data['region'] === null ? null : (string) $data['region'],
-            status: $data['status'] === null ? null : StorageStatus::from((string) $data['status']),
+            status: $data['status'] === null ? null : StatusData::fromArray(self::objectValue($data['status'])),
         );
     }
 
@@ -53,8 +52,21 @@ final readonly class ObjectStorageData
         $data['name'] = $this->name;
         $data['provider'] = $this->provider === null ? null : $this->provider->value;
         $data['region'] = $this->region === null ? null : $this->region;
-        $data['status'] = $this->status === null ? null : $this->status->value;
+        $data['status'] = $this->status === null ? null : $this->status->toArray();
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 }

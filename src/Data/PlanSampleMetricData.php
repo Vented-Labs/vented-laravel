@@ -8,6 +8,7 @@ final readonly class PlanSampleMetricData
 {
     public function __construct(
         public float $limit,
+        public ?float $trend,
         public string $unit,
         public float $used,
     ) {}
@@ -19,6 +20,7 @@ final readonly class PlanSampleMetricData
     {
         return new self(
             limit: (float) $data['limit'],
+            trend: $data['trend'] === null ? null : (float) $data['trend'],
             unit: (string) $data['unit'],
             used: (float) $data['used'],
         );
@@ -31,6 +33,7 @@ final readonly class PlanSampleMetricData
     {
         $data = [];
         $data['limit'] = $this->limit;
+        $data['trend'] = $this->trend === null ? null : $this->trend;
         $data['unit'] = $this->unit;
         $data['used'] = $this->used;
 

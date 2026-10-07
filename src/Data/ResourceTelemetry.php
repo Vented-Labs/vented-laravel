@@ -9,6 +9,7 @@ final readonly class ResourceTelemetry
     public function __construct(
         public TelemetryMetric $cpu,
         public TelemetryMetric $disk,
+        public string $health,
         public TelemetryMetric $memory,
         public string $sampled_at,
         public string $source,
@@ -22,6 +23,7 @@ final readonly class ResourceTelemetry
         return new self(
             cpu: TelemetryMetric::fromArray(self::objectValue($data['cpu'])),
             disk: TelemetryMetric::fromArray(self::objectValue($data['disk'])),
+            health: (string) $data['health'],
             memory: TelemetryMetric::fromArray(self::objectValue($data['memory'])),
             sampled_at: (string) $data['sampled_at'],
             source: (string) $data['source'],
@@ -36,6 +38,7 @@ final readonly class ResourceTelemetry
         $data = [];
         $data['cpu'] = $this->cpu->toArray();
         $data['disk'] = $this->disk->toArray();
+        $data['health'] = $this->health;
         $data['memory'] = $this->memory->toArray();
         $data['sampled_at'] = $this->sampled_at;
         $data['source'] = $this->source;

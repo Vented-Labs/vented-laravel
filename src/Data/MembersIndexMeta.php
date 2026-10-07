@@ -10,6 +10,7 @@ final readonly class MembersIndexMeta
      * @param  list<array<string, mixed>>  $pending_invites
      */
     public function __construct(
+        public bool $can_manage_members,
         public bool $is_owner,
         public array $pending_invites,
     ) {}
@@ -20,6 +21,7 @@ final readonly class MembersIndexMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            can_manage_members: (bool) $data['can_manage_members'],
             is_owner: (bool) $data['is_owner'],
             pending_invites: array_map(static fn (mixed $value): array => self::objectValue($value), self::listValue($data['pending_invites'])),
         );
@@ -31,6 +33,7 @@ final readonly class MembersIndexMeta
     public function toArray(): array
     {
         $data = [];
+        $data['can_manage_members'] = $this->can_manage_members;
         $data['is_owner'] = $this->is_owner;
         $data['pending_invites'] = $this->pending_invites;
 

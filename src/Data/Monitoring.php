@@ -15,8 +15,7 @@ final readonly class Monitoring
         public ?float $memory_percent,
         public string $memory_usage,
         public string $started_at,
-        public string $status,
-        public string $status_color,
+        public StatusData $status,
         public string $uptime,
         public array $uptime_history,
     ) {}
@@ -32,8 +31,7 @@ final readonly class Monitoring
             memory_percent: $data['memory_percent'] === null ? null : (float) $data['memory_percent'],
             memory_usage: (string) $data['memory_usage'],
             started_at: (string) $data['started_at'],
-            status: (string) $data['status'],
-            status_color: (string) $data['status_color'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             uptime: (string) $data['uptime'],
             uptime_history: array_map(static fn (mixed $value): float => (float) $value, self::listValue($data['uptime_history'])),
         );
@@ -50,12 +48,24 @@ final readonly class Monitoring
         $data['memory_percent'] = $this->memory_percent === null ? null : $this->memory_percent;
         $data['memory_usage'] = $this->memory_usage;
         $data['started_at'] = $this->started_at;
-        $data['status'] = $this->status;
-        $data['status_color'] = $this->status_color;
+        $data['status'] = $this->status->toArray();
         $data['uptime'] = $this->uptime;
         $data['uptime_history'] = $this->uptime_history;
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 
     /**

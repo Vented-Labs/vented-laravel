@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Vented\Data;
 
 use Vented\Enums\EnvironmentTransferSecretPolicy;
-use Vented\Enums\EnvironmentTransferStatus;
 
 final readonly class EnvironmentTransferData
 {
@@ -33,9 +32,7 @@ final readonly class EnvironmentTransferData
         public EnvironmentTransferSecretPolicy $secret_policy,
         public EnvironmentTransferEnvironmentData $source_environment,
         public ?string $started_at,
-        public EnvironmentTransferStatus $status,
-        public string $status_color,
-        public string $status_label,
+        public StatusData $status,
         public EnvironmentTransferEnvironmentData $target_environment,
         public int $total_items,
         public string $updated_at,
@@ -67,9 +64,7 @@ final readonly class EnvironmentTransferData
             secret_policy: EnvironmentTransferSecretPolicy::from((string) $data['secret_policy']),
             source_environment: EnvironmentTransferEnvironmentData::fromArray(self::objectValue($data['source_environment'])),
             started_at: $data['started_at'] === null ? null : (string) $data['started_at'],
-            status: EnvironmentTransferStatus::from((string) $data['status']),
-            status_color: (string) $data['status_color'],
-            status_label: (string) $data['status_label'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
             target_environment: EnvironmentTransferEnvironmentData::fromArray(self::objectValue($data['target_environment'])),
             total_items: (int) $data['total_items'],
             updated_at: (string) $data['updated_at'],
@@ -102,9 +97,7 @@ final readonly class EnvironmentTransferData
         $data['secret_policy'] = $this->secret_policy->value;
         $data['source_environment'] = $this->source_environment->toArray();
         $data['started_at'] = $this->started_at === null ? null : $this->started_at;
-        $data['status'] = $this->status->value;
-        $data['status_color'] = $this->status_color;
-        $data['status_label'] = $this->status_label;
+        $data['status'] = $this->status->toArray();
         $data['target_environment'] = $this->target_environment->toArray();
         $data['total_items'] = $this->total_items;
         $data['updated_at'] = $this->updated_at;
