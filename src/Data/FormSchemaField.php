@@ -49,6 +49,7 @@ final readonly class FormSchemaField
         public string $value_type,
         public ?array $visible_when,
         public ?int $width,
+        public bool $write_only,
     ) {}
 
     /**
@@ -91,6 +92,7 @@ final readonly class FormSchemaField
             value_type: (string) $data['value_type'],
             visible_when: $data['visible_when'] === null ? null : array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['visible_when'])),
             width: $data['width'] === null ? null : (int) $data['width'],
+            write_only: (bool) $data['write_only'],
         );
     }
 
@@ -134,6 +136,7 @@ final readonly class FormSchemaField
         $data['value_type'] = $this->value_type;
         $data['visible_when'] = $this->visible_when === null ? null : $this->visible_when;
         $data['width'] = $this->width === null ? null : $this->width;
+        $data['write_only'] = $this->write_only;
 
         return $data;
     }

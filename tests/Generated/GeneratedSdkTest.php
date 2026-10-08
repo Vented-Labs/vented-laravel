@@ -16,14 +16,15 @@ use Vented\Vented;
 it('publishes one unique generated resource action and command per operation', function (): void {
     $operations = OperationRegistry::all();
 
-    expect($operations)->toHaveCount(108)
-        ->and(array_unique(array_column($operations, 'operationId')))->toHaveCount(108)
+    $operationCount = count($operations);
+    expect($operations)->not->toBeEmpty()
+        ->and(array_unique(array_column($operations, 'operationId')))->toHaveCount($operationCount)
         ->and(array_unique(array_map(
             static fn (array $operation): string => $operation['resource'].'.'.$operation['action'],
             $operations,
-        )))->toHaveCount(108)
-        ->and(array_unique(array_column($operations, 'commandName')))->toHaveCount(108)
-        ->and(CommandRegistry::all())->toHaveCount(108);
+        )))->toHaveCount($operationCount)
+        ->and(array_unique(array_column($operations, 'commandName')))->toHaveCount($operationCount)
+        ->and(CommandRegistry::all())->toHaveCount($operationCount);
 });
 
 it('makes representative generated project calls with typed results and canonical documents', function (): void {

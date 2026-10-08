@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Resources;
 
 use Vented\Data\AppData;
+use Vented\Data\AppSetupData;
 use Vented\Data\StoreAppData;
 use Vented\Data\UpdateAppData;
 use Vented\Results\NoContentResult;
@@ -121,6 +122,23 @@ final readonly class AppsResource
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): AppData => AppData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Show app installation credentials
+     *
+     * Operation: projects.apps.setup
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<AppSetupData>
+     */
+    public function setup(string $project, string $environment, string $app, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/setup')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): AppSetupData => AppSetupData::fromArray(self::attributes($resource, true)));
     }
 
     /**

@@ -126,6 +126,12 @@ final class GeneratedCommandDispatcher
                 app: self::stringPath($path, 'app'),
                 query: $query,
             ),
+            'projects.apps.setup' => $client->apps()->setup(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                app: self::stringPath($path, 'app'),
+                query: $query,
+            ),
             'projects.apps.show' => $client->apps()->find(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),

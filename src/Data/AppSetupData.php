@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class AppConfigurationMeta
+final readonly class AppSetupData
 {
     /**
-     * @param  list<string>  $configured_secrets
-     * @param  array<string, mixed>  $current_configuration
+     * @param  list<AppSetupField>  $fields
      */
     public function __construct(
-        public array $configured_secrets,
-        public array $current_configuration,
-        public AppConfigurationMetaFormOptions $form_options,
+        public array $fields,
+        public string $id,
+        public string $path,
+        public int $port,
     ) {}
 
     /**
@@ -22,9 +22,10 @@ final readonly class AppConfigurationMeta
     public static function fromArray(array $data): self
     {
         return new self(
-            configured_secrets: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['configured_secrets'])),
-            current_configuration: self::objectValue($data['current_configuration']),
-            form_options: AppConfigurationMetaFormOptions::fromArray(self::objectValue($data['form_options'])),
+            fields: array_map(static fn (mixed $value): AppSetupField => AppSetupField::fromArray(self::objectValue($value)), self::listValue($data['fields'])),
+            id: (string) $data['id'],
+            path: (string) $data['path'],
+            port: (int) $data['port'],
         );
     }
 
@@ -34,9 +35,10 @@ final readonly class AppConfigurationMeta
     public function toArray(): array
     {
         $data = [];
-        $data['configured_secrets'] = $this->configured_secrets;
-        $data['current_configuration'] = $this->current_configuration;
-        $data['form_options'] = $this->form_options->toArray();
+        $data['fields'] = array_map(static fn (AppSetupField $value) => $value->toArray(), $this->fields);
+        $data['id'] = $this->id;
+        $data['path'] = $this->path;
+        $data['port'] = $this->port;
 
         return $data;
     }

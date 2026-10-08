@@ -18,6 +18,7 @@ use Vented\Commands\ProjectsAppsDestroyCommand;
 use Vented\Commands\ProjectsAppsDomainsCommand;
 use Vented\Commands\ProjectsAppsIndexCommand;
 use Vented\Commands\ProjectsAppsRestartCommand;
+use Vented\Commands\ProjectsAppsSetupCommand;
 use Vented\Commands\ProjectsAppsShowCommand;
 use Vented\Commands\ProjectsAppsStartCommand;
 use Vented\Commands\ProjectsAppsStopCommand;
@@ -256,6 +257,17 @@ final class OperationRegistry
             'action' => 'restart',
             'commandName' => 'vented:apps:restart',
             'commandClass' => ProjectsAppsRestartCommand::class,
+            'pathParameters' => ['project', 'environment', 'app'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.apps.setup' => [
+            'operationId' => 'projects.apps.setup',
+            'resource' => 'apps',
+            'action' => 'setup',
+            'commandName' => 'vented:apps:setup',
+            'commandClass' => ProjectsAppsSetupCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
             'hasBody' => false,
             'destructive' => false,

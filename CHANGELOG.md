@@ -2,6 +2,11 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.5.0 - 2026-10-07
+
+- Added generic setup-field retrieval through `apps()->setup()` and `vented:apps:setup`, including Filebeam's sensitive setup token.
+- Exposed configured credential paths and write-only form metadata in generated DTOs.
+
 ## 0.4.0 - 2026-10-07
 
 - Statuses are a `StatusData` object with value, label, tone and transitional flag; the per-resource status enums are replaced by `StatusTone`.
