@@ -12,6 +12,7 @@ use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
 use Vented\Commands\ProjectsAppsBindingsStoreCommand;
+use Vented\Commands\ProjectsAppsBindingsUpdateCommand;
 use Vented\Commands\ProjectsAppsConfigurationCommand;
 use Vented\Commands\ProjectsAppsDeployCommand;
 use Vented\Commands\ProjectsAppsDestroyCommand;
@@ -37,7 +38,6 @@ use Vented\Commands\ProjectsBlockStoragesShowCommand;
 use Vented\Commands\ProjectsBlockStoragesStoreCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
-use Vented\Commands\ProjectsDeploysTemplatesIndexCommand;
 use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
 use Vented\Commands\ProjectsDeployTriggersIndexCommand;
 use Vented\Commands\ProjectsDeployTriggersStoreCommand;
@@ -95,6 +95,7 @@ use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
 use Vented\Commands\ProjectsServicesBindingsStoreCommand;
+use Vented\Commands\ProjectsServicesBindingsUpdateCommand;
 use Vented\Commands\ProjectsServicesConfigurationCommand;
 use Vented\Commands\ProjectsServicesDestroyCommand;
 use Vented\Commands\ProjectsServicesIndexCommand;
@@ -106,6 +107,14 @@ use Vented\Commands\ProjectsSettingsUpdateCommand;
 use Vented\Commands\ProjectsSshKeysDestroyCommand;
 use Vented\Commands\ProjectsSshKeysIndexCommand;
 use Vented\Commands\ProjectsSshKeysStoreCommand;
+use Vented\Commands\ProjectsStackCandidatesStoreCommand;
+use Vented\Commands\ProjectsStackOperationsStoreCommand;
+use Vented\Commands\ProjectsStackOperationsUpdateCommand;
+use Vented\Commands\ProjectsStacksDestroyCommand;
+use Vented\Commands\ProjectsStacksIndexCommand;
+use Vented\Commands\ProjectsStacksShowCommand;
+use Vented\Commands\ProjectsStacksStoreCommand;
+use Vented\Commands\ProjectsStacksUpdateCommand;
 use Vented\Commands\ProjectsStoragesFileContentsShowCommand;
 use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
@@ -192,6 +201,17 @@ final class OperationRegistry
             'commandName' => 'vented:app-bindings:create',
             'commandClass' => ProjectsAppsBindingsStoreCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.apps.bindings.update' => [
+            'operationId' => 'projects.apps.bindings.update',
+            'resource' => 'appBindings',
+            'action' => 'update',
+            'commandName' => 'vented:app-bindings:update',
+            'commandClass' => ProjectsAppsBindingsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'app', 'binding'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
@@ -512,17 +532,6 @@ final class OperationRegistry
             'commandClass' => ProjectsDeploysStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.deploys.templates.index' => [
-            'operationId' => 'projects.deploys.templates.index',
-            'resource' => 'deployTemplates',
-            'action' => 'list',
-            'commandName' => 'vented:deploy-templates:list',
-            'commandClass' => ProjectsDeploysTemplatesIndexCommand::class,
-            'pathParameters' => ['project', 'environment'],
-            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],
@@ -1109,6 +1118,17 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.services.bindings.update' => [
+            'operationId' => 'projects.services.bindings.update',
+            'resource' => 'serviceBindings',
+            'action' => 'update',
+            'commandName' => 'vented:service-bindings:update',
+            'commandClass' => ProjectsServicesBindingsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'service', 'binding'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.services.configuration' => [
             'operationId' => 'projects.services.configuration',
             'resource' => 'services',
@@ -1226,6 +1246,94 @@ final class OperationRegistry
             'commandName' => 'vented:ssh-keys:create',
             'commandClass' => ProjectsSshKeysStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stack-candidates.store' => [
+            'operationId' => 'projects.stack-candidates.store',
+            'resource' => 'stackCandidates',
+            'action' => 'create',
+            'commandName' => 'vented:stack-candidates:create',
+            'commandClass' => ProjectsStackCandidatesStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stack-operations.store' => [
+            'operationId' => 'projects.stack-operations.store',
+            'resource' => 'stackOperations',
+            'action' => 'create',
+            'commandName' => 'vented:stack-operations:create',
+            'commandClass' => ProjectsStackOperationsStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stack-operations.update' => [
+            'operationId' => 'projects.stack-operations.update',
+            'resource' => 'stackOperations',
+            'action' => 'update',
+            'commandName' => 'vented:stack-operations:update',
+            'commandClass' => ProjectsStackOperationsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'operation'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stacks.destroy' => [
+            'operationId' => 'projects.stacks.destroy',
+            'resource' => 'stacks',
+            'action' => 'delete',
+            'commandName' => 'vented:stacks:delete',
+            'commandClass' => ProjectsStacksDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'stack'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.stacks.index' => [
+            'operationId' => 'projects.stacks.index',
+            'resource' => 'stacks',
+            'action' => 'list',
+            'commandName' => 'vented:stacks:list',
+            'commandClass' => ProjectsStacksIndexCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stacks.show' => [
+            'operationId' => 'projects.stacks.show',
+            'resource' => 'stacks',
+            'action' => 'find',
+            'commandName' => 'vented:stacks:show',
+            'commandClass' => ProjectsStacksShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'stack'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stacks.store' => [
+            'operationId' => 'projects.stacks.store',
+            'resource' => 'stacks',
+            'action' => 'create',
+            'commandName' => 'vented:stacks:create',
+            'commandClass' => ProjectsStacksStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.stacks.update' => [
+            'operationId' => 'projects.stacks.update',
+            'resource' => 'stacks',
+            'action' => 'update',
+            'commandName' => 'vented:stacks:update',
+            'commandClass' => ProjectsStacksUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'stack'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

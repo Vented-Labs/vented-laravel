@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vented\Commands;
+
+use Vented\Console\GeneratedCommand;
+
+final class ProjectsStacksStoreCommand extends GeneratedCommand
+{
+    protected $signature = 'vented:stacks:create {project : project path parameter} {environment : environment path parameter} {--data= : JSON attributes or @path/to/file.json} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+
+    protected $description = 'Link a managed stack';
+
+    protected function operationId(): string
+    {
+        return 'projects.stacks.store';
+    }
+}

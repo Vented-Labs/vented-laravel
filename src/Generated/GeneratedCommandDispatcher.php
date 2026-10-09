@@ -20,6 +20,9 @@ use Vented\Data\StoreEnvironmentTransferPresetData;
 use Vented\Data\StoreFileData;
 use Vented\Data\StoreIntegrationData;
 use Vented\Data\StoreInviteData;
+use Vented\Data\StoreManagedStackCandidatesData;
+use Vented\Data\StoreManagedStackData;
+use Vented\Data\StoreManagedStackOperationData;
 use Vented\Data\StoreObjectStorageData;
 use Vented\Data\StoreProjectData;
 use Vented\Data\StoreRecordData;
@@ -28,12 +31,15 @@ use Vented\Data\StoreZoneData;
 use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
+use Vented\Data\UpdateBindingPurposeData;
 use Vented\Data\UpdateDeployTriggerData;
 use Vented\Data\UpdateEnvironmentData;
 use Vented\Data\UpdateEnvironmentTransferData;
 use Vented\Data\UpdateEnvironmentTransferPresetData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateIntegrationData;
+use Vented\Data\UpdateManagedStackData;
+use Vented\Data\UpdateManagedStackOperationData;
 use Vented\Data\UpdateProjectData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
@@ -89,6 +95,14 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 data: StoreBindingData::fromArray($data),
+                query: $query,
+            ),
+            'projects.apps.bindings.update' => $client->appBindings()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                app: self::stringPath($path, 'app'),
+                binding: self::stringPath($path, 'binding'),
+                data: UpdateBindingPurposeData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.configuration' => $client->apps()->configuration(
@@ -259,11 +273,6 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreDeployData::fromArray($data),
-                query: $query,
-            ),
-            'projects.deploys.templates.index' => $client->deployTemplates()->list(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
             'projects.destroy' => $client->projects()->delete(
@@ -549,6 +558,14 @@ final class GeneratedCommandDispatcher
                 data: StoreBindingData::fromArray($data),
                 query: $query,
             ),
+            'projects.services.bindings.update' => $client->serviceBindings()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                service: self::stringPath($path, 'service'),
+                binding: self::stringPath($path, 'binding'),
+                data: UpdateBindingPurposeData::fromArray($data),
+                query: $query,
+            ),
             'projects.services.configuration' => $client->services()->configuration(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
@@ -609,6 +626,55 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreEnvironmentSshKeyData::fromArray($data),
+                query: $query,
+            ),
+            'projects.stack-candidates.store' => $client->stackCandidates()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreManagedStackCandidatesData::fromArray($data),
+                query: $query,
+            ),
+            'projects.stack-operations.store' => $client->stackOperations()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreManagedStackOperationData::fromArray($data),
+                query: $query,
+            ),
+            'projects.stack-operations.update' => $client->stackOperations()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                operation: self::stringPath($path, 'operation'),
+                data: UpdateManagedStackOperationData::fromArray($data),
+                query: $query,
+            ),
+            'projects.stacks.destroy' => $client->stacks()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                stack: self::stringPath($path, 'stack'),
+                query: $query,
+            ),
+            'projects.stacks.index' => $client->stacks()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.stacks.show' => $client->stacks()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                stack: self::stringPath($path, 'stack'),
+                query: $query,
+            ),
+            'projects.stacks.store' => $client->stacks()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreManagedStackData::fromArray($data),
+                query: $query,
+            ),
+            'projects.stacks.update' => $client->stacks()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                stack: self::stringPath($path, 'stack'),
+                data: UpdateManagedStackData::fromArray($data),
                 query: $query,
             ),
             'projects.storages.file-contents.show' => $client->storageFileContents()->find(

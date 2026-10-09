@@ -12,6 +12,7 @@ use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
 use Vented\Commands\ProjectsAppsBindingsStoreCommand;
+use Vented\Commands\ProjectsAppsBindingsUpdateCommand;
 use Vented\Commands\ProjectsAppsConfigurationCommand;
 use Vented\Commands\ProjectsAppsDeployCommand;
 use Vented\Commands\ProjectsAppsDestroyCommand;
@@ -37,7 +38,6 @@ use Vented\Commands\ProjectsBlockStoragesShowCommand;
 use Vented\Commands\ProjectsBlockStoragesStoreCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
-use Vented\Commands\ProjectsDeploysTemplatesIndexCommand;
 use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
 use Vented\Commands\ProjectsDeployTriggersIndexCommand;
 use Vented\Commands\ProjectsDeployTriggersStoreCommand;
@@ -95,6 +95,7 @@ use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
 use Vented\Commands\ProjectsServicesBindingsStoreCommand;
+use Vented\Commands\ProjectsServicesBindingsUpdateCommand;
 use Vented\Commands\ProjectsServicesConfigurationCommand;
 use Vented\Commands\ProjectsServicesDestroyCommand;
 use Vented\Commands\ProjectsServicesIndexCommand;
@@ -106,6 +107,14 @@ use Vented\Commands\ProjectsSettingsUpdateCommand;
 use Vented\Commands\ProjectsSshKeysDestroyCommand;
 use Vented\Commands\ProjectsSshKeysIndexCommand;
 use Vented\Commands\ProjectsSshKeysStoreCommand;
+use Vented\Commands\ProjectsStackCandidatesStoreCommand;
+use Vented\Commands\ProjectsStackOperationsStoreCommand;
+use Vented\Commands\ProjectsStackOperationsUpdateCommand;
+use Vented\Commands\ProjectsStacksDestroyCommand;
+use Vented\Commands\ProjectsStacksIndexCommand;
+use Vented\Commands\ProjectsStacksShowCommand;
+use Vented\Commands\ProjectsStacksStoreCommand;
+use Vented\Commands\ProjectsStacksUpdateCommand;
 use Vented\Commands\ProjectsStoragesFileContentsShowCommand;
 use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
@@ -126,6 +135,7 @@ final class CommandRegistry
         ProjectsAppsBindingsCommand::class,
         ProjectsAppsBindingsDestroyCommand::class,
         ProjectsAppsBindingsStoreCommand::class,
+        ProjectsAppsBindingsUpdateCommand::class,
         ProjectsAppsConfigurationCommand::class,
         ProjectsAppsDeployCommand::class,
         ProjectsAppsDestroyCommand::class,
@@ -155,7 +165,6 @@ final class CommandRegistry
         ProjectsDeployTriggersUpdateCommand::class,
         ProjectsDeploysIndexCommand::class,
         ProjectsDeploysStoreCommand::class,
-        ProjectsDeploysTemplatesIndexCommand::class,
         ProjectsDestroyCommand::class,
         ProjectsDevelopersIndexCommand::class,
         ProjectsDnsZonesBindingsDestroyCommand::class,
@@ -209,6 +218,7 @@ final class CommandRegistry
         ProjectsServicesBindingsCommand::class,
         ProjectsServicesBindingsDestroyCommand::class,
         ProjectsServicesBindingsStoreCommand::class,
+        ProjectsServicesBindingsUpdateCommand::class,
         ProjectsServicesConfigurationCommand::class,
         ProjectsServicesDestroyCommand::class,
         ProjectsServicesIndexCommand::class,
@@ -220,6 +230,14 @@ final class CommandRegistry
         ProjectsSshKeysDestroyCommand::class,
         ProjectsSshKeysIndexCommand::class,
         ProjectsSshKeysStoreCommand::class,
+        ProjectsStackCandidatesStoreCommand::class,
+        ProjectsStackOperationsStoreCommand::class,
+        ProjectsStackOperationsUpdateCommand::class,
+        ProjectsStacksDestroyCommand::class,
+        ProjectsStacksIndexCommand::class,
+        ProjectsStacksShowCommand::class,
+        ProjectsStacksStoreCommand::class,
+        ProjectsStacksUpdateCommand::class,
         ProjectsStoragesFileContentsShowCommand::class,
         ProjectsStoragesFileContentsUpdateCommand::class,
         ProjectsStoragesFilesDestroyCommand::class,

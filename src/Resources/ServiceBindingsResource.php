@@ -6,6 +6,7 @@ namespace Vented\Resources;
 
 use Vented\Data\BindingData;
 use Vented\Data\StoreBindingData;
+use Vented\Data\UpdateBindingPurposeData;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
 use Vented\Results\ResourceResult;
@@ -69,6 +70,29 @@ final readonly class ServiceBindingsResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): BindingData => BindingData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Set the declared purpose of a service binding
+     *
+     * Operation: projects.services.bindings.update
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<BindingData>
+     */
+    public function update(string $project, string $environment, string $service, string $binding, UpdateBindingPurposeData $data, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/services/{service}/bindings/{binding}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service, 'binding' => $binding])
+            ->withBody([
+                'data' => [
+                    'type' => 'bindings',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): BindingData => BindingData::fromArray(self::attributes($resource, true)));
     }
 
     /**

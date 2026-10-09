@@ -4,29 +4,36 @@ declare(strict_types=1);
 
 namespace Vented\Resources;
 
-use Vented\Data\DeployTemplateData;
-use Vented\Results\CollectionResult;
+use Vented\Data\ManagedStackCandidatesData;
+use Vented\Data\StoreManagedStackCandidatesData;
+use Vented\Results\ResourceResult;
 use Vented\Vented;
 
-final readonly class DeployTemplatesResource
+final readonly class StackCandidatesResource
 {
     public function __construct(private Vented $client) {}
 
     /**
-     * List deploy templates
+     * Evaluate stack role candidates
      *
-     * Operation: projects.deploys.templates.index
+     * Operation: projects.stack-candidates.store
      *
      * @param  array<string, mixed>  $query
-     * @return CollectionResult<DeployTemplateData>
+     * @return ResourceResult<ManagedStackCandidatesData>
      */
-    public function list(string $project, string $environment, array $query = []): CollectionResult
+    public function create(string $project, string $environment, StoreManagedStackCandidatesData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/deploys/templates')
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/stack-candidates')
             ->withPathParameters(['project' => $project, 'environment' => $environment])
+            ->withBody([
+                'data' => [
+                    'type' => 'managed_stack_candidates',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
             ->withQuery($query);
 
-        return $operation->collection(static fn (array $resource): DeployTemplateData => DeployTemplateData::fromArray(self::attributes($resource, true)));
+        return $operation->resource(static fn (array $resource): ManagedStackCandidatesData => ManagedStackCandidatesData::fromArray(self::attributes($resource, true)));
     }
 
     /**

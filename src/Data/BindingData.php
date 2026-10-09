@@ -9,7 +9,9 @@ use Vented\Enums\BindableType;
 final readonly class BindingData
 {
     public function __construct(
+        public int $declaration_generation,
         public string $id,
+        public ?string $purpose,
         public BindingEndpoint $source,
         public string $source_id,
         public BindableType $source_type,
@@ -25,7 +27,9 @@ final readonly class BindingData
     public static function fromArray(array $data): self
     {
         return new self(
+            declaration_generation: (int) $data['declaration_generation'],
             id: (string) $data['id'],
+            purpose: $data['purpose'] === null ? null : (string) $data['purpose'],
             source: BindingEndpoint::fromArray(self::objectValue($data['source'])),
             source_id: (string) $data['source_id'],
             source_type: BindableType::from((string) $data['source_type']),
@@ -42,7 +46,9 @@ final readonly class BindingData
     public function toArray(): array
     {
         $data = [];
+        $data['declaration_generation'] = $this->declaration_generation;
         $data['id'] = $this->id;
+        $data['purpose'] = $this->purpose === null ? null : $this->purpose;
         $data['source'] = $this->source->toArray();
         $data['source_id'] = $this->source_id;
         $data['source_type'] = $this->source_type->value;

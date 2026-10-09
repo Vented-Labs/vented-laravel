@@ -14,7 +14,6 @@ use Vented\Resources\BackupsResource;
 use Vented\Resources\BlockStorageBackupsResource;
 use Vented\Resources\BlockStoragesResource;
 use Vented\Resources\DeploysResource;
-use Vented\Resources\DeployTemplatesResource;
 use Vented\Resources\DeployTriggersResource;
 use Vented\Resources\DevelopersResource;
 use Vented\Resources\DnsZoneBindingsResource;
@@ -36,6 +35,9 @@ use Vented\Resources\ServiceBindingsResource;
 use Vented\Resources\ServicesResource;
 use Vented\Resources\SettingsResource;
 use Vented\Resources\SshKeysResource;
+use Vented\Resources\StackCandidatesResource;
+use Vented\Resources\StackOperationsResource;
+use Vented\Resources\StacksResource;
 use Vented\Resources\StorageFileContentsResource;
 use Vented\Resources\StorageFilesResource;
 
@@ -84,11 +86,6 @@ trait ResourceAccessors
     public function blockStorages(): BlockStoragesResource
     {
         return new BlockStoragesResource($this);
-    }
-
-    public function deployTemplates(): DeployTemplatesResource
-    {
-        return new DeployTemplatesResource($this);
     }
 
     public function deployTriggers(): DeployTriggersResource
@@ -199,6 +196,21 @@ trait ResourceAccessors
     public function sshKeys(): SshKeysResource
     {
         return new SshKeysResource($this);
+    }
+
+    public function stackCandidates(): StackCandidatesResource
+    {
+        return new StackCandidatesResource($this);
+    }
+
+    public function stackOperations(): StackOperationsResource
+    {
+        return new StackOperationsResource($this);
+    }
+
+    public function stacks(): StacksResource
+    {
+        return new StacksResource($this);
     }
 
     public function storageFileContents(): StorageFileContentsResource

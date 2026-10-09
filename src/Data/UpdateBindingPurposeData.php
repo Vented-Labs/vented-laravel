@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-use Vented\Enums\BindableType;
-
-final readonly class StoreBindingData
+final readonly class UpdateBindingPurposeData
 {
     public function __construct(
         public ?string $purpose,
-        public string $target_id,
-        public BindableType $target_type,
     ) {}
 
     /**
@@ -21,8 +17,6 @@ final readonly class StoreBindingData
     {
         return new self(
             purpose: $data['purpose'] === null ? null : (string) $data['purpose'],
-            target_id: (string) $data['target_id'],
-            target_type: BindableType::from((string) $data['target_type']),
         );
     }
 
@@ -33,8 +27,6 @@ final readonly class StoreBindingData
     {
         $data = [];
         $data['purpose'] = $this->purpose === null ? null : $this->purpose;
-        $data['target_id'] = $this->target_id;
-        $data['target_type'] = $this->target_type->value;
 
         return $data;
     }

@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class DeployTemplatesIndexMeta
+final readonly class ManagedStacksFormOptions
 {
     /**
-     * @param  list<FormOption>  $kinds
+     * @param  list<StackDefinitionData>  $definitions
+     * @param  list<StackResourceOptionData>  $resources
      */
     public function __construct(
-        public array $kinds,
+        public array $definitions,
+        public array $resources,
     ) {}
 
     /**
@@ -19,7 +21,8 @@ final readonly class DeployTemplatesIndexMeta
     public static function fromArray(array $data): self
     {
         return new self(
-            kinds: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['kinds'])),
+            definitions: array_map(static fn (mixed $value): StackDefinitionData => StackDefinitionData::fromArray(self::objectValue($value)), self::listValue($data['definitions'])),
+            resources: array_map(static fn (mixed $value): StackResourceOptionData => StackResourceOptionData::fromArray(self::objectValue($value)), self::listValue($data['resources'])),
         );
     }
 
@@ -29,7 +32,8 @@ final readonly class DeployTemplatesIndexMeta
     public function toArray(): array
     {
         $data = [];
-        $data['kinds'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->kinds);
+        $data['definitions'] = array_map(static fn (StackDefinitionData $value) => $value->toArray(), $this->definitions);
+        $data['resources'] = array_map(static fn (StackResourceOptionData $value) => $value->toArray(), $this->resources);
 
         return $data;
     }
