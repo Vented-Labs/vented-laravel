@@ -8,10 +8,14 @@ final readonly class AppConfigurationMetaFormOptions
 {
     /**
      * @param  list<FormSchemaField>  $schema
+     * @param  list<FormOption>  $storages
+     * @param  list<AppVersionOption>  $version_options
      * @param  list<string>  $versions
      */
     public function __construct(
         public array $schema,
+        public array $storages,
+        public array $version_options,
         public array $versions,
     ) {}
 
@@ -22,6 +26,8 @@ final readonly class AppConfigurationMetaFormOptions
     {
         return new self(
             schema: array_map(static fn (mixed $value): FormSchemaField => FormSchemaField::fromArray(self::objectValue($value)), self::listValue($data['schema'])),
+            storages: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['storages'])),
+            version_options: array_map(static fn (mixed $value): AppVersionOption => AppVersionOption::fromArray(self::objectValue($value)), self::listValue($data['version_options'])),
             versions: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['versions'])),
         );
     }
@@ -33,6 +39,8 @@ final readonly class AppConfigurationMetaFormOptions
     {
         $data = [];
         $data['schema'] = array_map(static fn (FormSchemaField $value) => $value->toArray(), $this->schema);
+        $data['storages'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->storages);
+        $data['version_options'] = array_map(static fn (AppVersionOption $value) => $value->toArray(), $this->version_options);
         $data['versions'] = $this->versions;
 
         return $data;

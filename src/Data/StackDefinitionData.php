@@ -9,6 +9,7 @@ final readonly class StackDefinitionData
     /**
      * @param  list<StackActionData>  $actions
      * @param  list<StackConfigurationFieldData>  $configuration
+     * @param  list<StackRelationshipData>  $relationships
      * @param  list<StackRoleData>  $roles
      */
     public function __construct(
@@ -23,6 +24,7 @@ final readonly class StackDefinitionData
         public bool $link_available,
         public string $name,
         public bool $provision_available,
+        public array $relationships,
         public string $revision,
         public array $roles,
     ) {}
@@ -44,6 +46,7 @@ final readonly class StackDefinitionData
             link_available: (bool) $data['link_available'],
             name: (string) $data['name'],
             provision_available: (bool) $data['provision_available'],
+            relationships: array_map(static fn (mixed $value): StackRelationshipData => StackRelationshipData::fromArray(self::objectValue($value)), self::listValue($data['relationships'])),
             revision: (string) $data['revision'],
             roles: array_map(static fn (mixed $value): StackRoleData => StackRoleData::fromArray(self::objectValue($value)), self::listValue($data['roles'])),
         );
@@ -66,6 +69,7 @@ final readonly class StackDefinitionData
         $data['link_available'] = $this->link_available;
         $data['name'] = $this->name;
         $data['provision_available'] = $this->provision_available;
+        $data['relationships'] = array_map(static fn (StackRelationshipData $value) => $value->toArray(), $this->relationships);
         $data['revision'] = $this->revision;
         $data['roles'] = array_map(static fn (StackRoleData $value) => $value->toArray(), $this->roles);
 

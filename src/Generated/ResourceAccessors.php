@@ -22,6 +22,7 @@ use Vented\Resources\DnsZonesResource;
 use Vented\Resources\EnvironmentsResource;
 use Vented\Resources\EnvironmentTransferPresetsResource;
 use Vented\Resources\EnvironmentTransfersResource;
+use Vented\Resources\GettingStartedResource;
 use Vented\Resources\IntegrationsResource;
 use Vented\Resources\MemberInvitationsResource;
 use Vented\Resources\MembersResource;
@@ -131,6 +132,11 @@ trait ResourceAccessors
     public function environments(): EnvironmentsResource
     {
         return new EnvironmentsResource($this);
+    }
+
+    public function gettingStarted(): GettingStartedResource
+    {
+        return new GettingStartedResource($this);
     }
 
     public function integrations(): IntegrationsResource

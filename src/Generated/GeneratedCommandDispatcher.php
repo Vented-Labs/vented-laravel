@@ -40,6 +40,7 @@ use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
+use Vented\Data\UpdateOnboardingData;
 use Vented\Data\UpdateProjectData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
@@ -72,6 +73,13 @@ final class GeneratedCommandDispatcher
             ),
             'account.api-tokens.store' => $client->apiTokens()->create(
                 data: StoreApiTokenData::fromArray($data),
+                query: $query,
+            ),
+            'account.getting-started.show' => $client->gettingStarted()->find(
+                query: $query,
+            ),
+            'account.getting-started.update' => $client->gettingStarted()->update(
+                data: UpdateOnboardingData::fromArray($data),
                 query: $query,
             ),
             'platform-locations.index' => $client->platformLocations()->list(

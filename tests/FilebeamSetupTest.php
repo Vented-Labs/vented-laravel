@@ -50,11 +50,16 @@ it('preserves nullable generic setup fields when hydrating and serializing', fun
 
 it('hydrates configured credential paths without mistaking null placeholders for secrets', function (): void {
     $meta = AppConfigurationMeta::fromArray([
-        'form_options' => ['versions' => ['0.3.3'], 'schema' => []],
+        'form_options' => ['versions' => ['0.3.3'], 'schema' => [], 'storages' => [], 'version_options' => [
+            ['version' => '0.3.3', 'schema' => [], 'minimum_volumes' => 2, 'mount_defaults' => ['/data', '/storage']],
+        ]],
         'current_configuration' => ['policy' => ['database' => ['password' => null]]],
         'configured_secrets' => ['policy.database.password'],
     ]);
 
     expect($meta->configured_secrets)->toBe(['policy.database.password'])
-        ->and($meta->current_configuration)->toBe(['policy' => ['database' => ['password' => null]]]);
+        ->and($meta->current_configuration)->toBe(['policy' => ['database' => ['password' => null]]])
+        ->and($meta->form_options->version_options[0]->version)->toBe('0.3.3')
+        ->and($meta->form_options->version_options[0]->minimum_volumes)->toBe(2)
+        ->and($meta->form_options->version_options[0]->mount_defaults)->toBe(['/data', '/storage']);
 });

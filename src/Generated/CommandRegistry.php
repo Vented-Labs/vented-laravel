@@ -8,6 +8,8 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountGettingStartedShowCommand;
+use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
@@ -131,6 +133,8 @@ final class CommandRegistry
         AccountApiTokensDestroyCommand::class,
         AccountApiTokensIndexCommand::class,
         AccountApiTokensStoreCommand::class,
+        AccountGettingStartedShowCommand::class,
+        AccountGettingStartedUpdateCommand::class,
         PlatformLocationsIndexCommand::class,
         ProjectsAppsBindingsCommand::class,
         ProjectsAppsBindingsDestroyCommand::class,

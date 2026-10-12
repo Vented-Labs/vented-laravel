@@ -11,6 +11,9 @@ final readonly class StackRoleData
      */
     public function __construct(
         public ?StackConditionData $allowed_when,
+        public ?int $default_capacity_mb,
+        public ?string $default_option,
+        public ?string $default_version,
         public string $key,
         public string $label,
         public int $maximum,
@@ -27,6 +30,9 @@ final readonly class StackRoleData
     {
         return new self(
             allowed_when: $data['allowed_when'] === null ? null : StackConditionData::fromArray(self::objectValue($data['allowed_when'])),
+            default_capacity_mb: $data['default_capacity_mb'] === null ? null : (int) $data['default_capacity_mb'],
+            default_option: $data['default_option'] === null ? null : (string) $data['default_option'],
+            default_version: $data['default_version'] === null ? null : (string) $data['default_version'],
             key: (string) $data['key'],
             label: (string) $data['label'],
             maximum: (int) $data['maximum'],
@@ -44,6 +50,9 @@ final readonly class StackRoleData
     {
         $data = [];
         $data['allowed_when'] = $this->allowed_when === null ? null : $this->allowed_when->toArray();
+        $data['default_capacity_mb'] = $this->default_capacity_mb === null ? null : $this->default_capacity_mb;
+        $data['default_option'] = $this->default_option === null ? null : $this->default_option;
+        $data['default_version'] = $this->default_version === null ? null : $this->default_version;
         $data['key'] = $this->key;
         $data['label'] = $this->label;
         $data['maximum'] = $this->maximum;

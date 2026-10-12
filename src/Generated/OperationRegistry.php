@@ -8,6 +8,8 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountGettingStartedShowCommand;
+use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
@@ -156,6 +158,28 @@ final class OperationRegistry
             'action' => 'create',
             'commandName' => 'vented:api-tokens:create',
             'commandClass' => AccountApiTokensStoreCommand::class,
+            'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.getting-started.show' => [
+            'operationId' => 'account.getting-started.show',
+            'resource' => 'gettingStarted',
+            'action' => 'find',
+            'commandName' => 'vented:getting-started:show',
+            'commandClass' => AccountGettingStartedShowCommand::class,
+            'pathParameters' => [],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.getting-started.update' => [
+            'operationId' => 'account.getting-started.update',
+            'resource' => 'gettingStarted',
+            'action' => 'update',
+            'commandName' => 'vented:getting-started:update',
+            'commandClass' => AccountGettingStartedUpdateCommand::class,
             'pathParameters' => [],
             'hasBody' => true,
             'destructive' => false,

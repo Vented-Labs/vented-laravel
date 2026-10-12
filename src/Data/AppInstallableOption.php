@@ -10,15 +10,18 @@ final readonly class AppInstallableOption
 {
     /**
      * @param  list<FormSchemaField>  $schema
+     * @param  list<AppVersionOption>  $version_options
      * @param  list<string>  $versions
      */
     public function __construct(
+        public ?string $description,
         public ?AppRuntimeGroupOption $group,
         public ?string $icon,
         public string $identifier,
         public string $name,
         public array $schema,
         public InstallableType $type,
+        public array $version_options,
         public array $versions,
     ) {}
 
@@ -28,12 +31,14 @@ final readonly class AppInstallableOption
     public static function fromArray(array $data): self
     {
         return new self(
+            description: $data['description'] === null ? null : (string) $data['description'],
             group: $data['group'] === null ? null : AppRuntimeGroupOption::fromArray(self::objectValue($data['group'])),
             icon: $data['icon'] === null ? null : (string) $data['icon'],
             identifier: (string) $data['identifier'],
             name: (string) $data['name'],
             schema: array_map(static fn (mixed $value): FormSchemaField => FormSchemaField::fromArray(self::objectValue($value)), self::listValue($data['schema'])),
             type: InstallableType::from((string) $data['type']),
+            version_options: array_map(static fn (mixed $value): AppVersionOption => AppVersionOption::fromArray(self::objectValue($value)), self::listValue($data['version_options'])),
             versions: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['versions'])),
         );
     }
@@ -44,12 +49,14 @@ final readonly class AppInstallableOption
     public function toArray(): array
     {
         $data = [];
+        $data['description'] = $this->description === null ? null : $this->description;
         $data['group'] = $this->group === null ? null : $this->group->toArray();
         $data['icon'] = $this->icon === null ? null : $this->icon;
         $data['identifier'] = $this->identifier;
         $data['name'] = $this->name;
         $data['schema'] = array_map(static fn (FormSchemaField $value) => $value->toArray(), $this->schema);
         $data['type'] = $this->type->value;
+        $data['version_options'] = array_map(static fn (AppVersionOption $value) => $value->toArray(), $this->version_options);
         $data['versions'] = $this->versions;
 
         return $data;

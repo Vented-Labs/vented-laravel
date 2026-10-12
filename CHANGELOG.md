@@ -2,6 +2,11 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.8.0 - 2026-10-12
+
+- Added getting-started resource methods and commands for onboarding preferences.
+- Added dashboard, onboarding, and stack relationship metadata to generated DTOs.
+
 ## 0.5.0 - 2026-10-07
 
 - Added generic setup-field retrieval through `apps()->setup()` and `vented:apps:setup`, including Filebeam's sensitive setup token.
