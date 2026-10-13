@@ -12,6 +12,8 @@ final readonly class PlanData
     public function __construct(
         public int $apps,
         public int $backups,
+        public bool $billing_configured,
+        public ?string $billing_url,
         public ?PlanCatalogData $catalog,
         public int $environments,
         public string $id,
@@ -31,6 +33,8 @@ final readonly class PlanData
         return new self(
             apps: (int) $data['apps'],
             backups: (int) $data['backups'],
+            billing_configured: (bool) $data['billing_configured'],
+            billing_url: $data['billing_url'] === null ? null : (string) $data['billing_url'],
             catalog: $data['catalog'] === null ? null : PlanCatalogData::fromArray(self::objectValue($data['catalog'])),
             environments: (int) $data['environments'],
             id: (string) $data['id'],
@@ -51,6 +55,8 @@ final readonly class PlanData
         $data = [];
         $data['apps'] = $this->apps;
         $data['backups'] = $this->backups;
+        $data['billing_configured'] = $this->billing_configured;
+        $data['billing_url'] = $this->billing_url === null ? null : $this->billing_url;
         $data['catalog'] = $this->catalog === null ? null : $this->catalog->toArray();
         $data['environments'] = $this->environments;
         $data['id'] = $this->id;

@@ -8,6 +8,7 @@ final readonly class DashboardProjectData
 {
     public function __construct(
         public ?int $apps,
+        public ?BillingContextData $billing_context,
         public ?int $domains,
         public ?int $environments,
         public string $id,
@@ -32,6 +33,7 @@ final readonly class DashboardProjectData
     {
         return new self(
             apps: $data['apps'] === null ? null : (int) $data['apps'],
+            billing_context: $data['billing_context'] === null ? null : BillingContextData::fromArray(self::objectValue($data['billing_context'])),
             domains: $data['domains'] === null ? null : (int) $data['domains'],
             environments: $data['environments'] === null ? null : (int) $data['environments'],
             id: (string) $data['id'],
@@ -57,6 +59,7 @@ final readonly class DashboardProjectData
     {
         $data = [];
         $data['apps'] = $this->apps === null ? null : $this->apps;
+        $data['billing_context'] = $this->billing_context === null ? null : $this->billing_context->toArray();
         $data['domains'] = $this->domains === null ? null : $this->domains;
         $data['environments'] = $this->environments === null ? null : $this->environments;
         $data['id'] = $this->id;

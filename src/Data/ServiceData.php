@@ -7,6 +7,7 @@ namespace Vented\Data;
 final readonly class ServiceData
 {
     public function __construct(
+        public bool $can_delete,
         public string $created_at,
         public ?string $icon,
         public string $id,
@@ -24,6 +25,7 @@ final readonly class ServiceData
     public static function fromArray(array $data): self
     {
         return new self(
+            can_delete: (bool) $data['can_delete'],
             created_at: (string) $data['created_at'],
             icon: $data['icon'] === null ? null : (string) $data['icon'],
             id: (string) $data['id'],
@@ -42,6 +44,7 @@ final readonly class ServiceData
     public function toArray(): array
     {
         $data = [];
+        $data['can_delete'] = $this->can_delete;
         $data['created_at'] = $this->created_at;
         $data['icon'] = $this->icon === null ? null : $this->icon;
         $data['id'] = $this->id;

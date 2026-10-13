@@ -33,6 +33,17 @@ use Vented\Commands\ProjectsBackupSettingsShowCommand;
 use Vented\Commands\ProjectsBackupSettingsUpdateCommand;
 use Vented\Commands\ProjectsBackupsIndexCommand;
 use Vented\Commands\ProjectsBackupsStoreCommand;
+use Vented\Commands\ProjectsBillingCancellationsStoreCommand;
+use Vented\Commands\ProjectsBillingChangesStoreCommand;
+use Vented\Commands\ProjectsBillingInvoicesConfirmationsStoreCommand;
+use Vented\Commands\ProjectsBillingInvoicesDownloadCommand;
+use Vented\Commands\ProjectsBillingInvoicesShowCommand;
+use Vented\Commands\ProjectsBillingOperationsConfirmationsStoreCommand;
+use Vented\Commands\ProjectsBillingOperationsShowCommand;
+use Vented\Commands\ProjectsBillingPaymentMethodsStoreCommand;
+use Vented\Commands\ProjectsBillingQuotesStoreCommand;
+use Vented\Commands\ProjectsBillingSetupIntentsStoreCommand;
+use Vented\Commands\ProjectsBillingShowCommand;
 use Vented\Commands\ProjectsBlockStoragesBackupsCommand;
 use Vented\Commands\ProjectsBlockStoragesDestroyCommand;
 use Vented\Commands\ProjectsBlockStoragesIndexCommand;
@@ -90,9 +101,6 @@ use Vented\Commands\ProjectsObjectStoragesIndexCommand;
 use Vented\Commands\ProjectsObjectStoragesShowCommand;
 use Vented\Commands\ProjectsObjectStoragesStoreCommand;
 use Vented\Commands\ProjectsOverviewCommand;
-use Vented\Commands\ProjectsPlanShowCommand;
-use Vented\Commands\ProjectsPlanUpdateCommand;
-use Vented\Commands\ProjectsPlanUsageCommand;
 use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
@@ -435,6 +443,127 @@ final class OperationRegistry
             'commandClass' => ProjectsBackupsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.cancellations.store' => [
+            'operationId' => 'projects.billing.cancellations.store',
+            'resource' => 'billingCancellations',
+            'action' => 'create',
+            'commandName' => 'vented:billing-cancellations:create',
+            'commandClass' => ProjectsBillingCancellationsStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.changes.store' => [
+            'operationId' => 'projects.billing.changes.store',
+            'resource' => 'billingChanges',
+            'action' => 'create',
+            'commandName' => 'vented:billing-changes:create',
+            'commandClass' => ProjectsBillingChangesStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.invoices.confirmations.store' => [
+            'operationId' => 'projects.billing.invoices.confirmations.store',
+            'resource' => 'billingInvoiceConfirmations',
+            'action' => 'create',
+            'commandName' => 'vented:billing-invoice-confirmations:create',
+            'commandClass' => ProjectsBillingInvoicesConfirmationsStoreCommand::class,
+            'pathParameters' => ['project', 'invoice'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.invoices.download' => [
+            'operationId' => 'projects.billing.invoices.download',
+            'resource' => 'billingInvoices',
+            'action' => 'download',
+            'commandName' => 'vented:billing-invoices:download',
+            'commandClass' => ProjectsBillingInvoicesDownloadCommand::class,
+            'pathParameters' => ['project', 'invoice'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => true,
+        ],
+        'projects.billing.invoices.show' => [
+            'operationId' => 'projects.billing.invoices.show',
+            'resource' => 'billingInvoices',
+            'action' => 'find',
+            'commandName' => 'vented:billing-invoices:show',
+            'commandClass' => ProjectsBillingInvoicesShowCommand::class,
+            'pathParameters' => ['project', 'invoice'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.operations.confirmations.store' => [
+            'operationId' => 'projects.billing.operations.confirmations.store',
+            'resource' => 'billingOperationConfirmations',
+            'action' => 'create',
+            'commandName' => 'vented:billing-operation-confirmations:create',
+            'commandClass' => ProjectsBillingOperationsConfirmationsStoreCommand::class,
+            'pathParameters' => ['project', 'operation'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.operations.show' => [
+            'operationId' => 'projects.billing.operations.show',
+            'resource' => 'billingOperations',
+            'action' => 'find',
+            'commandName' => 'vented:billing-operations:show',
+            'commandClass' => ProjectsBillingOperationsShowCommand::class,
+            'pathParameters' => ['project', 'operation'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.payment-methods.store' => [
+            'operationId' => 'projects.billing.payment-methods.store',
+            'resource' => 'billingPaymentMethods',
+            'action' => 'create',
+            'commandName' => 'vented:billing-payment-methods:create',
+            'commandClass' => ProjectsBillingPaymentMethodsStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.quotes.store' => [
+            'operationId' => 'projects.billing.quotes.store',
+            'resource' => 'billingQuotes',
+            'action' => 'create',
+            'commandName' => 'vented:billing-quotes:create',
+            'commandClass' => ProjectsBillingQuotesStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.setup-intents.store' => [
+            'operationId' => 'projects.billing.setup-intents.store',
+            'resource' => 'billingSetupIntents',
+            'action' => 'create',
+            'commandName' => 'vented:billing-setup-intents:create',
+            'commandClass' => ProjectsBillingSetupIntentsStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.billing.show' => [
+            'operationId' => 'projects.billing.show',
+            'resource' => 'billing',
+            'action' => 'find',
+            'commandName' => 'vented:billing:show',
+            'commandClass' => ProjectsBillingShowCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],
@@ -1060,39 +1189,6 @@ final class OperationRegistry
             'action' => 'find',
             'commandName' => 'vented:projects:show',
             'commandClass' => ProjectsOverviewCommand::class,
-            'pathParameters' => ['project'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.plan.show' => [
-            'operationId' => 'projects.plan.show',
-            'resource' => 'plan',
-            'action' => 'find',
-            'commandName' => 'vented:plan:show',
-            'commandClass' => ProjectsPlanShowCommand::class,
-            'pathParameters' => ['project'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.plan.update' => [
-            'operationId' => 'projects.plan.update',
-            'resource' => 'plan',
-            'action' => 'update',
-            'commandName' => 'vented:plan:update',
-            'commandClass' => ProjectsPlanUpdateCommand::class,
-            'pathParameters' => ['project'],
-            'hasBody' => true,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.plan.usage' => [
-            'operationId' => 'projects.plan.usage',
-            'resource' => 'plan',
-            'action' => 'usage',
-            'commandName' => 'vented:plan:usage',
-            'commandClass' => ProjectsPlanUsageCommand::class,
             'pathParameters' => ['project'],
             'hasBody' => false,
             'destructive' => false,

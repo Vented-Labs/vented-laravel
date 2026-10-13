@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.9.0 - 2026-10-13
+
+- Replaced the project `plan()` resource and its show, update, and usage commands with project billing resources and commands for quotes, changes, cancellations, payment methods, setup intents, operations, and invoices.
+- Removed `PlanResource` and `SelectPlanData`; consumers must migrate plan purchases to the billing quote and change workflow.
+- Added billing, credit, bandwidth, subscription, payment, and promotion DTOs, project billing configuration state, plan billing links, and service deletion permissions.
+
 ## 0.8.0 - 2026-10-12
 
 - Added getting-started resource methods and commands for onboarding preferences.

@@ -11,6 +11,16 @@ use Vented\Resources\AppDomainsResource;
 use Vented\Resources\AppsResource;
 use Vented\Resources\BackupSettingsResource;
 use Vented\Resources\BackupsResource;
+use Vented\Resources\BillingCancellationsResource;
+use Vented\Resources\BillingChangesResource;
+use Vented\Resources\BillingInvoiceConfirmationsResource;
+use Vented\Resources\BillingInvoicesResource;
+use Vented\Resources\BillingOperationConfirmationsResource;
+use Vented\Resources\BillingOperationsResource;
+use Vented\Resources\BillingPaymentMethodsResource;
+use Vented\Resources\BillingQuotesResource;
+use Vented\Resources\BillingResource;
+use Vented\Resources\BillingSetupIntentsResource;
 use Vented\Resources\BlockStorageBackupsResource;
 use Vented\Resources\BlockStoragesResource;
 use Vented\Resources\DeploysResource;
@@ -28,7 +38,6 @@ use Vented\Resources\MemberInvitationsResource;
 use Vented\Resources\MembersResource;
 use Vented\Resources\ObjectStorageBackupsResource;
 use Vented\Resources\ObjectStoragesResource;
-use Vented\Resources\PlanResource;
 use Vented\Resources\PlatformLocationsResource;
 use Vented\Resources\ProjectsResource;
 use Vented\Resources\ServiceBackupsResource;
@@ -77,6 +86,56 @@ trait ResourceAccessors
     public function backups(): BackupsResource
     {
         return new BackupsResource($this);
+    }
+
+    public function billing(): BillingResource
+    {
+        return new BillingResource($this);
+    }
+
+    public function billingCancellations(): BillingCancellationsResource
+    {
+        return new BillingCancellationsResource($this);
+    }
+
+    public function billingChanges(): BillingChangesResource
+    {
+        return new BillingChangesResource($this);
+    }
+
+    public function billingInvoiceConfirmations(): BillingInvoiceConfirmationsResource
+    {
+        return new BillingInvoiceConfirmationsResource($this);
+    }
+
+    public function billingInvoices(): BillingInvoicesResource
+    {
+        return new BillingInvoicesResource($this);
+    }
+
+    public function billingOperationConfirmations(): BillingOperationConfirmationsResource
+    {
+        return new BillingOperationConfirmationsResource($this);
+    }
+
+    public function billingOperations(): BillingOperationsResource
+    {
+        return new BillingOperationsResource($this);
+    }
+
+    public function billingPaymentMethods(): BillingPaymentMethodsResource
+    {
+        return new BillingPaymentMethodsResource($this);
+    }
+
+    public function billingQuotes(): BillingQuotesResource
+    {
+        return new BillingQuotesResource($this);
+    }
+
+    public function billingSetupIntents(): BillingSetupIntentsResource
+    {
+        return new BillingSetupIntentsResource($this);
     }
 
     public function blockStorageBackups(): BlockStorageBackupsResource
@@ -162,11 +221,6 @@ trait ResourceAccessors
     public function objectStorages(): ObjectStoragesResource
     {
         return new ObjectStoragesResource($this);
-    }
-
-    public function plan(): PlanResource
-    {
-        return new PlanResource($this);
     }
 
     public function platformLocations(): PlatformLocationsResource

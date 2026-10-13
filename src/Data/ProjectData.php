@@ -7,6 +7,7 @@ namespace Vented\Data;
 final readonly class ProjectData
 {
     public function __construct(
+        public bool $billing_configured,
         public string $created_at,
         public string $id,
         public bool $is_new,
@@ -20,6 +21,7 @@ final readonly class ProjectData
     public static function fromArray(array $data): self
     {
         return new self(
+            billing_configured: (bool) $data['billing_configured'],
             created_at: (string) $data['created_at'],
             id: (string) $data['id'],
             is_new: (bool) $data['is_new'],
@@ -34,6 +36,7 @@ final readonly class ProjectData
     public function toArray(): array
     {
         $data = [];
+        $data['billing_configured'] = $this->billing_configured;
         $data['created_at'] = $this->created_at;
         $data['id'] = $this->id;
         $data['is_new'] = $this->is_new;

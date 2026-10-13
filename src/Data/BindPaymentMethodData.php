@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class SelectPlanData
+final readonly class BindPaymentMethodData
 {
     public function __construct(
-        public string $plan,
+        public string $operation_key,
+        public string $setup_intent_id,
     ) {}
 
     /**
@@ -16,7 +17,8 @@ final readonly class SelectPlanData
     public static function fromArray(array $data): self
     {
         return new self(
-            plan: (string) $data['plan'],
+            operation_key: (string) $data['operation_key'],
+            setup_intent_id: (string) $data['setup_intent_id'],
         );
     }
 
@@ -26,7 +28,8 @@ final readonly class SelectPlanData
     public function toArray(): array
     {
         $data = [];
-        $data['plan'] = $this->plan;
+        $data['operation_key'] = $this->operation_key;
+        $data['setup_intent_id'] = $this->setup_intent_id;
 
         return $data;
     }

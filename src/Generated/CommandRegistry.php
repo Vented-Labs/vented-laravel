@@ -33,6 +33,17 @@ use Vented\Commands\ProjectsBackupSettingsShowCommand;
 use Vented\Commands\ProjectsBackupSettingsUpdateCommand;
 use Vented\Commands\ProjectsBackupsIndexCommand;
 use Vented\Commands\ProjectsBackupsStoreCommand;
+use Vented\Commands\ProjectsBillingCancellationsStoreCommand;
+use Vented\Commands\ProjectsBillingChangesStoreCommand;
+use Vented\Commands\ProjectsBillingInvoicesConfirmationsStoreCommand;
+use Vented\Commands\ProjectsBillingInvoicesDownloadCommand;
+use Vented\Commands\ProjectsBillingInvoicesShowCommand;
+use Vented\Commands\ProjectsBillingOperationsConfirmationsStoreCommand;
+use Vented\Commands\ProjectsBillingOperationsShowCommand;
+use Vented\Commands\ProjectsBillingPaymentMethodsStoreCommand;
+use Vented\Commands\ProjectsBillingQuotesStoreCommand;
+use Vented\Commands\ProjectsBillingSetupIntentsStoreCommand;
+use Vented\Commands\ProjectsBillingShowCommand;
 use Vented\Commands\ProjectsBlockStoragesBackupsCommand;
 use Vented\Commands\ProjectsBlockStoragesDestroyCommand;
 use Vented\Commands\ProjectsBlockStoragesIndexCommand;
@@ -90,9 +101,6 @@ use Vented\Commands\ProjectsObjectStoragesIndexCommand;
 use Vented\Commands\ProjectsObjectStoragesShowCommand;
 use Vented\Commands\ProjectsObjectStoragesStoreCommand;
 use Vented\Commands\ProjectsOverviewCommand;
-use Vented\Commands\ProjectsPlanShowCommand;
-use Vented\Commands\ProjectsPlanUpdateCommand;
-use Vented\Commands\ProjectsPlanUsageCommand;
 use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
@@ -158,6 +166,17 @@ final class CommandRegistry
         ProjectsBackupsDestroyCommand::class,
         ProjectsBackupsIndexCommand::class,
         ProjectsBackupsStoreCommand::class,
+        ProjectsBillingCancellationsStoreCommand::class,
+        ProjectsBillingChangesStoreCommand::class,
+        ProjectsBillingInvoicesConfirmationsStoreCommand::class,
+        ProjectsBillingInvoicesDownloadCommand::class,
+        ProjectsBillingInvoicesShowCommand::class,
+        ProjectsBillingOperationsConfirmationsStoreCommand::class,
+        ProjectsBillingOperationsShowCommand::class,
+        ProjectsBillingPaymentMethodsStoreCommand::class,
+        ProjectsBillingQuotesStoreCommand::class,
+        ProjectsBillingSetupIntentsStoreCommand::class,
+        ProjectsBillingShowCommand::class,
         ProjectsBlockStoragesBackupsCommand::class,
         ProjectsBlockStoragesDestroyCommand::class,
         ProjectsBlockStoragesIndexCommand::class,
@@ -215,9 +234,6 @@ final class CommandRegistry
         ProjectsObjectStoragesShowCommand::class,
         ProjectsObjectStoragesStoreCommand::class,
         ProjectsOverviewCommand::class,
-        ProjectsPlanShowCommand::class,
-        ProjectsPlanUpdateCommand::class,
-        ProjectsPlanUsageCommand::class,
         ProjectsServicesBackupsCommand::class,
         ProjectsServicesBindingsCommand::class,
         ProjectsServicesBindingsDestroyCommand::class,

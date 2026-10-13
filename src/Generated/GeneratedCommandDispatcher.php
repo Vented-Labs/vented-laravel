@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Vented\Generated;
 
-use Vented\Data\SelectPlanData;
+use Vented\Data\BindPaymentMethodData;
+use Vented\Data\CancelSubscriptionData;
+use Vented\Data\CommitQuoteData;
+use Vented\Data\CreateQuoteData;
 use Vented\Data\StoreApiTokenData;
 use Vented\Data\StoreAppBindingData;
 use Vented\Data\StoreAppData;
@@ -217,6 +220,59 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreBackupData::fromArray($data),
+                query: $query,
+            ),
+            'projects.billing.cancellations.store' => $client->billingCancellations()->create(
+                project: self::stringPath($path, 'project'),
+                data: CancelSubscriptionData::fromArray($data),
+                query: $query,
+            ),
+            'projects.billing.changes.store' => $client->billingChanges()->create(
+                project: self::stringPath($path, 'project'),
+                data: CommitQuoteData::fromArray($data),
+                query: $query,
+            ),
+            'projects.billing.invoices.confirmations.store' => $client->billingInvoiceConfirmations()->create(
+                project: self::stringPath($path, 'project'),
+                invoice: self::stringPath($path, 'invoice'),
+                query: $query,
+            ),
+            'projects.billing.invoices.download' => $client->billingInvoices()->download(
+                project: self::stringPath($path, 'project'),
+                invoice: self::stringPath($path, 'invoice'),
+                query: $query,
+            ),
+            'projects.billing.invoices.show' => $client->billingInvoices()->find(
+                project: self::stringPath($path, 'project'),
+                invoice: self::stringPath($path, 'invoice'),
+                query: $query,
+            ),
+            'projects.billing.operations.confirmations.store' => $client->billingOperationConfirmations()->create(
+                project: self::stringPath($path, 'project'),
+                operation: self::stringPath($path, 'operation'),
+                query: $query,
+            ),
+            'projects.billing.operations.show' => $client->billingOperations()->find(
+                project: self::stringPath($path, 'project'),
+                operation: self::stringPath($path, 'operation'),
+                query: $query,
+            ),
+            'projects.billing.payment-methods.store' => $client->billingPaymentMethods()->create(
+                project: self::stringPath($path, 'project'),
+                data: BindPaymentMethodData::fromArray($data),
+                query: $query,
+            ),
+            'projects.billing.quotes.store' => $client->billingQuotes()->create(
+                project: self::stringPath($path, 'project'),
+                data: CreateQuoteData::fromArray($data),
+                query: $query,
+            ),
+            'projects.billing.setup-intents.store' => $client->billingSetupIntents()->create(
+                project: self::stringPath($path, 'project'),
+                query: $query,
+            ),
+            'projects.billing.show' => $client->billing()->find(
+                project: self::stringPath($path, 'project'),
                 query: $query,
             ),
             'projects.block-storages.backups' => $client->blockStorageBackups()->list(
@@ -524,19 +580,6 @@ final class GeneratedCommandDispatcher
                 query: $query,
             ),
             'projects.overview' => $client->projects()->find(
-                project: self::stringPath($path, 'project'),
-                query: $query,
-            ),
-            'projects.plan.show' => $client->plan()->find(
-                project: self::stringPath($path, 'project'),
-                query: $query,
-            ),
-            'projects.plan.update' => $client->plan()->update(
-                project: self::stringPath($path, 'project'),
-                data: SelectPlanData::fromArray($data),
-                query: $query,
-            ),
-            'projects.plan.usage' => $client->plan()->usage(
                 project: self::stringPath($path, 'project'),
                 query: $query,
             ),
