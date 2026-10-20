@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.10.0 - 2026-10-20
+
+- Added an optional `mark_color` to `StoreProjectData`, typed by the new `ProjectMarkColor` enum.
+
 ## 0.9.0 - 2026-10-13
 
 - Replaced the project `plan()` resource and its show, update, and usage commands with project billing resources and commands for quotes, changes, cancellations, payment methods, setup intents, operations, and invoices.
