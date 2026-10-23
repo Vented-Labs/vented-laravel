@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.11.0 - 2026-10-22
+
+- Removed the `Edge` and `R2` cases from `ObjectStorageProvider`; buckets are either `Vented` or `BringYourOwn`.
+
 ## 0.10.0 - 2026-10-20
 
 - Added an optional `mark_color` to `StoreProjectData`, typed by the new `ProjectMarkColor` enum.
