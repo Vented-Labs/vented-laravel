@@ -27,6 +27,7 @@ use Vented\Commands\ProjectsAppsStartCommand;
 use Vented\Commands\ProjectsAppsStopCommand;
 use Vented\Commands\ProjectsAppsStorageCommand;
 use Vented\Commands\ProjectsAppsStoreCommand;
+use Vented\Commands\ProjectsAppsTerminalCommand;
 use Vented\Commands\ProjectsAppsUpdateCommand;
 use Vented\Commands\ProjectsBackupsDestroyCommand;
 use Vented\Commands\ProjectsBackupSettingsShowCommand;
@@ -310,7 +311,7 @@ final class OperationRegistry
             'commandName' => 'vented:apps:restart',
             'commandClass' => ProjectsAppsRestartCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
-            'hasBody' => false,
+            'hasBody' => true,
             'destructive' => false,
             'binary' => false,
         ],
@@ -343,7 +344,7 @@ final class OperationRegistry
             'commandName' => 'vented:apps:start',
             'commandClass' => ProjectsAppsStartCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
-            'hasBody' => false,
+            'hasBody' => true,
             'destructive' => false,
             'binary' => false,
         ],
@@ -354,7 +355,7 @@ final class OperationRegistry
             'commandName' => 'vented:apps:stop',
             'commandClass' => ProjectsAppsStopCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
-            'hasBody' => false,
+            'hasBody' => true,
             'destructive' => false,
             'binary' => false,
         ],
@@ -377,6 +378,17 @@ final class OperationRegistry
             'commandClass' => ProjectsAppsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.apps.terminal' => [
+            'operationId' => 'projects.apps.terminal',
+            'resource' => 'apps',
+            'action' => 'terminal',
+            'commandName' => 'vented:apps:terminal',
+            'commandClass' => ProjectsAppsTerminalCommand::class,
+            'pathParameters' => ['project', 'environment', 'app'],
+            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],

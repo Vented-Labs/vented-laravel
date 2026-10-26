@@ -27,6 +27,7 @@ use Vented\Commands\ProjectsAppsStartCommand;
 use Vented\Commands\ProjectsAppsStopCommand;
 use Vented\Commands\ProjectsAppsStorageCommand;
 use Vented\Commands\ProjectsAppsStoreCommand;
+use Vented\Commands\ProjectsAppsTerminalCommand;
 use Vented\Commands\ProjectsAppsUpdateCommand;
 use Vented\Commands\ProjectsBackupsDestroyCommand;
 use Vented\Commands\ProjectsBackupSettingsShowCommand;
@@ -160,6 +161,7 @@ final class CommandRegistry
         ProjectsAppsStopCommand::class,
         ProjectsAppsStorageCommand::class,
         ProjectsAppsStoreCommand::class,
+        ProjectsAppsTerminalCommand::class,
         ProjectsAppsUpdateCommand::class,
         ProjectsBackupSettingsShowCommand::class,
         ProjectsBackupSettingsUpdateCommand::class,

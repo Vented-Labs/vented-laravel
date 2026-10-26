@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.12.0 - 2026-10-26
+
+- Added app desired status, generation, pending-operation fields, and lifecycle operation metadata.
+- Start, stop, and restart now require `AppLifecycleData` for the lifecycle request body.
+- Added the app terminal resource method, command, and terminal metadata DTOs.
+
 ## 0.11.0 - 2026-10-22
 
 - Removed the `Edge` and `R2` cases from `ObjectStorageProvider`; buckets are either `Vented` or `BringYourOwn`.

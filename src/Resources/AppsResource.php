@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Resources;
 
 use Vented\Data\AppData;
+use Vented\Data\AppLifecycleData;
 use Vented\Data\AppSetupData;
 use Vented\Data\StoreAppData;
 use Vented\Data\UpdateAppData;
@@ -115,10 +116,16 @@ final readonly class AppsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<AppData>
      */
-    public function restart(string $project, string $environment, string $app, array $query = []): ResourceResult
+    public function restart(string $project, string $environment, string $app, AppLifecycleData $data, array $query = []): ResourceResult
     {
         $operation = $this->client->operation('POST', '/projects/{project}/{environment}/apps/{app}/restart')
             ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
+            ->withBody([
+                'data' => [
+                    'type' => 'apps',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): AppData => AppData::fromArray(self::attributes($resource, true)));
@@ -149,10 +156,16 @@ final readonly class AppsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<AppData>
      */
-    public function start(string $project, string $environment, string $app, array $query = []): ResourceResult
+    public function start(string $project, string $environment, string $app, AppLifecycleData $data, array $query = []): ResourceResult
     {
         $operation = $this->client->operation('POST', '/projects/{project}/{environment}/apps/{app}/start')
             ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
+            ->withBody([
+                'data' => [
+                    'type' => 'apps',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): AppData => AppData::fromArray(self::attributes($resource, true)));
@@ -166,10 +179,16 @@ final readonly class AppsResource
      * @param  array<string, mixed>  $query
      * @return ResourceResult<AppData>
      */
-    public function stop(string $project, string $environment, string $app, array $query = []): ResourceResult
+    public function stop(string $project, string $environment, string $app, AppLifecycleData $data, array $query = []): ResourceResult
     {
         $operation = $this->client->operation('POST', '/projects/{project}/{environment}/apps/{app}/stop')
             ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
+            ->withBody([
+                'data' => [
+                    'type' => 'apps',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): AppData => AppData::fromArray(self::attributes($resource, true)));
@@ -186,6 +205,23 @@ final readonly class AppsResource
     public function storage(string $project, string $environment, string $app, array $query = []): ResourceResult
     {
         $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/storage')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): AppData => AppData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Show app terminal access
+     *
+     * Operation: projects.apps.terminal
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<AppData>
+     */
+    public function terminal(string $project, string $environment, string $app, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/apps/{app}/terminal')
             ->withPathParameters(['project' => $project, 'environment' => $environment, 'app' => $app])
             ->withQuery($query);
 

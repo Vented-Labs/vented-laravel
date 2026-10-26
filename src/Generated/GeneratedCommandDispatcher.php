@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vented\Generated;
 
+use Vented\Data\AppLifecycleData;
 use Vented\Data\BindPaymentMethodData;
 use Vented\Data\CancelSubscriptionData;
 use Vented\Data\CommitQuoteData;
@@ -149,6 +150,7 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
+                data: AppLifecycleData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.setup' => $client->apps()->setup(
@@ -167,12 +169,14 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
+                data: AppLifecycleData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.stop' => $client->apps()->stop(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
+                data: AppLifecycleData::fromArray($data),
                 query: $query,
             ),
             'projects.apps.storage' => $client->apps()->storage(
@@ -185,6 +189,12 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreAppData::fromArray($data),
+                query: $query,
+            ),
+            'projects.apps.terminal' => $client->apps()->terminal(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                app: self::stringPath($path, 'app'),
                 query: $query,
             ),
             'projects.apps.update' => $client->apps()->update(
