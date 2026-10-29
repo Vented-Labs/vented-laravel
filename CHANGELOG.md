@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.13.0 - 2026-10-28
+
+- Removed `facility` from `PlatformLocationData`; a location is now a region that groups one or more datacenters.
+
 ## 0.12.0 - 2026-10-26
 
 - Added app desired status, generation, pending-operation fields, and lifecycle operation metadata.
