@@ -12,6 +12,7 @@ final readonly class AppBindingData
     public function __construct(
         public string $bindable_id,
         public BindableType $bindable_type,
+        public ?string $dns_target,
         public EnvironmentRef $environment,
         public string $hostname,
         public string $id,
@@ -29,6 +30,7 @@ final readonly class AppBindingData
         return new self(
             bindable_id: (string) $data['bindable_id'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            dns_target: $data['dns_target'] === null ? null : (string) $data['dns_target'],
             environment: EnvironmentRef::fromArray(self::objectValue($data['environment'])),
             hostname: (string) $data['hostname'],
             id: (string) $data['id'],
@@ -47,6 +49,7 @@ final readonly class AppBindingData
         $data = [];
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['dns_target'] = $this->dns_target === null ? null : $this->dns_target;
         $data['environment'] = $this->environment->toArray();
         $data['hostname'] = $this->hostname;
         $data['id'] = $this->id;

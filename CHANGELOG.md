@@ -2,6 +2,11 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.14.0 - 2026-10-30
+
+- Added `status` to `DnsZoneData`: whether Vented serves the zone and its delegation is in place.
+- Added `dns_target` to `AppBindingData` and `AppBindingMeta`: the CNAME target Vented publishes for the hostname.
+
 ## 0.13.0 - 2026-10-28
 
 - Removed `facility` from `PlatformLocationData`; a location is now a region that groups one or more datacenters.

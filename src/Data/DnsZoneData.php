@@ -18,6 +18,7 @@ final readonly class DnsZoneData
         public string $id,
         public int $records_count,
         public array $services,
+        public ?StatusData $status,
     ) {}
 
     /**
@@ -32,6 +33,7 @@ final readonly class DnsZoneData
             id: (string) $data['id'],
             records_count: (int) $data['records_count'],
             services: array_map(static fn (mixed $value): DomainService => DomainService::from((string) $value), self::listValue($data['services'])),
+            status: $data['status'] === null ? null : StatusData::fromArray(self::objectValue($data['status'])),
         );
     }
 
@@ -47,6 +49,7 @@ final readonly class DnsZoneData
         $data['id'] = $this->id;
         $data['records_count'] = $this->records_count;
         $data['services'] = array_map(static fn (DomainService $value) => $value->value, $this->services);
+        $data['status'] = $this->status === null ? null : $this->status->toArray();
 
         return $data;
     }

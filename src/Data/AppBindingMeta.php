@@ -13,6 +13,7 @@ final readonly class AppBindingMeta
         public string $bindable_id,
         public string $bindable_name,
         public BindableType $bindable_type,
+        public ?string $dns_target,
         public EnvironmentRef $environment,
         public string $hostname,
         public string $id,
@@ -29,6 +30,7 @@ final readonly class AppBindingMeta
             bindable_id: (string) $data['bindable_id'],
             bindable_name: (string) $data['bindable_name'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            dns_target: $data['dns_target'] === null ? null : (string) $data['dns_target'],
             environment: EnvironmentRef::fromArray(self::objectValue($data['environment'])),
             hostname: (string) $data['hostname'],
             id: (string) $data['id'],
@@ -46,6 +48,7 @@ final readonly class AppBindingMeta
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_name'] = $this->bindable_name;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['dns_target'] = $this->dns_target === null ? null : $this->dns_target;
         $data['environment'] = $this->environment->toArray();
         $data['hostname'] = $this->hostname;
         $data['id'] = $this->id;
