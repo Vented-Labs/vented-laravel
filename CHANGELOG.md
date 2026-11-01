@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.16.0 - 2026-11-01
+
+- Added `plan_name` to `ProjectBillingData`: the plan's display name from the billing catalog, next to `plan_key`.
+
 ## 0.15.0 - 2026-11-01
 
 - Added `s3_providers` to `ObjectStorageIndexMetaFormOptions`: the bring-your-own S3 providers a bucket can be linked from, as `S3ProviderOption`.

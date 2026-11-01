@@ -32,6 +32,7 @@ final readonly class ProjectBillingData
         public ?string $pending_operation_url,
         public ?string $period_end,
         public ?string $plan_key,
+        public ?string $plan_name,
         public array $products,
         public string $project_id,
         public string $project_name,
@@ -73,6 +74,7 @@ final readonly class ProjectBillingData
             pending_operation_url: $data['pending_operation_url'] === null ? null : (string) $data['pending_operation_url'],
             period_end: $data['period_end'] === null ? null : (string) $data['period_end'],
             plan_key: $data['plan_key'] === null ? null : (string) $data['plan_key'],
+            plan_name: $data['plan_name'] === null ? null : (string) $data['plan_name'],
             products: array_map(static fn (mixed $value): BillingProductData => BillingProductData::fromArray(self::objectValue($value)), self::listValue($data['products'])),
             project_id: (string) $data['project_id'],
             project_name: (string) $data['project_name'],
@@ -115,6 +117,7 @@ final readonly class ProjectBillingData
         $data['pending_operation_url'] = $this->pending_operation_url === null ? null : $this->pending_operation_url;
         $data['period_end'] = $this->period_end === null ? null : $this->period_end;
         $data['plan_key'] = $this->plan_key === null ? null : $this->plan_key;
+        $data['plan_name'] = $this->plan_name === null ? null : $this->plan_name;
         $data['products'] = array_map(static fn (BillingProductData $value) => $value->toArray(), $this->products);
         $data['project_id'] = $this->project_id;
         $data['project_name'] = $this->project_name;
