@@ -8,9 +8,11 @@ final readonly class ObjectStorageIndexMetaFormOptions
 {
     /**
      * @param  list<ObjectStorageProviderOption>  $providers
+     * @param  list<S3ProviderOption>  $s3_providers
      */
     public function __construct(
         public array $providers,
+        public array $s3_providers,
     ) {}
 
     /**
@@ -20,6 +22,7 @@ final readonly class ObjectStorageIndexMetaFormOptions
     {
         return new self(
             providers: array_map(static fn (mixed $value): ObjectStorageProviderOption => ObjectStorageProviderOption::fromArray(self::objectValue($value)), self::listValue($data['providers'])),
+            s3_providers: array_map(static fn (mixed $value): S3ProviderOption => S3ProviderOption::fromArray(self::objectValue($value)), self::listValue($data['s3_providers'])),
         );
     }
 
@@ -30,6 +33,7 @@ final readonly class ObjectStorageIndexMetaFormOptions
     {
         $data = [];
         $data['providers'] = array_map(static fn (ObjectStorageProviderOption $value) => $value->toArray(), $this->providers);
+        $data['s3_providers'] = array_map(static fn (S3ProviderOption $value) => $value->toArray(), $this->s3_providers);
 
         return $data;
     }

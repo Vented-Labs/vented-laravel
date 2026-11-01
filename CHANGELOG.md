@@ -2,6 +2,11 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.15.0 - 2026-11-01
+
+- Added `s3_providers` to `ObjectStorageIndexMetaFormOptions`: the bring-your-own S3 providers a bucket can be linked from, as `S3ProviderOption`.
+- Added `s3_provider`, `account` and `path_style` to `StoreObjectStorageData`.
+
 ## 0.14.0 - 2026-10-30
 
 - Added `status` to `DnsZoneData`: whether Vented serves the zone and its delegation is in place.
