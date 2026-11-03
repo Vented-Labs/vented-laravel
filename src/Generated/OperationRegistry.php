@@ -20,6 +20,7 @@ use Vented\Commands\ProjectsAppsDeployCommand;
 use Vented\Commands\ProjectsAppsDestroyCommand;
 use Vented\Commands\ProjectsAppsDomainsCommand;
 use Vented\Commands\ProjectsAppsIndexCommand;
+use Vented\Commands\ProjectsAppsLogsCommand;
 use Vented\Commands\ProjectsAppsRestartCommand;
 use Vented\Commands\ProjectsAppsSetupCommand;
 use Vented\Commands\ProjectsAppsShowCommand;
@@ -300,6 +301,17 @@ final class OperationRegistry
             'commandName' => 'vented:apps:list',
             'commandClass' => ProjectsAppsIndexCommand::class,
             'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.apps.logs' => [
+            'operationId' => 'projects.apps.logs',
+            'resource' => 'appLogs',
+            'action' => 'list',
+            'commandName' => 'vented:app-logs:list',
+            'commandClass' => ProjectsAppsLogsCommand::class,
+            'pathParameters' => ['project', 'environment', 'app'],
             'hasBody' => false,
             'destructive' => false,
             'binary' => false,

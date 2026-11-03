@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class PlanSampleMetricData
+final readonly class ResourceUsageMetricData
 {
     public function __construct(
-        public float $limit,
-        public ?float $trend,
+        public ?float $limit,
         public string $unit,
-        public float $used,
+        public ?float $used,
     ) {}
 
     /**
@@ -19,10 +18,9 @@ final readonly class PlanSampleMetricData
     public static function fromArray(array $data): self
     {
         return new self(
-            limit: (float) $data['limit'],
-            trend: $data['trend'] === null ? null : (float) $data['trend'],
+            limit: $data['limit'] === null ? null : (float) $data['limit'],
             unit: (string) $data['unit'],
-            used: (float) $data['used'],
+            used: $data['used'] === null ? null : (float) $data['used'],
         );
     }
 
@@ -32,10 +30,9 @@ final readonly class PlanSampleMetricData
     public function toArray(): array
     {
         $data = [];
-        $data['limit'] = $this->limit;
-        $data['trend'] = $this->trend === null ? null : $this->trend;
+        $data['limit'] = $this->limit === null ? null : $this->limit;
         $data['unit'] = $this->unit;
-        $data['used'] = $this->used;
+        $data['used'] = $this->used === null ? null : $this->used;
 
         return $data;
     }

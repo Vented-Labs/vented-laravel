@@ -13,7 +13,6 @@ final readonly class ServiceData
         public string $id,
         public string $name,
         public StatusData $status,
-        public ?ResourceTelemetry $telemetry,
         public string $type,
         public string $type_name,
         public string $updated_at,
@@ -31,7 +30,6 @@ final readonly class ServiceData
             id: (string) $data['id'],
             name: (string) $data['name'],
             status: StatusData::fromArray(self::objectValue($data['status'])),
-            telemetry: $data['telemetry'] === null ? null : ResourceTelemetry::fromArray(self::objectValue($data['telemetry'])),
             type: (string) $data['type'],
             type_name: (string) $data['type_name'],
             updated_at: (string) $data['updated_at'],
@@ -50,7 +48,6 @@ final readonly class ServiceData
         $data['id'] = $this->id;
         $data['name'] = $this->name;
         $data['status'] = $this->status->toArray();
-        $data['telemetry'] = $this->telemetry === null ? null : $this->telemetry->toArray();
         $data['type'] = $this->type;
         $data['type_name'] = $this->type_name;
         $data['updated_at'] = $this->updated_at;

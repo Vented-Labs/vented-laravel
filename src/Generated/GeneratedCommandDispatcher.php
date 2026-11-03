@@ -146,6 +146,12 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
+            'projects.apps.logs' => $client->appLogs()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                app: self::stringPath($path, 'app'),
+                query: $query,
+            ),
             'projects.apps.restart' => $client->apps()->restart(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),

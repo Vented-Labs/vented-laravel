@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class PlanSampleUsageData
+final readonly class ResourceUsageData
 {
     public function __construct(
-        public PlanSampleMetricData $cpu,
-        public PlanSampleMetricData $disk,
-        public string $illustration_plan_id,
-        public PlanSampleMetricData $memory,
+        public ResourceUsageMetricData $cpu,
+        public ResourceUsageMetricData $disk,
+        public ResourceUsageMetricData $memory,
         public string $sampled_at,
         public string $source,
-        public PlanSampleMetricData $transfer,
+        public ResourceUsageMetricData $transfer,
     ) {}
 
     /**
@@ -22,13 +21,12 @@ final readonly class PlanSampleUsageData
     public static function fromArray(array $data): self
     {
         return new self(
-            cpu: PlanSampleMetricData::fromArray(self::objectValue($data['cpu'])),
-            disk: PlanSampleMetricData::fromArray(self::objectValue($data['disk'])),
-            illustration_plan_id: (string) $data['illustration_plan_id'],
-            memory: PlanSampleMetricData::fromArray(self::objectValue($data['memory'])),
+            cpu: ResourceUsageMetricData::fromArray(self::objectValue($data['cpu'])),
+            disk: ResourceUsageMetricData::fromArray(self::objectValue($data['disk'])),
+            memory: ResourceUsageMetricData::fromArray(self::objectValue($data['memory'])),
             sampled_at: (string) $data['sampled_at'],
             source: (string) $data['source'],
-            transfer: PlanSampleMetricData::fromArray(self::objectValue($data['transfer'])),
+            transfer: ResourceUsageMetricData::fromArray(self::objectValue($data['transfer'])),
         );
     }
 
@@ -40,7 +38,6 @@ final readonly class PlanSampleUsageData
         $data = [];
         $data['cpu'] = $this->cpu->toArray();
         $data['disk'] = $this->disk->toArray();
-        $data['illustration_plan_id'] = $this->illustration_plan_id;
         $data['memory'] = $this->memory->toArray();
         $data['sampled_at'] = $this->sampled_at;
         $data['source'] = $this->source;

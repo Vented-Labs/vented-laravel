@@ -8,6 +8,7 @@ use Vented\Resources\ApiTokensResource;
 use Vented\Resources\AppBindingsResource;
 use Vented\Resources\AppDeployResource;
 use Vented\Resources\AppDomainsResource;
+use Vented\Resources\AppLogsResource;
 use Vented\Resources\AppsResource;
 use Vented\Resources\BackupSettingsResource;
 use Vented\Resources\BackupsResource;
@@ -71,6 +72,11 @@ trait ResourceAccessors
     public function appDomains(): AppDomainsResource
     {
         return new AppDomainsResource($this);
+    }
+
+    public function appLogs(): AppLogsResource
+    {
+        return new AppLogsResource($this);
     }
 
     public function apps(): AppsResource

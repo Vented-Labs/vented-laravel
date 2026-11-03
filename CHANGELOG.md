@@ -2,6 +2,17 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.18.0 - 2026-11-02
+
+- Added `network` to `ResourceTelemetry`: bytes per second received and sent, as `TelemetryNetwork` with `TelemetryNetworkPoint` history. App telemetry now reports measured usage with `source` `observed`.
+- Replaced `PlanSampleUsageData` and `PlanSampleMetricData` with `ResourceUsageData` and `ResourceUsageMetricData`: measured usage against the plan's allowances, where `used` and `limit` may be null. `PlanData::$sample_usage` is now `$resource_usage`, and `OverviewShowMeta::$usage` uses the new type.
+- Removed `requests` and `uptime` from `OverviewShowMeta`.
+- Removed `telemetry` from `ServiceData` and `monitoring` from `ServiceShowMeta`: managed services report no usage.
+
+## 0.17.0 - 2026-11-02
+
+- Added `appLogs()->list()` and the `vented:app-logs:list` command for `projects.apps.logs`: an app's container and initializer output, newest first, as `AppLogLineData`, with `AppLogsIndexMeta` and `AppEventData` for the app's setup events.
+
 ## 0.16.0 - 2026-11-01
 
 - Added `plan_name` to `ProjectBillingData`: the plan's display name from the billing catalog, next to `plan_key`.

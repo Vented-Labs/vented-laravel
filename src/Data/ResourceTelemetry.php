@@ -11,6 +11,7 @@ final readonly class ResourceTelemetry
         public TelemetryMetric $disk,
         public string $health,
         public TelemetryMetric $memory,
+        public ?TelemetryNetwork $network,
         public string $sampled_at,
         public string $source,
     ) {}
@@ -25,6 +26,7 @@ final readonly class ResourceTelemetry
             disk: TelemetryMetric::fromArray(self::objectValue($data['disk'])),
             health: (string) $data['health'],
             memory: TelemetryMetric::fromArray(self::objectValue($data['memory'])),
+            network: $data['network'] === null ? null : TelemetryNetwork::fromArray(self::objectValue($data['network'])),
             sampled_at: (string) $data['sampled_at'],
             source: (string) $data['source'],
         );
@@ -40,6 +42,7 @@ final readonly class ResourceTelemetry
         $data['disk'] = $this->disk->toArray();
         $data['health'] = $this->health;
         $data['memory'] = $this->memory->toArray();
+        $data['network'] = $this->network === null ? null : $this->network->toArray();
         $data['sampled_at'] = $this->sampled_at;
         $data['source'] = $this->source;
 

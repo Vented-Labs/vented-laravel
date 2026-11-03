@@ -20,6 +20,7 @@ use Vented\Commands\ProjectsAppsDeployCommand;
 use Vented\Commands\ProjectsAppsDestroyCommand;
 use Vented\Commands\ProjectsAppsDomainsCommand;
 use Vented\Commands\ProjectsAppsIndexCommand;
+use Vented\Commands\ProjectsAppsLogsCommand;
 use Vented\Commands\ProjectsAppsRestartCommand;
 use Vented\Commands\ProjectsAppsSetupCommand;
 use Vented\Commands\ProjectsAppsShowCommand;
@@ -154,6 +155,7 @@ final class CommandRegistry
         ProjectsAppsDestroyCommand::class,
         ProjectsAppsDomainsCommand::class,
         ProjectsAppsIndexCommand::class,
+        ProjectsAppsLogsCommand::class,
         ProjectsAppsRestartCommand::class,
         ProjectsAppsSetupCommand::class,
         ProjectsAppsShowCommand::class,
