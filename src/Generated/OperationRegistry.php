@@ -132,7 +132,15 @@ use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
 use Vented\Commands\ProjectsStoragesFilesDownloadCommand;
 use Vented\Commands\ProjectsStoragesFilesIndexCommand;
+use Vented\Commands\ProjectsStoragesFilesShowCommand;
 use Vented\Commands\ProjectsStoragesFilesStoreCommand;
+use Vented\Commands\ProjectsStoragesFilesUpdateCommand;
+use Vented\Commands\ProjectsStoragesFileTreesIndexCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsDestroyCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsPartsUpdateCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsUpdateCommand;
 
@@ -1504,6 +1512,72 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.storages.file-trees.index' => [
+            'operationId' => 'projects.storages.file-trees.index',
+            'resource' => 'storageFileTrees',
+            'action' => 'list',
+            'commandName' => 'vented:storage-file-trees:list',
+            'commandClass' => ProjectsStoragesFileTreesIndexCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storages.file-uploads.destroy' => [
+            'operationId' => 'projects.storages.file-uploads.destroy',
+            'resource' => 'storageFileUploads',
+            'action' => 'delete',
+            'commandName' => 'vented:storage-file-uploads:delete',
+            'commandClass' => ProjectsStoragesFileUploadsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'upload'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.storages.file-uploads.parts.update' => [
+            'operationId' => 'projects.storages.file-uploads.parts.update',
+            'resource' => 'storageFileUploadParts',
+            'action' => 'update',
+            'commandName' => 'vented:storage-file-upload-parts:update',
+            'commandClass' => ProjectsStoragesFileUploadsPartsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'upload', 'part'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storages.file-uploads.show' => [
+            'operationId' => 'projects.storages.file-uploads.show',
+            'resource' => 'storageFileUploads',
+            'action' => 'find',
+            'commandName' => 'vented:storage-file-uploads:show',
+            'commandClass' => ProjectsStoragesFileUploadsShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'upload'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storages.file-uploads.store' => [
+            'operationId' => 'projects.storages.file-uploads.store',
+            'resource' => 'storageFileUploads',
+            'action' => 'create',
+            'commandName' => 'vented:storage-file-uploads:create',
+            'commandClass' => ProjectsStoragesFileUploadsStoreCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storages.file-uploads.update' => [
+            'operationId' => 'projects.storages.file-uploads.update',
+            'resource' => 'storageFileUploads',
+            'action' => 'update',
+            'commandName' => 'vented:storage-file-uploads:update',
+            'commandClass' => ProjectsStoragesFileUploadsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'upload'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.storages.files.destroy' => [
             'operationId' => 'projects.storages.files.destroy',
             'resource' => 'storageFiles',
@@ -1537,6 +1611,17 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.storages.files.show' => [
+            'operationId' => 'projects.storages.files.show',
+            'resource' => 'storageFiles',
+            'action' => 'find',
+            'commandName' => 'vented:storage-files:show',
+            'commandClass' => ProjectsStoragesFilesShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'file'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.storages.files.store' => [
             'operationId' => 'projects.storages.files.store',
             'resource' => 'storageFiles',
@@ -1544,6 +1629,17 @@ final class OperationRegistry
             'commandName' => 'vented:storage-files:create',
             'commandClass' => ProjectsStoragesFilesStoreCommand::class,
             'pathParameters' => ['project', 'environment', 'storage'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storages.files.update' => [
+            'operationId' => 'projects.storages.files.update',
+            'resource' => 'storageFiles',
+            'action' => 'update',
+            'commandName' => 'vented:storage-files:update',
+            'commandClass' => ProjectsStoragesFilesUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'storage', 'file'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

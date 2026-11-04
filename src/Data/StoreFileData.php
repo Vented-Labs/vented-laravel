@@ -15,6 +15,8 @@ final readonly class StoreFileData
         public string $kind,
         public ?string $path,
         public string|null|OptionalValue $name = OptionalValue::Missing,
+        public bool|OptionalValue $overwrite = OptionalValue::Missing,
+        public string|OptionalValue $source = OptionalValue::Missing,
         public array|OptionalValue $uploads = OptionalValue::Missing,
     ) {}
 
@@ -27,6 +29,8 @@ final readonly class StoreFileData
             kind: (string) $data['kind'],
             path: $data['path'] === null ? null : (string) $data['path'],
             name: array_key_exists('name', $data) ? $data['name'] === null ? null : (string) $data['name'] : OptionalValue::Missing,
+            overwrite: array_key_exists('overwrite', $data) ? (bool) $data['overwrite'] : OptionalValue::Missing,
+            source: array_key_exists('source', $data) ? (string) $data['source'] : OptionalValue::Missing,
             uploads: array_key_exists('uploads', $data) ? array_map(static fn (mixed $value): array => self::objectValue($value), self::listValue($data['uploads'])) : OptionalValue::Missing,
         );
     }
@@ -41,6 +45,12 @@ final readonly class StoreFileData
         $data['path'] = $this->path === null ? null : $this->path;
         if ($this->name !== OptionalValue::Missing) {
             $data['name'] = $this->name === null ? null : $this->name;
+        }
+        if ($this->overwrite !== OptionalValue::Missing) {
+            $data['overwrite'] = $this->overwrite;
+        }
+        if ($this->source !== OptionalValue::Missing) {
+            $data['source'] = $this->source;
         }
         if ($this->uploads !== OptionalValue::Missing) {
             $data['uploads'] = $this->uploads;

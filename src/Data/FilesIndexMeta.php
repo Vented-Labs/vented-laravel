@@ -7,7 +7,10 @@ namespace Vented\Data;
 final readonly class FilesIndexMeta
 {
     public function __construct(
-        public FilesIndexMetaCapabilities $capabilities,
+        public bool $can_manage,
+        public FileCapabilitiesData $capabilities,
+        public int $hidden,
+        public ?string $next_cursor,
         public string $path,
         public NamedOption $storage,
     ) {}
@@ -18,7 +21,10 @@ final readonly class FilesIndexMeta
     public static function fromArray(array $data): self
     {
         return new self(
-            capabilities: FilesIndexMetaCapabilities::fromArray(self::objectValue($data['capabilities'])),
+            can_manage: (bool) $data['can_manage'],
+            capabilities: FileCapabilitiesData::fromArray(self::objectValue($data['capabilities'])),
+            hidden: (int) $data['hidden'],
+            next_cursor: $data['next_cursor'] === null ? null : (string) $data['next_cursor'],
             path: (string) $data['path'],
             storage: NamedOption::fromArray(self::objectValue($data['storage'])),
         );
@@ -30,7 +36,10 @@ final readonly class FilesIndexMeta
     public function toArray(): array
     {
         $data = [];
+        $data['can_manage'] = $this->can_manage;
         $data['capabilities'] = $this->capabilities->toArray();
+        $data['hidden'] = $this->hidden;
+        $data['next_cursor'] = $this->next_cursor === null ? null : $this->next_cursor;
         $data['path'] = $this->path;
         $data['storage'] = $this->storage->toArray();
 

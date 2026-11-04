@@ -51,6 +51,9 @@ use Vented\Resources\StackOperationsResource;
 use Vented\Resources\StacksResource;
 use Vented\Resources\StorageFileContentsResource;
 use Vented\Resources\StorageFilesResource;
+use Vented\Resources\StorageFileTreesResource;
+use Vented\Resources\StorageFileUploadPartsResource;
+use Vented\Resources\StorageFileUploadsResource;
 
 trait ResourceAccessors
 {
@@ -282,6 +285,21 @@ trait ResourceAccessors
     public function storageFileContents(): StorageFileContentsResource
     {
         return new StorageFileContentsResource($this);
+    }
+
+    public function storageFileTrees(): StorageFileTreesResource
+    {
+        return new StorageFileTreesResource($this);
+    }
+
+    public function storageFileUploadParts(): StorageFileUploadPartsResource
+    {
+        return new StorageFileUploadPartsResource($this);
+    }
+
+    public function storageFileUploads(): StorageFileUploadsResource
+    {
+        return new StorageFileUploadsResource($this);
     }
 
     public function storageFiles(): StorageFilesResource

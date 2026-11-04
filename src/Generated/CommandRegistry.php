@@ -132,7 +132,15 @@ use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
 use Vented\Commands\ProjectsStoragesFilesDownloadCommand;
 use Vented\Commands\ProjectsStoragesFilesIndexCommand;
+use Vented\Commands\ProjectsStoragesFilesShowCommand;
 use Vented\Commands\ProjectsStoragesFilesStoreCommand;
+use Vented\Commands\ProjectsStoragesFilesUpdateCommand;
+use Vented\Commands\ProjectsStoragesFileTreesIndexCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsDestroyCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsPartsUpdateCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
+use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsUpdateCommand;
 
@@ -264,10 +272,18 @@ final class CommandRegistry
         ProjectsStacksUpdateCommand::class,
         ProjectsStoragesFileContentsShowCommand::class,
         ProjectsStoragesFileContentsUpdateCommand::class,
+        ProjectsStoragesFileTreesIndexCommand::class,
+        ProjectsStoragesFileUploadsDestroyCommand::class,
+        ProjectsStoragesFileUploadsPartsUpdateCommand::class,
+        ProjectsStoragesFileUploadsShowCommand::class,
+        ProjectsStoragesFileUploadsStoreCommand::class,
+        ProjectsStoragesFileUploadsUpdateCommand::class,
         ProjectsStoragesFilesDestroyCommand::class,
         ProjectsStoragesFilesDownloadCommand::class,
         ProjectsStoragesFilesIndexCommand::class,
+        ProjectsStoragesFilesShowCommand::class,
         ProjectsStoragesFilesStoreCommand::class,
+        ProjectsStoragesFilesUpdateCommand::class,
         ProjectsStoreCommand::class,
         ProjectsUpdateCommand::class,
     ];

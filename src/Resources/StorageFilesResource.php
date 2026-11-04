@@ -6,9 +6,11 @@ namespace Vented\Resources;
 
 use Vented\Data\FileResourceData;
 use Vented\Data\StoreFileData;
+use Vented\Data\UpdateFileData;
 use Vented\Results\BinaryResult;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
+use Vented\Results\ResourceResult;
 use Vented\Vented;
 
 final readonly class StorageFilesResource
@@ -16,7 +18,7 @@ final readonly class StorageFilesResource
     public function __construct(private Vented $client) {}
 
     /**
-     * Create files or a directory in a storage
+     * Create files or a folder in a storage
      *
      * Operation: projects.storages.files.store
      *
@@ -39,7 +41,7 @@ final readonly class StorageFilesResource
     }
 
     /**
-     * Delete a file or directory
+     * Delete a file or folder
      *
      * Operation: projects.storages.files.destroy
      *
@@ -72,7 +74,24 @@ final readonly class StorageFilesResource
     }
 
     /**
-     * List files in a storage directory
+     * Show a file or folder
+     *
+     * Operation: projects.storages.files.show
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<FileResourceData>
+     */
+    public function find(string $project, string $environment, string $storage, string $file, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/storages/{storage}/files/{file}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): FileResourceData => FileResourceData::fromArray(self::attributes($resource, false)));
+    }
+
+    /**
+     * List a folder in a storage
      *
      * Operation: projects.storages.files.index
      *
@@ -86,6 +105,29 @@ final readonly class StorageFilesResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): FileResourceData => FileResourceData::fromArray(self::attributes($resource, false)));
+    }
+
+    /**
+     * Rename or move a file or folder
+     *
+     * Operation: projects.storages.files.update
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<FileResourceData>
+     */
+    public function update(string $project, string $environment, string $storage, string $file, UpdateFileData $data, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/storages/{storage}/files/{file}')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'storage' => $storage, 'file' => $file])
+            ->withBody([
+                'data' => [
+                    'type' => 'files',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): FileResourceData => FileResourceData::fromArray(self::attributes($resource, false)));
     }
 
     /**

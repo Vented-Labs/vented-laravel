@@ -10,7 +10,7 @@ final class ProjectsStoragesFilesStoreCommand extends GeneratedCommand
 {
     protected $signature = 'vented:storage-files:create {project : project path parameter} {environment : environment path parameter} {storage : storage path parameter} {--data= : JSON attributes or @path/to/file.json} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
-    protected $description = 'Create files or a directory in a storage';
+    protected $description = 'Create files or a folder in a storage';
 
     protected function operationId(): string
     {

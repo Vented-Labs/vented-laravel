@@ -10,7 +10,7 @@ final class ProjectsStoragesFilesIndexCommand extends GeneratedCommand
 {
     protected $signature = 'vented:storage-files:list {project : project path parameter} {environment : environment path parameter} {storage : storage path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
 
-    protected $description = 'List files in a storage directory';
+    protected $description = 'List a folder in a storage';
 
     protected function operationId(): string
     {

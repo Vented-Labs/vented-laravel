@@ -2,6 +2,13 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.20.0 - 2026-11-04
+
+- Added the files API for object and block storage: `storageFiles()->find()`, `->update()` (rename or move) and `->download()`, `storageFileTrees()->list()`, `storageFileUploads()` (`create()`, `find()`, `update()`, `delete()`) and `storageFileUploadParts()->update()` for uploads in parts, with their `vented:projects:storages:*` commands.
+- Added `FileCapabilitiesData`, `FileTreesIndexMeta`, `FileUploadData`, `StoreFileUploadData`, `UpdateFileData`, `UpdateFileUploadData` and the `FileKind` enum.
+- `StoreFileData` gains `source` and `overwrite` for copies; its `kind` is `file`, `directory`, `empty` (an empty file) or `copy`.
+- Replaced `FilesIndexMetaCapabilities` with `FileCapabilitiesData` on `FilesIndexMeta::$capabilities`.
+
 ## 0.18.0 - 2026-11-02
 
 - Added `network` to `ResourceTelemetry`: bytes per second received and sent, as `TelemetryNetwork` with `TelemetryNetworkPoint` history. App telemetry now reports measured usage with `source` `observed`.

@@ -22,6 +22,7 @@ use Vented\Data\StoreEnvironmentSshKeyData;
 use Vented\Data\StoreEnvironmentTransferData;
 use Vented\Data\StoreEnvironmentTransferPresetData;
 use Vented\Data\StoreFileData;
+use Vented\Data\StoreFileUploadData;
 use Vented\Data\StoreIntegrationData;
 use Vented\Data\StoreInviteData;
 use Vented\Data\StoreManagedStackCandidatesData;
@@ -41,6 +42,8 @@ use Vented\Data\UpdateEnvironmentData;
 use Vented\Data\UpdateEnvironmentTransferData;
 use Vented\Data\UpdateEnvironmentTransferPresetData;
 use Vented\Data\UpdateFileContentData;
+use Vented\Data\UpdateFileData;
+use Vented\Data\UpdateFileUploadData;
 use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
@@ -759,6 +762,49 @@ final class GeneratedCommandDispatcher
                 data: UpdateFileContentData::fromArray($data),
                 query: $query,
             ),
+            'projects.storages.file-trees.index' => $client->storageFileTrees()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                query: $query,
+            ),
+            'projects.storages.file-uploads.destroy' => $client->storageFileUploads()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                upload: self::stringPath($path, 'upload'),
+                query: $query,
+            ),
+            'projects.storages.file-uploads.parts.update' => $client->storageFileUploadParts()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                upload: self::stringPath($path, 'upload'),
+                part: self::stringPath($path, 'part'),
+                query: $query,
+            ),
+            'projects.storages.file-uploads.show' => $client->storageFileUploads()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                upload: self::stringPath($path, 'upload'),
+                query: $query,
+            ),
+            'projects.storages.file-uploads.store' => $client->storageFileUploads()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                data: StoreFileUploadData::fromArray($data),
+                query: $query,
+            ),
+            'projects.storages.file-uploads.update' => $client->storageFileUploads()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                upload: self::stringPath($path, 'upload'),
+                data: UpdateFileUploadData::fromArray($data),
+                query: $query,
+            ),
             'projects.storages.files.destroy' => $client->storageFiles()->delete(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
@@ -779,11 +825,26 @@ final class GeneratedCommandDispatcher
                 storage: self::stringPath($path, 'storage'),
                 query: $query,
             ),
+            'projects.storages.files.show' => $client->storageFiles()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                file: self::stringPath($path, 'file'),
+                query: $query,
+            ),
             'projects.storages.files.store' => $client->storageFiles()->create(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 storage: self::stringPath($path, 'storage'),
                 data: StoreFileData::fromArray($data),
+                query: $query,
+            ),
+            'projects.storages.files.update' => $client->storageFiles()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                storage: self::stringPath($path, 'storage'),
+                file: self::stringPath($path, 'file'),
+                data: UpdateFileData::fromArray($data),
                 query: $query,
             ),
             'projects.store' => $client->projects()->create(
