@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.21.0 - 2026-11-04
+
+- Added `verified` to `DnsZoneData`: whether Platform has seen the zone's TXT challenge or, for Vented DNS, its nameservers. Nothing is served for the zone until it has.
+
 ## 0.20.0 - 2026-11-04
 
 - Added the files API for object and block storage: `storageFiles()->find()`, `->update()` (rename or move) and `->download()`, `storageFileTrees()->list()`, `storageFileUploads()` (`create()`, `find()`, `update()`, `delete()`) and `storageFileUploadParts()->update()` for uploads in parts, with their `vented:projects:storages:*` commands.
