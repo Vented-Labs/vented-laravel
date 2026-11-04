@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
+use Vented\Enums\InstallableType;
+
 final readonly class StoreAppData
 {
     /**
@@ -15,7 +17,7 @@ final readonly class StoreAppData
         public array $block_storage_attachments,
         public array $configuration,
         public string $installable,
-        public string $installable_type,
+        public InstallableType $installable_type,
         public string $version,
     ) {}
 
@@ -29,7 +31,7 @@ final readonly class StoreAppData
             block_storage_attachments: array_map(static fn (mixed $value): StoreAppBlockStorageAttachmentData => StoreAppBlockStorageAttachmentData::fromArray(self::objectValue($value)), self::listValue($data['block_storage_attachments'])),
             configuration: self::objectValue($data['configuration']),
             installable: (string) $data['installable'],
-            installable_type: (string) $data['installable_type'],
+            installable_type: InstallableType::from((string) $data['installable_type']),
             version: (string) $data['version'],
         );
     }
@@ -44,7 +46,7 @@ final readonly class StoreAppData
         $data['block_storage_attachments'] = array_map(static fn (StoreAppBlockStorageAttachmentData $value) => $value->toArray(), $this->block_storage_attachments);
         $data['configuration'] = $this->configuration;
         $data['installable'] = $this->installable;
-        $data['installable_type'] = $this->installable_type;
+        $data['installable_type'] = $this->installable_type->value;
         $data['version'] = $this->version;
 
         return $data;

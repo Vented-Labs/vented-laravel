@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
+use Vented\Enums\EnvironmentTransferRequestStatus;
 use Vented\Enums\EnvironmentTransferSecretPolicy;
 use Vented\OptionalValue;
 
@@ -17,7 +18,7 @@ final readonly class UpdateEnvironmentTransferData
         public array|OptionalValue $decisions = OptionalValue::Missing,
         public bool|OptionalValue $production_confirmed = OptionalValue::Missing,
         public EnvironmentTransferSecretPolicy|OptionalValue $secret_policy = OptionalValue::Missing,
-        public string|OptionalValue $status = OptionalValue::Missing,
+        public EnvironmentTransferRequestStatus|OptionalValue $status = OptionalValue::Missing,
     ) {}
 
     /**
@@ -30,7 +31,7 @@ final readonly class UpdateEnvironmentTransferData
             decisions: array_key_exists('decisions', $data) ? array_map(static fn (mixed $value): UpdateEnvironmentTransferDecisionData => UpdateEnvironmentTransferDecisionData::fromArray(self::objectValue($value)), self::listValue($data['decisions'])) : OptionalValue::Missing,
             production_confirmed: array_key_exists('production_confirmed', $data) ? (bool) $data['production_confirmed'] : OptionalValue::Missing,
             secret_policy: array_key_exists('secret_policy', $data) ? EnvironmentTransferSecretPolicy::from((string) $data['secret_policy']) : OptionalValue::Missing,
-            status: array_key_exists('status', $data) ? (string) $data['status'] : OptionalValue::Missing,
+            status: array_key_exists('status', $data) ? EnvironmentTransferRequestStatus::from((string) $data['status']) : OptionalValue::Missing,
         );
     }
 
@@ -51,7 +52,7 @@ final readonly class UpdateEnvironmentTransferData
             $data['secret_policy'] = $this->secret_policy->value;
         }
         if ($this->status !== OptionalValue::Missing) {
-            $data['status'] = $this->status;
+            $data['status'] = $this->status->value;
         }
 
         return $data;
