@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.25.0 - 2026-11-05
+
+- `ManagedStackShowMeta` gains `overview`, a `ManagedStackOverviewData` with the stack's parts (`apps`, `services`, `storages`), their status, usage and problems in `inventory`, and the `recent_deploys` of its apps.
+
 ## 0.24.0 - 2026-11-05
 
 - Added `organizations()->transfer()` to offer an organization to another member, and `organizationTransfer()->accept()` and `->cancel()` for them to take it over or for either side to call it off, with `TransferOrganizationData`, `TransferableMember` and `PendingTransferData`.

@@ -13,6 +13,7 @@ final readonly class ManagedStackShowMeta
         public bool $can_update,
         public ?string $catalog_error,
         public ?StackDefinitionData $definition,
+        public ?ManagedStackOverviewData $overview,
         public array $resources,
     ) {}
 
@@ -25,6 +26,7 @@ final readonly class ManagedStackShowMeta
             can_update: (bool) $data['can_update'],
             catalog_error: $data['catalog_error'] === null ? null : (string) $data['catalog_error'],
             definition: $data['definition'] === null ? null : StackDefinitionData::fromArray(self::objectValue($data['definition'])),
+            overview: $data['overview'] === null ? null : ManagedStackOverviewData::fromArray(self::objectValue($data['overview'])),
             resources: array_map(static fn (mixed $value): StackResourceOptionData => StackResourceOptionData::fromArray(self::objectValue($value)), self::listValue($data['resources'])),
         );
     }
@@ -38,6 +40,7 @@ final readonly class ManagedStackShowMeta
         $data['can_update'] = $this->can_update;
         $data['catalog_error'] = $this->catalog_error === null ? null : $this->catalog_error;
         $data['definition'] = $this->definition === null ? null : $this->definition->toArray();
+        $data['overview'] = $this->overview === null ? null : $this->overview->toArray();
         $data['resources'] = array_map(static fn (StackResourceOptionData $value) => $value->toArray(), $this->resources);
 
         return $data;
