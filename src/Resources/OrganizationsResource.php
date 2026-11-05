@@ -6,8 +6,10 @@ namespace Vented\Resources;
 
 use Vented\Data\OrganizationData;
 use Vented\Data\StoreOrganizationData;
+use Vented\Data\TransferOrganizationData;
 use Vented\Data\UpdateOrganizationData;
 use Vented\Results\CollectionResult;
+use Vented\Results\NoContentResult;
 use Vented\Results\ResourceResult;
 use Vented\Vented;
 
@@ -35,6 +37,22 @@ final readonly class OrganizationsResource
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): OrganizationData => OrganizationData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Delete an organization
+     *
+     * Operation: account.organizations.destroy
+     *
+     * @param  array<string, mixed>  $query
+     */
+    public function delete(string $organization, array $query = []): NoContentResult
+    {
+        $operation = $this->client->operation('DELETE', '/organizations/{organization}')
+            ->withPathParameters(['organization' => $organization])
+            ->withQuery($query);
+
+        return $operation->noContent();
     }
 
     /**
@@ -68,6 +86,29 @@ final readonly class OrganizationsResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): OrganizationData => OrganizationData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Offer an organization to another member
+     *
+     * Operation: account.organizations.transfer
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<OrganizationData>
+     */
+    public function transfer(string $organization, TransferOrganizationData $data, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('POST', '/organizations/{organization}/transfer')
+            ->withPathParameters(['organization' => $organization])
+            ->withBody([
+                'data' => [
+                    'type' => 'organizations',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): OrganizationData => OrganizationData::fromArray(self::attributes($resource, true)));
     }
 
     /**

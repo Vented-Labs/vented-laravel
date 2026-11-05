@@ -10,6 +10,7 @@ use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
+use Vented\Commands\AccountOrganizationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsIndexCommand;
 use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
@@ -19,6 +20,9 @@ use Vented\Commands\AccountOrganizationsMembersUpdateCommand;
 use Vented\Commands\AccountOrganizationsSettingsCommand;
 use Vented\Commands\AccountOrganizationsShowCommand;
 use Vented\Commands\AccountOrganizationsStoreCommand;
+use Vented\Commands\AccountOrganizationsTransferAcceptCommand;
+use Vented\Commands\AccountOrganizationsTransferCancelCommand;
+use Vented\Commands\AccountOrganizationsTransferCommand;
 use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
@@ -212,6 +216,17 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'account.organizations.destroy' => [
+            'operationId' => 'account.organizations.destroy',
+            'resource' => 'organizations',
+            'action' => 'delete',
+            'commandName' => 'vented:organizations:delete',
+            'commandClass' => AccountOrganizationsDestroyCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
         'account.organizations.index' => [
             'operationId' => 'account.organizations.index',
             'resource' => 'organizations',
@@ -309,6 +324,39 @@ final class OperationRegistry
             'pathParameters' => [],
             'hasBody' => true,
             'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.transfer' => [
+            'operationId' => 'account.organizations.transfer',
+            'resource' => 'organizations',
+            'action' => 'transfer',
+            'commandName' => 'vented:organizations:transfer',
+            'commandClass' => AccountOrganizationsTransferCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.transfer.accept' => [
+            'operationId' => 'account.organizations.transfer.accept',
+            'resource' => 'organizationTransfer',
+            'action' => 'accept',
+            'commandName' => 'vented:organization-transfer:accept',
+            'commandClass' => AccountOrganizationsTransferAcceptCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.transfer.cancel' => [
+            'operationId' => 'account.organizations.transfer.cancel',
+            'resource' => 'organizationTransfer',
+            'action' => 'cancel',
+            'commandName' => 'vented:organization-transfer:cancel',
+            'commandClass' => AccountOrganizationsTransferCancelCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => true,
             'binary' => false,
         ],
         'account.organizations.update' => [

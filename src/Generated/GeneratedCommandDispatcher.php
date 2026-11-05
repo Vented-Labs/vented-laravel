@@ -35,6 +35,7 @@ use Vented\Data\StoreProjectData;
 use Vented\Data\StoreRecordData;
 use Vented\Data\StoreServiceData;
 use Vented\Data\StoreZoneData;
+use Vented\Data\TransferOrganizationData;
 use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
@@ -92,6 +93,10 @@ final class GeneratedCommandDispatcher
                 data: UpdateOnboardingData::fromArray($data),
                 query: $query,
             ),
+            'account.organizations.destroy' => $client->organizations()->delete(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
             'account.organizations.index' => $client->organizations()->list(
                 query: $query,
             ),
@@ -130,6 +135,19 @@ final class GeneratedCommandDispatcher
             ),
             'account.organizations.store' => $client->organizations()->create(
                 data: StoreOrganizationData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.transfer' => $client->organizations()->transfer(
+                organization: self::stringPath($path, 'organization'),
+                data: TransferOrganizationData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.transfer.accept' => $client->organizationTransfer()->accept(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
+            'account.organizations.transfer.cancel' => $client->organizationTransfer()->cancel(
+                organization: self::stringPath($path, 'organization'),
                 query: $query,
             ),
             'account.organizations.update' => $client->organizations()->update(

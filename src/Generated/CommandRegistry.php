@@ -10,6 +10,7 @@ use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
+use Vented\Commands\AccountOrganizationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsIndexCommand;
 use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
@@ -19,6 +20,9 @@ use Vented\Commands\AccountOrganizationsMembersUpdateCommand;
 use Vented\Commands\AccountOrganizationsSettingsCommand;
 use Vented\Commands\AccountOrganizationsShowCommand;
 use Vented\Commands\AccountOrganizationsStoreCommand;
+use Vented\Commands\AccountOrganizationsTransferAcceptCommand;
+use Vented\Commands\AccountOrganizationsTransferCancelCommand;
+use Vented\Commands\AccountOrganizationsTransferCommand;
 use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
@@ -162,6 +166,7 @@ final class CommandRegistry
         AccountApiTokensStoreCommand::class,
         AccountGettingStartedShowCommand::class,
         AccountGettingStartedUpdateCommand::class,
+        AccountOrganizationsDestroyCommand::class,
         AccountOrganizationsIndexCommand::class,
         AccountOrganizationsInvitationsDestroyCommand::class,
         AccountOrganizationsInvitationsStoreCommand::class,
@@ -171,6 +176,9 @@ final class CommandRegistry
         AccountOrganizationsSettingsCommand::class,
         AccountOrganizationsShowCommand::class,
         AccountOrganizationsStoreCommand::class,
+        AccountOrganizationsTransferCommand::class,
+        AccountOrganizationsTransferAcceptCommand::class,
+        AccountOrganizationsTransferCancelCommand::class,
         AccountOrganizationsUpdateCommand::class,
         PlatformLocationsIndexCommand::class,
         ProjectsAppsBindingsCommand::class,

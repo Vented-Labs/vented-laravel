@@ -43,6 +43,7 @@ use Vented\Resources\OrganizationInvitationsResource;
 use Vented\Resources\OrganizationMembersResource;
 use Vented\Resources\OrganizationSettingsResource;
 use Vented\Resources\OrganizationsResource;
+use Vented\Resources\OrganizationTransferResource;
 use Vented\Resources\PlatformLocationsResource;
 use Vented\Resources\ProjectsResource;
 use Vented\Resources\ServiceBackupsResource;
@@ -249,6 +250,11 @@ trait ResourceAccessors
     public function organizationSettings(): OrganizationSettingsResource
     {
         return new OrganizationSettingsResource($this);
+    }
+
+    public function organizationTransfer(): OrganizationTransferResource
+    {
+        return new OrganizationTransferResource($this);
     }
 
     public function organizations(): OrganizationsResource

@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.24.0 - 2026-11-05
+
+- Added `organizations()->transfer()` to offer an organization to another member, and `organizationTransfer()->accept()` and `->cancel()` for them to take it over or for either side to call it off, with `TransferOrganizationData`, `TransferableMember` and `PendingTransferData`.
+- Added `organizations()->delete()` for an organization with no projects left. Members leave through `organizationMembers()->delete()` with their own id.
+- `OrganizationShowMeta` gains `can_delete`, `can_transfer_ownership`, `can_leave`, `can_accept_transfer`, `can_cancel_transfer`, `pending_transfer` and `transferable_members`.
+
 ## 0.23.0 - 2026-11-05
 
 - Added organizations: list and show them, rename them or change their settings, list, update and remove their members, and send or cancel invitations, with `OrganizationData`, `OrganizationMemberData`, `OrganizationInviteData` and their request DTOs.

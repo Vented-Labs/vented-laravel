@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vented\Commands;
+
+use Vented\Console\GeneratedCommand;
+
+final class AccountOrganizationsTransferCancelCommand extends GeneratedCommand
+{
+    protected $signature = 'vented:organization-transfer:cancel {organization : organization path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response} {--force : Skip destructive operation confirmation}';
+
+    protected $description = 'Cancel or decline an organization transfer';
+
+    protected function operationId(): string
+    {
+        return 'account.organizations.transfer.cancel';
+    }
+}
