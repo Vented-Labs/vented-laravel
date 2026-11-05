@@ -29,6 +29,8 @@ use Vented\Data\StoreManagedStackCandidatesData;
 use Vented\Data\StoreManagedStackData;
 use Vented\Data\StoreManagedStackOperationData;
 use Vented\Data\StoreObjectStorageData;
+use Vented\Data\StoreOrganizationData;
+use Vented\Data\StoreOrganizationInviteData;
 use Vented\Data\StoreProjectData;
 use Vented\Data\StoreRecordData;
 use Vented\Data\StoreServiceData;
@@ -48,6 +50,8 @@ use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
 use Vented\Data\UpdateOnboardingData;
+use Vented\Data\UpdateOrganizationData;
+use Vented\Data\UpdateOrganizationMemberData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
 use Vented\Data\UpdateServiceData;
@@ -86,6 +90,51 @@ final class GeneratedCommandDispatcher
             ),
             'account.getting-started.update' => $client->gettingStarted()->update(
                 data: UpdateOnboardingData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.index' => $client->organizations()->list(
+                query: $query,
+            ),
+            'account.organizations.invitations.destroy' => $client->organizationInvitations()->delete(
+                organization: self::stringPath($path, 'organization'),
+                invitation: self::stringPath($path, 'invitation'),
+                query: $query,
+            ),
+            'account.organizations.invitations.store' => $client->organizationInvitations()->create(
+                organization: self::stringPath($path, 'organization'),
+                data: StoreOrganizationInviteData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.members.destroy' => $client->organizationMembers()->delete(
+                organization: self::stringPath($path, 'organization'),
+                member: self::stringPath($path, 'member'),
+                query: $query,
+            ),
+            'account.organizations.members.index' => $client->organizationMembers()->list(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
+            'account.organizations.members.update' => $client->organizationMembers()->update(
+                organization: self::stringPath($path, 'organization'),
+                member: self::stringPath($path, 'member'),
+                data: UpdateOrganizationMemberData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.settings' => $client->organizationSettings()->list(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
+            'account.organizations.show' => $client->organizations()->find(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
+            'account.organizations.store' => $client->organizations()->create(
+                data: StoreOrganizationData::fromArray($data),
+                query: $query,
+            ),
+            'account.organizations.update' => $client->organizations()->update(
+                organization: self::stringPath($path, 'organization'),
+                data: UpdateOrganizationData::fromArray($data),
                 query: $query,
             ),
             'platform-locations.index' => $client->platformLocations()->list(

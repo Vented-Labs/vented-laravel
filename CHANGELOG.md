@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.23.0 - 2026-11-05
+
+- Added organizations: list and show them, rename them or change their settings, list, update and remove their members, and send or cancel invitations, with `OrganizationData`, `OrganizationMemberData`, `OrganizationInviteData` and their request DTOs.
+- Added `organization_name` to `DashboardProjectData`.
+- Added `organizations()->create()`, and `project_ids` on `UpdateOrganizationMemberData` and `StoreOrganizationInviteData` to give a member specific projects.
+
 ## 0.22.0 - 2026-11-04
 
 - Projects belong to organizations: `ProjectData` gains `organization_id`, and `StoreProjectData` takes an optional `organization_id`, required when you manage more than one organization.

@@ -10,6 +10,16 @@ use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
+use Vented\Commands\AccountOrganizationsIndexCommand;
+use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
+use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
+use Vented\Commands\AccountOrganizationsMembersDestroyCommand;
+use Vented\Commands\AccountOrganizationsMembersIndexCommand;
+use Vented\Commands\AccountOrganizationsMembersUpdateCommand;
+use Vented\Commands\AccountOrganizationsSettingsCommand;
+use Vented\Commands\AccountOrganizationsShowCommand;
+use Vented\Commands\AccountOrganizationsStoreCommand;
+use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
@@ -152,6 +162,16 @@ final class CommandRegistry
         AccountApiTokensStoreCommand::class,
         AccountGettingStartedShowCommand::class,
         AccountGettingStartedUpdateCommand::class,
+        AccountOrganizationsIndexCommand::class,
+        AccountOrganizationsInvitationsDestroyCommand::class,
+        AccountOrganizationsInvitationsStoreCommand::class,
+        AccountOrganizationsMembersDestroyCommand::class,
+        AccountOrganizationsMembersIndexCommand::class,
+        AccountOrganizationsMembersUpdateCommand::class,
+        AccountOrganizationsSettingsCommand::class,
+        AccountOrganizationsShowCommand::class,
+        AccountOrganizationsStoreCommand::class,
+        AccountOrganizationsUpdateCommand::class,
         PlatformLocationsIndexCommand::class,
         ProjectsAppsBindingsCommand::class,
         ProjectsAppsBindingsDestroyCommand::class,

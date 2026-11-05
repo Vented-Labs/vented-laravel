@@ -18,6 +18,7 @@ final readonly class DashboardProjectData
         public string $name,
         public bool $needs_attention,
         public bool $needs_setup,
+        public string $organization_name,
         public ?string $plan_url,
         public string $role,
         public ?int $services,
@@ -43,6 +44,7 @@ final readonly class DashboardProjectData
             name: (string) $data['name'],
             needs_attention: (bool) $data['needs_attention'],
             needs_setup: (bool) $data['needs_setup'],
+            organization_name: (string) $data['organization_name'],
             plan_url: $data['plan_url'] === null ? null : (string) $data['plan_url'],
             role: (string) $data['role'],
             services: $data['services'] === null ? null : (int) $data['services'],
@@ -69,6 +71,7 @@ final readonly class DashboardProjectData
         $data['name'] = $this->name;
         $data['needs_attention'] = $this->needs_attention;
         $data['needs_setup'] = $this->needs_setup;
+        $data['organization_name'] = $this->organization_name;
         $data['plan_url'] = $this->plan_url === null ? null : $this->plan_url;
         $data['role'] = $this->role;
         $data['services'] = $this->services === null ? null : $this->services;

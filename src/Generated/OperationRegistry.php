@@ -10,6 +10,16 @@ use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
+use Vented\Commands\AccountOrganizationsIndexCommand;
+use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
+use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
+use Vented\Commands\AccountOrganizationsMembersDestroyCommand;
+use Vented\Commands\AccountOrganizationsMembersIndexCommand;
+use Vented\Commands\AccountOrganizationsMembersUpdateCommand;
+use Vented\Commands\AccountOrganizationsSettingsCommand;
+use Vented\Commands\AccountOrganizationsShowCommand;
+use Vented\Commands\AccountOrganizationsStoreCommand;
+use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
@@ -198,6 +208,116 @@ final class OperationRegistry
             'commandName' => 'vented:getting-started:update',
             'commandClass' => AccountGettingStartedUpdateCommand::class,
             'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.index' => [
+            'operationId' => 'account.organizations.index',
+            'resource' => 'organizations',
+            'action' => 'list',
+            'commandName' => 'vented:organizations:list',
+            'commandClass' => AccountOrganizationsIndexCommand::class,
+            'pathParameters' => [],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.invitations.destroy' => [
+            'operationId' => 'account.organizations.invitations.destroy',
+            'resource' => 'organizationInvitations',
+            'action' => 'delete',
+            'commandName' => 'vented:organization-invitations:delete',
+            'commandClass' => AccountOrganizationsInvitationsDestroyCommand::class,
+            'pathParameters' => ['organization', 'invitation'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'account.organizations.invitations.store' => [
+            'operationId' => 'account.organizations.invitations.store',
+            'resource' => 'organizationInvitations',
+            'action' => 'create',
+            'commandName' => 'vented:organization-invitations:create',
+            'commandClass' => AccountOrganizationsInvitationsStoreCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.members.destroy' => [
+            'operationId' => 'account.organizations.members.destroy',
+            'resource' => 'organizationMembers',
+            'action' => 'delete',
+            'commandName' => 'vented:organization-members:delete',
+            'commandClass' => AccountOrganizationsMembersDestroyCommand::class,
+            'pathParameters' => ['organization', 'member'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'account.organizations.members.index' => [
+            'operationId' => 'account.organizations.members.index',
+            'resource' => 'organizationMembers',
+            'action' => 'list',
+            'commandName' => 'vented:organization-members:list',
+            'commandClass' => AccountOrganizationsMembersIndexCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.members.update' => [
+            'operationId' => 'account.organizations.members.update',
+            'resource' => 'organizationMembers',
+            'action' => 'update',
+            'commandName' => 'vented:organization-members:update',
+            'commandClass' => AccountOrganizationsMembersUpdateCommand::class,
+            'pathParameters' => ['organization', 'member'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.settings' => [
+            'operationId' => 'account.organizations.settings',
+            'resource' => 'organizationSettings',
+            'action' => 'list',
+            'commandName' => 'vented:organization-settings:list',
+            'commandClass' => AccountOrganizationsSettingsCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.show' => [
+            'operationId' => 'account.organizations.show',
+            'resource' => 'organizations',
+            'action' => 'find',
+            'commandName' => 'vented:organizations:show',
+            'commandClass' => AccountOrganizationsShowCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.store' => [
+            'operationId' => 'account.organizations.store',
+            'resource' => 'organizations',
+            'action' => 'create',
+            'commandName' => 'vented:organizations:create',
+            'commandClass' => AccountOrganizationsStoreCommand::class,
+            'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.organizations.update' => [
+            'operationId' => 'account.organizations.update',
+            'resource' => 'organizations',
+            'action' => 'update',
+            'commandName' => 'vented:organizations:update',
+            'commandClass' => AccountOrganizationsUpdateCommand::class,
+            'pathParameters' => ['organization'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
