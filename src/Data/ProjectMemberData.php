@@ -10,6 +10,7 @@ final readonly class ProjectMemberData
 {
     public function __construct(
         public string $email,
+        public bool $from_organization,
         public string $id,
         public bool $is_owner,
         public string $name,
@@ -24,6 +25,7 @@ final readonly class ProjectMemberData
     {
         return new self(
             email: (string) $data['email'],
+            from_organization: (bool) $data['from_organization'],
             id: (string) $data['id'],
             is_owner: (bool) $data['is_owner'],
             name: (string) $data['name'],
@@ -39,6 +41,7 @@ final readonly class ProjectMemberData
     {
         $data = [];
         $data['email'] = $this->email;
+        $data['from_organization'] = $this->from_organization;
         $data['id'] = $this->id;
         $data['is_owner'] = $this->is_owner;
         $data['name'] = $this->name;

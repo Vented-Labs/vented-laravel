@@ -6,7 +6,6 @@ namespace Vented\Resources;
 
 use Vented\Data\ProjectData;
 use Vented\Data\StoreProjectData;
-use Vented\Data\UpdateProjectData;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
 use Vented\Results\ResourceResult;
@@ -85,29 +84,6 @@ final readonly class ProjectsResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): ProjectData => ProjectData::fromArray(self::attributes($resource, true)));
-    }
-
-    /**
-     * Update a project
-     *
-     * Operation: projects.update
-     *
-     * @param  array<string, mixed>  $query
-     * @return ResourceResult<ProjectData>
-     */
-    public function update(string $project, UpdateProjectData $data, array $query = []): ResourceResult
-    {
-        $operation = $this->client->operation('PATCH', '/projects/{project}')
-            ->withPathParameters(['project' => $project])
-            ->withBody([
-                'data' => [
-                    'type' => 'projects',
-                    'attributes' => $data->toArray(),
-                ],
-            ])
-            ->withQuery($query);
-
-        return $operation->resource(static fn (array $resource): ProjectData => ProjectData::fromArray(self::attributes($resource, true)));
     }
 
     /**

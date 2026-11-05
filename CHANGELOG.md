@@ -2,6 +2,13 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.22.0 - 2026-11-04
+
+- Projects belong to organizations: `ProjectData` gains `organization_id`, and `StoreProjectData` takes an optional `organization_id`, required when you manage more than one organization.
+- Removed `projects()->update()`, the `vented:projects:update` command, `UpdateProjectData` and `TransferableMember`: projects no longer have their own owner to transfer.
+- `ProjectMemberData` gains `from_organization`, true when the person's access comes from their organization role. `MembersIndexMeta::$is_owner` is now `$can_manage_admins`.
+- Removed `can_transfer_ownership` and `transferable_members` from `SettingsShowMetaCapabilities`.
+
 ## 0.21.0 - 2026-11-04
 
 - Added `verified` to `DnsZoneData`: whether Platform has seen the zone's TXT challenge or, for Vented DNS, its nameservers. Nothing is served for the zone until it has.

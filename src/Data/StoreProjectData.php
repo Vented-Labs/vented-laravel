@@ -13,6 +13,7 @@ final readonly class StoreProjectData
         public string $location_id,
         public string $name,
         public ProjectMarkColor|null|OptionalValue $mark_color = OptionalValue::Missing,
+        public string|OptionalValue $organization_id = OptionalValue::Missing,
     ) {}
 
     /**
@@ -24,6 +25,7 @@ final readonly class StoreProjectData
             location_id: (string) $data['location_id'],
             name: (string) $data['name'],
             mark_color: array_key_exists('mark_color', $data) ? $data['mark_color'] === null ? null : ProjectMarkColor::from((string) $data['mark_color']) : OptionalValue::Missing,
+            organization_id: array_key_exists('organization_id', $data) ? (string) $data['organization_id'] : OptionalValue::Missing,
         );
     }
 
@@ -37,6 +39,9 @@ final readonly class StoreProjectData
         $data['name'] = $this->name;
         if ($this->mark_color !== OptionalValue::Missing) {
             $data['mark_color'] = $this->mark_color === null ? null : $this->mark_color->value;
+        }
+        if ($this->organization_id !== OptionalValue::Missing) {
+            $data['organization_id'] = $this->organization_id;
         }
 
         return $data;

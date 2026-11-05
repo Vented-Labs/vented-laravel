@@ -38,6 +38,7 @@ it('makes representative generated project calls with typed results and canonica
                         'created_at' => '2026-01-01T00:00:00Z',
                         'billing_configured' => false,
                         'is_new' => false,
+                        'organization_id' => 'organization-1',
                         'name' => 'Listed project',
                         'production_environment' => [
                             'id' => 'environment-1',
@@ -59,6 +60,7 @@ it('makes representative generated project calls with typed results and canonica
                         'created_at' => '2026-01-01T00:00:00Z',
                         'billing_configured' => false,
                         'is_new' => true,
+                        'organization_id' => 'organization-1',
                         'name' => 'Example',
                         'production_environment' => [
                             'id' => 'environment-2',

@@ -142,7 +142,6 @@ use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
-use Vented\Commands\ProjectsUpdateCommand;
 
 final class CommandRegistry
 {
@@ -285,7 +284,6 @@ final class CommandRegistry
         ProjectsStoragesFilesStoreCommand::class,
         ProjectsStoragesFilesUpdateCommand::class,
         ProjectsStoreCommand::class,
-        ProjectsUpdateCommand::class,
     ];
 
     /** @return list<class-string<Command>> */

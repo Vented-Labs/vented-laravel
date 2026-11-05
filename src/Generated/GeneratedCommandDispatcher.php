@@ -48,7 +48,6 @@ use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
 use Vented\Data\UpdateOnboardingData;
-use Vented\Data\UpdateProjectData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
 use Vented\Data\UpdateServiceData;
@@ -849,11 +848,6 @@ final class GeneratedCommandDispatcher
             ),
             'projects.store' => $client->projects()->create(
                 data: StoreProjectData::fromArray($data),
-                query: $query,
-            ),
-            'projects.update' => $client->projects()->update(
-                project: self::stringPath($path, 'project'),
-                data: UpdateProjectData::fromArray($data),
                 query: $query,
             ),
             default => throw new \InvalidArgumentException("Unknown generated Vented operation [\{$operationId}]."),

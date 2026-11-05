@@ -12,6 +12,7 @@ final readonly class ProjectData
         public string $id,
         public bool $is_new,
         public string $name,
+        public string $organization_id,
         public EnvironmentRef $production_environment,
     ) {}
 
@@ -26,6 +27,7 @@ final readonly class ProjectData
             id: (string) $data['id'],
             is_new: (bool) $data['is_new'],
             name: (string) $data['name'],
+            organization_id: (string) $data['organization_id'],
             production_environment: EnvironmentRef::fromArray(self::objectValue($data['production_environment'])),
         );
     }
@@ -41,6 +43,7 @@ final readonly class ProjectData
         $data['id'] = $this->id;
         $data['is_new'] = $this->is_new;
         $data['name'] = $this->name;
+        $data['organization_id'] = $this->organization_id;
         $data['production_environment'] = $this->production_environment->toArray();
 
         return $data;

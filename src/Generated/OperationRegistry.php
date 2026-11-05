@@ -142,7 +142,6 @@ use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
-use Vented\Commands\ProjectsUpdateCommand;
 
 final class OperationRegistry
 {
@@ -1651,17 +1650,6 @@ final class OperationRegistry
             'commandName' => 'vented:projects:create',
             'commandClass' => ProjectsStoreCommand::class,
             'pathParameters' => [],
-            'hasBody' => true,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.update' => [
-            'operationId' => 'projects.update',
-            'resource' => 'projects',
-            'action' => 'update',
-            'commandName' => 'vented:projects:update',
-            'commandClass' => ProjectsUpdateCommand::class,
-            'pathParameters' => ['project'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
