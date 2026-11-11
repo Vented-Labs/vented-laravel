@@ -13,12 +13,15 @@ final readonly class DashboardProjectData
         public ?int $environments,
         public string $id,
         public bool $is_owner,
+        public ?string $last_opened_at,
         public bool $locked,
         public ?string $members_url,
         public string $name,
         public bool $needs_attention,
         public bool $needs_setup,
         public string $organization_name,
+        public ?int $pin_position,
+        public ?string $pin_url,
         public ?string $plan_url,
         public string $role,
         public ?int $services,
@@ -39,12 +42,15 @@ final readonly class DashboardProjectData
             environments: $data['environments'] === null ? null : (int) $data['environments'],
             id: (string) $data['id'],
             is_owner: (bool) $data['is_owner'],
+            last_opened_at: $data['last_opened_at'] === null ? null : (string) $data['last_opened_at'],
             locked: (bool) $data['locked'],
             members_url: $data['members_url'] === null ? null : (string) $data['members_url'],
             name: (string) $data['name'],
             needs_attention: (bool) $data['needs_attention'],
             needs_setup: (bool) $data['needs_setup'],
             organization_name: (string) $data['organization_name'],
+            pin_position: $data['pin_position'] === null ? null : (int) $data['pin_position'],
+            pin_url: $data['pin_url'] === null ? null : (string) $data['pin_url'],
             plan_url: $data['plan_url'] === null ? null : (string) $data['plan_url'],
             role: (string) $data['role'],
             services: $data['services'] === null ? null : (int) $data['services'],
@@ -66,12 +72,15 @@ final readonly class DashboardProjectData
         $data['environments'] = $this->environments === null ? null : $this->environments;
         $data['id'] = $this->id;
         $data['is_owner'] = $this->is_owner;
+        $data['last_opened_at'] = $this->last_opened_at === null ? null : $this->last_opened_at;
         $data['locked'] = $this->locked;
         $data['members_url'] = $this->members_url === null ? null : $this->members_url;
         $data['name'] = $this->name;
         $data['needs_attention'] = $this->needs_attention;
         $data['needs_setup'] = $this->needs_setup;
         $data['organization_name'] = $this->organization_name;
+        $data['pin_position'] = $this->pin_position === null ? null : $this->pin_position;
+        $data['pin_url'] = $this->pin_url === null ? null : $this->pin_url;
         $data['plan_url'] = $this->plan_url === null ? null : $this->plan_url;
         $data['role'] = $this->role;
         $data['services'] = $this->services === null ? null : $this->services;

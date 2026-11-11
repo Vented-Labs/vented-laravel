@@ -8,7 +8,12 @@ use Vented\Enums\BindableType;
 
 final readonly class BindingData
 {
+    /**
+     * @param  list<string>  $variables
+     */
     public function __construct(
+        public bool $can_rotate,
+        public int $credentials_revision,
         public int $declaration_generation,
         public string $id,
         public ?string $purpose,
@@ -19,6 +24,7 @@ final readonly class BindingData
         public BindingEndpoint $target,
         public string $target_id,
         public BindableType $target_type,
+        public array $variables,
     ) {}
 
     /**
@@ -27,6 +33,8 @@ final readonly class BindingData
     public static function fromArray(array $data): self
     {
         return new self(
+            can_rotate: (bool) $data['can_rotate'],
+            credentials_revision: (int) $data['credentials_revision'],
             declaration_generation: (int) $data['declaration_generation'],
             id: (string) $data['id'],
             purpose: $data['purpose'] === null ? null : (string) $data['purpose'],
@@ -37,6 +45,7 @@ final readonly class BindingData
             target: BindingEndpoint::fromArray(self::objectValue($data['target'])),
             target_id: (string) $data['target_id'],
             target_type: BindableType::from((string) $data['target_type']),
+            variables: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['variables'])),
         );
     }
 
@@ -46,6 +55,8 @@ final readonly class BindingData
     public function toArray(): array
     {
         $data = [];
+        $data['can_rotate'] = $this->can_rotate;
+        $data['credentials_revision'] = $this->credentials_revision;
         $data['declaration_generation'] = $this->declaration_generation;
         $data['id'] = $this->id;
         $data['purpose'] = $this->purpose === null ? null : $this->purpose;
@@ -56,6 +67,7 @@ final readonly class BindingData
         $data['target'] = $this->target->toArray();
         $data['target_id'] = $this->target_id;
         $data['target_type'] = $this->target_type->value;
+        $data['variables'] = $this->variables;
 
         return $data;
     }
@@ -71,5 +83,17 @@ final readonly class BindingData
 
         /** @var array<string, mixed> $value */
         return $value;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

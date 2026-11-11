@@ -27,6 +27,7 @@ use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
+use Vented\Commands\ProjectsAppsBindingsRotateCommand;
 use Vented\Commands\ProjectsAppsBindingsStoreCommand;
 use Vented\Commands\ProjectsAppsBindingsUpdateCommand;
 use Vented\Commands\ProjectsAppsConfigurationCommand;
@@ -111,20 +112,26 @@ use Vented\Commands\ProjectsMembersIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsDestroyCommand;
 use Vented\Commands\ProjectsMembersInvitationsIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsStoreCommand;
+use Vented\Commands\ProjectsMembersUpdateCommand;
 use Vented\Commands\ProjectsObjectStoragesBackupsCommand;
 use Vented\Commands\ProjectsObjectStoragesDestroyCommand;
 use Vented\Commands\ProjectsObjectStoragesIndexCommand;
 use Vented\Commands\ProjectsObjectStoragesShowCommand;
 use Vented\Commands\ProjectsObjectStoragesStoreCommand;
 use Vented\Commands\ProjectsOverviewCommand;
+use Vented\Commands\ProjectsPinDestroyCommand;
+use Vented\Commands\ProjectsPinStoreCommand;
 use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
+use Vented\Commands\ProjectsServicesBindingsOutputsCommand;
+use Vented\Commands\ProjectsServicesBindingsRotateCommand;
 use Vented\Commands\ProjectsServicesBindingsStoreCommand;
 use Vented\Commands\ProjectsServicesBindingsUpdateCommand;
 use Vented\Commands\ProjectsServicesConfigurationCommand;
 use Vented\Commands\ProjectsServicesDestroyCommand;
 use Vented\Commands\ProjectsServicesIndexCommand;
+use Vented\Commands\ProjectsServicesOutputsCommand;
 use Vented\Commands\ProjectsServicesShowCommand;
 use Vented\Commands\ProjectsServicesStoreCommand;
 use Vented\Commands\ProjectsServicesUpdateCommand;
@@ -156,6 +163,13 @@ use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
+use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
+use Vented\Commands\ProjectsTunnelsDestroyCommand;
+use Vented\Commands\ProjectsTunnelsIndexCommand;
+use Vented\Commands\ProjectsTunnelsShowCommand;
+use Vented\Commands\ProjectsTunnelsStartCommand;
+use Vented\Commands\ProjectsTunnelsStopCommand;
+use Vented\Commands\ProjectsTunnelsStoreCommand;
 
 final class CommandRegistry
 {
@@ -183,6 +197,7 @@ final class CommandRegistry
         PlatformLocationsIndexCommand::class,
         ProjectsAppsBindingsCommand::class,
         ProjectsAppsBindingsDestroyCommand::class,
+        ProjectsAppsBindingsRotateCommand::class,
         ProjectsAppsBindingsStoreCommand::class,
         ProjectsAppsBindingsUpdateCommand::class,
         ProjectsAppsConfigurationCommand::class,
@@ -267,20 +282,26 @@ final class CommandRegistry
         ProjectsMembersInvitationsDestroyCommand::class,
         ProjectsMembersInvitationsIndexCommand::class,
         ProjectsMembersInvitationsStoreCommand::class,
+        ProjectsMembersUpdateCommand::class,
         ProjectsObjectStoragesBackupsCommand::class,
         ProjectsObjectStoragesDestroyCommand::class,
         ProjectsObjectStoragesIndexCommand::class,
         ProjectsObjectStoragesShowCommand::class,
         ProjectsObjectStoragesStoreCommand::class,
         ProjectsOverviewCommand::class,
+        ProjectsPinDestroyCommand::class,
+        ProjectsPinStoreCommand::class,
         ProjectsServicesBackupsCommand::class,
         ProjectsServicesBindingsCommand::class,
         ProjectsServicesBindingsDestroyCommand::class,
+        ProjectsServicesBindingsOutputsCommand::class,
+        ProjectsServicesBindingsRotateCommand::class,
         ProjectsServicesBindingsStoreCommand::class,
         ProjectsServicesBindingsUpdateCommand::class,
         ProjectsServicesConfigurationCommand::class,
         ProjectsServicesDestroyCommand::class,
         ProjectsServicesIndexCommand::class,
+        ProjectsServicesOutputsCommand::class,
         ProjectsServicesShowCommand::class,
         ProjectsServicesStoreCommand::class,
         ProjectsServicesUpdateCommand::class,
@@ -312,6 +333,13 @@ final class CommandRegistry
         ProjectsStoragesFilesStoreCommand::class,
         ProjectsStoragesFilesUpdateCommand::class,
         ProjectsStoreCommand::class,
+        ProjectsTunnelsAgentSetupCommand::class,
+        ProjectsTunnelsDestroyCommand::class,
+        ProjectsTunnelsIndexCommand::class,
+        ProjectsTunnelsShowCommand::class,
+        ProjectsTunnelsStartCommand::class,
+        ProjectsTunnelsStopCommand::class,
+        ProjectsTunnelsStoreCommand::class,
     ];
 
     /** @return list<class-string<Command>> */

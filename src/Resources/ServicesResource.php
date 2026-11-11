@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Resources;
 
 use Vented\Data\ServiceData;
+use Vented\Data\ServiceOutputsData;
 use Vented\Data\StoreServiceData;
 use Vented\Data\UpdateServiceData;
 use Vented\Results\NoContentResult;
@@ -104,6 +105,23 @@ final readonly class ServicesResource
             ->withQuery($query);
 
         return $operation->paginated(static fn (array $resource): ServiceData => ServiceData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Show a service's connection details
+     *
+     * Operation: projects.services.outputs
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<ServiceOutputsData>
+     */
+    public function outputs(string $project, string $environment, string $service, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/services/{service}/outputs')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): ServiceOutputsData => ServiceOutputsData::fromArray(self::attributes($resource, true)));
     }
 
     /**

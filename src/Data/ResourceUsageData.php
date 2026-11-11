@@ -13,6 +13,7 @@ final readonly class ResourceUsageData
         public string $sampled_at,
         public string $source,
         public ResourceUsageMetricData $transfer,
+        public ResourceUsageMetricData $tunnels,
     ) {}
 
     /**
@@ -27,6 +28,7 @@ final readonly class ResourceUsageData
             sampled_at: (string) $data['sampled_at'],
             source: (string) $data['source'],
             transfer: ResourceUsageMetricData::fromArray(self::objectValue($data['transfer'])),
+            tunnels: ResourceUsageMetricData::fromArray(self::objectValue($data['tunnels'])),
         );
     }
 
@@ -42,6 +44,7 @@ final readonly class ResourceUsageData
         $data['sampled_at'] = $this->sampled_at;
         $data['source'] = $this->source;
         $data['transfer'] = $this->transfer->toArray();
+        $data['tunnels'] = $this->tunnels->toArray();
 
         return $data;
     }

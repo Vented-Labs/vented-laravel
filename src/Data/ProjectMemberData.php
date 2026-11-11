@@ -9,6 +9,7 @@ use Vented\Enums\ProjectRole;
 final readonly class ProjectMemberData
 {
     public function __construct(
+        public bool $can_update_role,
         public string $email,
         public bool $from_organization,
         public string $id,
@@ -24,6 +25,7 @@ final readonly class ProjectMemberData
     public static function fromArray(array $data): self
     {
         return new self(
+            can_update_role: (bool) $data['can_update_role'],
             email: (string) $data['email'],
             from_organization: (bool) $data['from_organization'],
             id: (string) $data['id'],
@@ -40,6 +42,7 @@ final readonly class ProjectMemberData
     public function toArray(): array
     {
         $data = [];
+        $data['can_update_role'] = $this->can_update_role;
         $data['email'] = $this->email;
         $data['from_organization'] = $this->from_organization;
         $data['id'] = $this->id;

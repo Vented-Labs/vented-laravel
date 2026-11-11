@@ -73,6 +73,23 @@ final readonly class ServiceBindingsResource
     }
 
     /**
+     * Rotate a service binding's credentials
+     *
+     * Operation: projects.services.bindings.rotate
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<BindingData>
+     */
+    public function rotate(string $project, string $environment, string $service, string $binding, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('POST', '/projects/{project}/{environment}/services/{service}/bindings/{binding}/rotate')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'service' => $service, 'binding' => $binding])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): BindingData => BindingData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
      * Set the declared purpose of a service binding
      *
      * Operation: projects.services.bindings.update

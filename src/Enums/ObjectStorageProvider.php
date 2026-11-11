@@ -6,6 +6,5 @@ namespace Vented\Enums;
 
 enum ObjectStorageProvider: string
 {
-    case Vented = 'vented';
     case Byos3 = 'byos3';
 }

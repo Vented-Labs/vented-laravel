@@ -34,6 +34,7 @@ use Vented\Data\StoreOrganizationInviteData;
 use Vented\Data\StoreProjectData;
 use Vented\Data\StoreRecordData;
 use Vented\Data\StoreServiceData;
+use Vented\Data\StoreTunnelData;
 use Vented\Data\StoreZoneData;
 use Vented\Data\TransferOrganizationData;
 use Vented\Data\UpdateAppBindingData;
@@ -53,6 +54,7 @@ use Vented\Data\UpdateManagedStackOperationData;
 use Vented\Data\UpdateOnboardingData;
 use Vented\Data\UpdateOrganizationData;
 use Vented\Data\UpdateOrganizationMemberData;
+use Vented\Data\UpdateProjectMemberData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
 use Vented\Data\UpdateServiceData;
@@ -165,6 +167,13 @@ final class GeneratedCommandDispatcher
                 query: $query,
             ),
             'projects.apps.bindings.destroy' => $client->appBindings()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                app: self::stringPath($path, 'app'),
+                binding: self::stringPath($path, 'binding'),
+                query: $query,
+            ),
+            'projects.apps.bindings.rotate' => $client->appBindings()->rotate(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
@@ -635,6 +644,12 @@ final class GeneratedCommandDispatcher
                 data: StoreInviteData::fromArray($data),
                 query: $query,
             ),
+            'projects.members.update' => $client->members()->update(
+                project: self::stringPath($path, 'project'),
+                member: self::stringPath($path, 'member'),
+                data: UpdateProjectMemberData::fromArray($data),
+                query: $query,
+            ),
             'projects.object-storages.backups' => $client->objectStorageBackups()->list(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
@@ -668,6 +683,14 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 query: $query,
             ),
+            'projects.pin.destroy' => $client->projectPins()->delete(
+                project: self::stringPath($path, 'project'),
+                query: $query,
+            ),
+            'projects.pin.store' => $client->projectPins()->create(
+                project: self::stringPath($path, 'project'),
+                query: $query,
+            ),
             'projects.services.backups' => $client->serviceBackups()->list(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
@@ -681,6 +704,20 @@ final class GeneratedCommandDispatcher
                 query: $query,
             ),
             'projects.services.bindings.destroy' => $client->serviceBindings()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                service: self::stringPath($path, 'service'),
+                binding: self::stringPath($path, 'binding'),
+                query: $query,
+            ),
+            'projects.services.bindings.outputs' => $client->serviceBindingOutputs()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                service: self::stringPath($path, 'service'),
+                binding: self::stringPath($path, 'binding'),
+                query: $query,
+            ),
+            'projects.services.bindings.rotate' => $client->serviceBindings()->rotate(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 service: self::stringPath($path, 'service'),
@@ -717,6 +754,12 @@ final class GeneratedCommandDispatcher
             'projects.services.index' => $client->services()->list(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.services.outputs' => $client->services()->outputs(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                service: self::stringPath($path, 'service'),
                 query: $query,
             ),
             'projects.services.show' => $client->services()->find(
@@ -915,6 +958,46 @@ final class GeneratedCommandDispatcher
             ),
             'projects.store' => $client->projects()->create(
                 data: StoreProjectData::fromArray($data),
+                query: $query,
+            ),
+            'projects.tunnels.agent-setup' => $client->tunnels()->agentSetup(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.tunnels.destroy' => $client->tunnels()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
+                query: $query,
+            ),
+            'projects.tunnels.index' => $client->tunnels()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.tunnels.show' => $client->tunnels()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
+                query: $query,
+            ),
+            'projects.tunnels.start' => $client->tunnels()->start(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
+                query: $query,
+            ),
+            'projects.tunnels.stop' => $client->tunnels()->stop(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
+                query: $query,
+            ),
+            'projects.tunnels.store' => $client->tunnels()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreTunnelData::fromArray($data),
                 query: $query,
             ),
             default => throw new \InvalidArgumentException("Unknown generated Vented operation [\{$operationId}]."),

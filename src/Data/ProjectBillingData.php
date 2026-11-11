@@ -37,6 +37,7 @@ final readonly class ProjectBillingData
         public string $project_id,
         public string $project_name,
         public array $promotions,
+        public int $purchased_email_messages,
         public ?string $purge_at,
         public string $quotes_url,
         public ?string $reconciled_at,
@@ -79,6 +80,7 @@ final readonly class ProjectBillingData
             project_id: (string) $data['project_id'],
             project_name: (string) $data['project_name'],
             promotions: array_map(static fn (mixed $value): PromotionBenefitData => PromotionBenefitData::fromArray(self::objectValue($value)), self::listValue($data['promotions'])),
+            purchased_email_messages: (int) $data['purchased_email_messages'],
             purge_at: $data['purge_at'] === null ? null : (string) $data['purge_at'],
             quotes_url: (string) $data['quotes_url'],
             reconciled_at: $data['reconciled_at'] === null ? null : (string) $data['reconciled_at'],
@@ -122,6 +124,7 @@ final readonly class ProjectBillingData
         $data['project_id'] = $this->project_id;
         $data['project_name'] = $this->project_name;
         $data['promotions'] = array_map(static fn (PromotionBenefitData $value) => $value->toArray(), $this->promotions);
+        $data['purchased_email_messages'] = $this->purchased_email_messages;
         $data['purge_at'] = $this->purge_at === null ? null : $this->purge_at;
         $data['quotes_url'] = $this->quotes_url;
         $data['reconciled_at'] = $this->reconciled_at === null ? null : $this->reconciled_at;

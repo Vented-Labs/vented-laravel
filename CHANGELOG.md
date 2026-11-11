@@ -2,6 +2,31 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.31.0 - 2026-11-11
+
+- Added `appBindings()->rotate()` and `serviceBindings()->rotate()` to rotate a service binding's credentials, with the `vented:app-bindings:rotate` and `vented:service-bindings:rotate` commands.
+- Added `services()->outputs()` and `serviceBindingOutputs()->list()` to read a service resource's or binding's connection details, with `ServiceOutputsData`, `ServiceOutputData` and the `vented:services:outputs` and `vented:service-binding-outputs:list` commands.
+- `BindingData` gains `variables`, `can_rotate` and `credentials_revision`. `ServiceData` gains `kind`, `kind_name` and `available`, `StoreServiceData` takes `kind`, and `ServiceCatalogEntry` lists each kind with `kind`, `service_name`, `area`, `available` and `reason`.
+
+## 0.29.0 - 2026-11-10
+
+- Added `tunnels()->agentSetup()` and the `vented:tunnels:agent-setup` command, with `TunnelAgentSetupData`: the connect hostname, port and path of an environment's tunnel server, the certificate to trust with the one name it is valid for, and the server's token. It answers 422 until the server runs.
+
+## 0.28.0 - 2026-11-09
+
+- Added `tunnels()` with `list()`, `find()`, `create()`, `stop()`, `start()` and `delete()` for an environment's Vented Tunnels, with `TunnelData`, `StoreTunnelData`, `TunnelsIndexMeta` (availability and allowance), `TunnelStoreMeta` (the agent credential, returned once) and the `vented:tunnels:*` commands.
+- `ResourceUsageData` gains `tunnels`, the project's tunnels against its settled allowance.
+
+## 0.27.0 - 2026-11-06
+
+- `PlanCatalogExtraData` gains `key`, `billing_kind`, `resource` and `units`, so an extra can be matched to the billing product a quote buys and to how much one unit adds.
+- `ProjectBillingData` gains `purchased_email_messages`, the unused messages left on paid email packs.
+
+## 0.26.0 - 2026-11-05
+
+- Added `projectPins()->create()` and `->delete()` to pin and unpin a project, with `ProjectPinData` and the `vented:project-pins:create` and `vented:project-pins:delete` commands.
+- `DashboardProjectData` gains `last_opened_at`, `pin_position` and `pin_url`.
+
 ## 0.25.0 - 2026-11-05
 
 - `ManagedStackShowMeta` gains `overview`, a `ManagedStackOverviewData` with the stack's parts (`apps`, `services`, `storages`), their status, usage and problems in `inventory`, and the `recent_deploys` of its apps.

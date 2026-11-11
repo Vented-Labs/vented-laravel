@@ -11,6 +11,7 @@ final readonly class StoreServiceData
      */
     public function __construct(
         public array $configuration,
+        public string $kind,
         public string $name,
         public string $type,
     ) {}
@@ -22,6 +23,7 @@ final readonly class StoreServiceData
     {
         return new self(
             configuration: self::objectValue($data['configuration']),
+            kind: (string) $data['kind'],
             name: (string) $data['name'],
             type: (string) $data['type'],
         );
@@ -34,6 +36,7 @@ final readonly class StoreServiceData
     {
         $data = [];
         $data['configuration'] = $this->configuration;
+        $data['kind'] = $this->kind;
         $data['name'] = $this->name;
         $data['type'] = $this->type;
 

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Vented\Resources;
 
 use Vented\Data\ProjectMemberData;
+use Vented\Data\UpdateProjectMemberData;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
+use Vented\Results\ResourceResult;
 use Vented\Vented;
 
 final readonly class MembersResource
@@ -44,6 +46,29 @@ final readonly class MembersResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): ProjectMemberData => ProjectMemberData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Change a project member's role
+     *
+     * Operation: projects.members.update
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<ProjectMemberData>
+     */
+    public function update(string $project, string $member, UpdateProjectMemberData $data, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('PATCH', '/projects/{project}/members/{member}')
+            ->withPathParameters(['project' => $project, 'member' => $member])
+            ->withBody([
+                'data' => [
+                    'type' => 'project_members',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): ProjectMemberData => ProjectMemberData::fromArray(self::attributes($resource, true)));
     }
 
     /**

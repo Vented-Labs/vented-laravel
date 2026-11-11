@@ -27,6 +27,7 @@ use Vented\Commands\AccountOrganizationsUpdateCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
+use Vented\Commands\ProjectsAppsBindingsRotateCommand;
 use Vented\Commands\ProjectsAppsBindingsStoreCommand;
 use Vented\Commands\ProjectsAppsBindingsUpdateCommand;
 use Vented\Commands\ProjectsAppsConfigurationCommand;
@@ -111,20 +112,26 @@ use Vented\Commands\ProjectsMembersIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsDestroyCommand;
 use Vented\Commands\ProjectsMembersInvitationsIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsStoreCommand;
+use Vented\Commands\ProjectsMembersUpdateCommand;
 use Vented\Commands\ProjectsObjectStoragesBackupsCommand;
 use Vented\Commands\ProjectsObjectStoragesDestroyCommand;
 use Vented\Commands\ProjectsObjectStoragesIndexCommand;
 use Vented\Commands\ProjectsObjectStoragesShowCommand;
 use Vented\Commands\ProjectsObjectStoragesStoreCommand;
 use Vented\Commands\ProjectsOverviewCommand;
+use Vented\Commands\ProjectsPinDestroyCommand;
+use Vented\Commands\ProjectsPinStoreCommand;
 use Vented\Commands\ProjectsServicesBackupsCommand;
 use Vented\Commands\ProjectsServicesBindingsCommand;
 use Vented\Commands\ProjectsServicesBindingsDestroyCommand;
+use Vented\Commands\ProjectsServicesBindingsOutputsCommand;
+use Vented\Commands\ProjectsServicesBindingsRotateCommand;
 use Vented\Commands\ProjectsServicesBindingsStoreCommand;
 use Vented\Commands\ProjectsServicesBindingsUpdateCommand;
 use Vented\Commands\ProjectsServicesConfigurationCommand;
 use Vented\Commands\ProjectsServicesDestroyCommand;
 use Vented\Commands\ProjectsServicesIndexCommand;
+use Vented\Commands\ProjectsServicesOutputsCommand;
 use Vented\Commands\ProjectsServicesShowCommand;
 use Vented\Commands\ProjectsServicesStoreCommand;
 use Vented\Commands\ProjectsServicesUpdateCommand;
@@ -156,6 +163,13 @@ use Vented\Commands\ProjectsStoragesFileUploadsShowCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsStoreCommand;
 use Vented\Commands\ProjectsStoragesFileUploadsUpdateCommand;
 use Vented\Commands\ProjectsStoreCommand;
+use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
+use Vented\Commands\ProjectsTunnelsDestroyCommand;
+use Vented\Commands\ProjectsTunnelsIndexCommand;
+use Vented\Commands\ProjectsTunnelsShowCommand;
+use Vented\Commands\ProjectsTunnelsStartCommand;
+use Vented\Commands\ProjectsTunnelsStopCommand;
+use Vented\Commands\ProjectsTunnelsStoreCommand;
 
 final class OperationRegistry
 {
@@ -401,6 +415,17 @@ final class OperationRegistry
             'pathParameters' => ['project', 'environment', 'app', 'binding'],
             'hasBody' => false,
             'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.apps.bindings.rotate' => [
+            'operationId' => 'projects.apps.bindings.rotate',
+            'resource' => 'appBindings',
+            'action' => 'rotate',
+            'commandName' => 'vented:app-bindings:rotate',
+            'commandClass' => ProjectsAppsBindingsRotateCommand::class,
+            'pathParameters' => ['project', 'environment', 'app', 'binding'],
+            'hasBody' => false,
+            'destructive' => false,
             'binary' => false,
         ],
         'projects.apps.bindings.store' => [
@@ -1327,6 +1352,17 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.members.update' => [
+            'operationId' => 'projects.members.update',
+            'resource' => 'members',
+            'action' => 'update',
+            'commandName' => 'vented:members:update',
+            'commandClass' => ProjectsMembersUpdateCommand::class,
+            'pathParameters' => ['project', 'member'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.object-storages.backups' => [
             'operationId' => 'projects.object-storages.backups',
             'resource' => 'objectStorageBackups',
@@ -1393,6 +1429,28 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.pin.destroy' => [
+            'operationId' => 'projects.pin.destroy',
+            'resource' => 'projectPins',
+            'action' => 'delete',
+            'commandName' => 'vented:project-pins:delete',
+            'commandClass' => ProjectsPinDestroyCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.pin.store' => [
+            'operationId' => 'projects.pin.store',
+            'resource' => 'projectPins',
+            'action' => 'create',
+            'commandName' => 'vented:project-pins:create',
+            'commandClass' => ProjectsPinStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.services.backups' => [
             'operationId' => 'projects.services.backups',
             'resource' => 'serviceBackups',
@@ -1424,6 +1482,28 @@ final class OperationRegistry
             'pathParameters' => ['project', 'environment', 'service', 'binding'],
             'hasBody' => false,
             'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.services.bindings.outputs' => [
+            'operationId' => 'projects.services.bindings.outputs',
+            'resource' => 'serviceBindingOutputs',
+            'action' => 'list',
+            'commandName' => 'vented:service-binding-outputs:list',
+            'commandClass' => ProjectsServicesBindingsOutputsCommand::class,
+            'pathParameters' => ['project', 'environment', 'service', 'binding'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.services.bindings.rotate' => [
+            'operationId' => 'projects.services.bindings.rotate',
+            'resource' => 'serviceBindings',
+            'action' => 'rotate',
+            'commandName' => 'vented:service-bindings:rotate',
+            'commandClass' => ProjectsServicesBindingsRotateCommand::class,
+            'pathParameters' => ['project', 'environment', 'service', 'binding'],
+            'hasBody' => false,
+            'destructive' => false,
             'binary' => false,
         ],
         'projects.services.bindings.store' => [
@@ -1477,6 +1557,17 @@ final class OperationRegistry
             'commandName' => 'vented:services:list',
             'commandClass' => ProjectsServicesIndexCommand::class,
             'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.services.outputs' => [
+            'operationId' => 'projects.services.outputs',
+            'resource' => 'services',
+            'action' => 'outputs',
+            'commandName' => 'vented:services:outputs',
+            'commandClass' => ProjectsServicesOutputsCommand::class,
+            'pathParameters' => ['project', 'environment', 'service'],
             'hasBody' => false,
             'destructive' => false,
             'binary' => false,
@@ -1818,6 +1909,83 @@ final class OperationRegistry
             'commandName' => 'vented:projects:create',
             'commandClass' => ProjectsStoreCommand::class,
             'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.agent-setup' => [
+            'operationId' => 'projects.tunnels.agent-setup',
+            'resource' => 'tunnels',
+            'action' => 'agentSetup',
+            'commandName' => 'vented:tunnels:agent-setup',
+            'commandClass' => ProjectsTunnelsAgentSetupCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.destroy' => [
+            'operationId' => 'projects.tunnels.destroy',
+            'resource' => 'tunnels',
+            'action' => 'delete',
+            'commandName' => 'vented:tunnels:delete',
+            'commandClass' => ProjectsTunnelsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.tunnels.index' => [
+            'operationId' => 'projects.tunnels.index',
+            'resource' => 'tunnels',
+            'action' => 'list',
+            'commandName' => 'vented:tunnels:list',
+            'commandClass' => ProjectsTunnelsIndexCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.show' => [
+            'operationId' => 'projects.tunnels.show',
+            'resource' => 'tunnels',
+            'action' => 'find',
+            'commandName' => 'vented:tunnels:show',
+            'commandClass' => ProjectsTunnelsShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.start' => [
+            'operationId' => 'projects.tunnels.start',
+            'resource' => 'tunnels',
+            'action' => 'start',
+            'commandName' => 'vented:tunnels:start',
+            'commandClass' => ProjectsTunnelsStartCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.stop' => [
+            'operationId' => 'projects.tunnels.stop',
+            'resource' => 'tunnels',
+            'action' => 'stop',
+            'commandName' => 'vented:tunnels:stop',
+            'commandClass' => ProjectsTunnelsStopCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.store' => [
+            'operationId' => 'projects.tunnels.store',
+            'resource' => 'tunnels',
+            'action' => 'create',
+            'commandName' => 'vented:tunnels:create',
+            'commandClass' => ProjectsTunnelsStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

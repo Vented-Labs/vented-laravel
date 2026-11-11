@@ -45,8 +45,10 @@ use Vented\Resources\OrganizationSettingsResource;
 use Vented\Resources\OrganizationsResource;
 use Vented\Resources\OrganizationTransferResource;
 use Vented\Resources\PlatformLocationsResource;
+use Vented\Resources\ProjectPinsResource;
 use Vented\Resources\ProjectsResource;
 use Vented\Resources\ServiceBackupsResource;
+use Vented\Resources\ServiceBindingOutputsResource;
 use Vented\Resources\ServiceBindingsResource;
 use Vented\Resources\ServicesResource;
 use Vented\Resources\SettingsResource;
@@ -59,6 +61,7 @@ use Vented\Resources\StorageFilesResource;
 use Vented\Resources\StorageFileTreesResource;
 use Vented\Resources\StorageFileUploadPartsResource;
 use Vented\Resources\StorageFileUploadsResource;
+use Vented\Resources\TunnelsResource;
 
 trait ResourceAccessors
 {
@@ -267,6 +270,11 @@ trait ResourceAccessors
         return new PlatformLocationsResource($this);
     }
 
+    public function projectPins(): ProjectPinsResource
+    {
+        return new ProjectPinsResource($this);
+    }
+
     public function projects(): ProjectsResource
     {
         return new ProjectsResource($this);
@@ -275,6 +283,11 @@ trait ResourceAccessors
     public function serviceBackups(): ServiceBackupsResource
     {
         return new ServiceBackupsResource($this);
+    }
+
+    public function serviceBindingOutputs(): ServiceBindingOutputsResource
+    {
+        return new ServiceBindingOutputsResource($this);
     }
 
     public function serviceBindings(): ServiceBindingsResource
@@ -335,5 +348,10 @@ trait ResourceAccessors
     public function storageFiles(): StorageFilesResource
     {
         return new StorageFilesResource($this);
+    }
+
+    public function tunnels(): TunnelsResource
+    {
+        return new TunnelsResource($this);
     }
 }
