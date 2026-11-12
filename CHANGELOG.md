@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.32.0 - 2026-11-11
+
+- Added `flows()` to read a guided flow (`find`), save one of its steps (`update` with `UpdateFlowData`) and discard the saved answers (`delete`), and `flowRuns()->create()` to carry a flow out, with `FlowData`, `FlowStepData`, `FlowFieldData` and `FlowRunData` and the `vented:account:flows:*` commands.
+
 ## 0.31.0 - 2026-11-11
 
 - Added `appBindings()->rotate()` and `serviceBindings()->rotate()` to rotate a service binding's credentials, with the `vented:app-bindings:rotate` and `vented:service-bindings:rotate` commands.

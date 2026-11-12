@@ -8,6 +8,10 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountFlowsDestroyCommand;
+use Vented\Commands\AccountFlowsRunsStoreCommand;
+use Vented\Commands\AccountFlowsShowCommand;
+use Vented\Commands\AccountFlowsUpdateCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\AccountOrganizationsDestroyCommand;
@@ -178,6 +182,10 @@ final class CommandRegistry
         AccountApiTokensDestroyCommand::class,
         AccountApiTokensIndexCommand::class,
         AccountApiTokensStoreCommand::class,
+        AccountFlowsDestroyCommand::class,
+        AccountFlowsRunsStoreCommand::class,
+        AccountFlowsShowCommand::class,
+        AccountFlowsUpdateCommand::class,
         AccountGettingStartedShowCommand::class,
         AccountGettingStartedUpdateCommand::class,
         AccountOrganizationsDestroyCommand::class,

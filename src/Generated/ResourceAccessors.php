@@ -33,6 +33,8 @@ use Vented\Resources\DnsZonesResource;
 use Vented\Resources\EnvironmentsResource;
 use Vented\Resources\EnvironmentTransferPresetsResource;
 use Vented\Resources\EnvironmentTransfersResource;
+use Vented\Resources\FlowRunsResource;
+use Vented\Resources\FlowsResource;
 use Vented\Resources\GettingStartedResource;
 use Vented\Resources\IntegrationsResource;
 use Vented\Resources\MemberInvitationsResource;
@@ -208,6 +210,16 @@ trait ResourceAccessors
     public function environments(): EnvironmentsResource
     {
         return new EnvironmentsResource($this);
+    }
+
+    public function flowRuns(): FlowRunsResource
+    {
+        return new FlowRunsResource($this);
+    }
+
+    public function flows(): FlowsResource
+    {
+        return new FlowsResource($this);
     }
 
     public function gettingStarted(): GettingStartedResource

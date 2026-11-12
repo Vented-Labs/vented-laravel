@@ -8,6 +8,10 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountFlowsDestroyCommand;
+use Vented\Commands\AccountFlowsRunsStoreCommand;
+use Vented\Commands\AccountFlowsShowCommand;
+use Vented\Commands\AccountFlowsUpdateCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\AccountOrganizationsDestroyCommand;
@@ -204,6 +208,50 @@ final class OperationRegistry
             'commandName' => 'vented:api-tokens:create',
             'commandClass' => AccountApiTokensStoreCommand::class,
             'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.flows.destroy' => [
+            'operationId' => 'account.flows.destroy',
+            'resource' => 'flows',
+            'action' => 'delete',
+            'commandName' => 'vented:flows:delete',
+            'commandClass' => AccountFlowsDestroyCommand::class,
+            'pathParameters' => ['flow'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'account.flows.runs.store' => [
+            'operationId' => 'account.flows.runs.store',
+            'resource' => 'flowRuns',
+            'action' => 'create',
+            'commandName' => 'vented:flow-runs:create',
+            'commandClass' => AccountFlowsRunsStoreCommand::class,
+            'pathParameters' => ['flow'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.flows.show' => [
+            'operationId' => 'account.flows.show',
+            'resource' => 'flows',
+            'action' => 'find',
+            'commandName' => 'vented:flows:show',
+            'commandClass' => AccountFlowsShowCommand::class,
+            'pathParameters' => ['flow'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.flows.update' => [
+            'operationId' => 'account.flows.update',
+            'resource' => 'flows',
+            'action' => 'update',
+            'commandName' => 'vented:flows:update',
+            'commandClass' => AccountFlowsUpdateCommand::class,
+            'pathParameters' => ['flow'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

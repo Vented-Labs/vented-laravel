@@ -48,6 +48,7 @@ use Vented\Data\UpdateEnvironmentTransferPresetData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateFileData;
 use Vented\Data\UpdateFileUploadData;
+use Vented\Data\UpdateFlowData;
 use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
@@ -86,6 +87,23 @@ final class GeneratedCommandDispatcher
             ),
             'account.api-tokens.store' => $client->apiTokens()->create(
                 data: StoreApiTokenData::fromArray($data),
+                query: $query,
+            ),
+            'account.flows.destroy' => $client->flows()->delete(
+                flow: self::stringPath($path, 'flow'),
+                query: $query,
+            ),
+            'account.flows.runs.store' => $client->flowRuns()->create(
+                flow: self::stringPath($path, 'flow'),
+                query: $query,
+            ),
+            'account.flows.show' => $client->flows()->find(
+                flow: self::stringPath($path, 'flow'),
+                query: $query,
+            ),
+            'account.flows.update' => $client->flows()->update(
+                flow: self::stringPath($path, 'flow'),
+                data: UpdateFlowData::fromArray($data),
                 query: $query,
             ),
             'account.getting-started.show' => $client->gettingStarted()->find(
