@@ -17,10 +17,7 @@ use Vented\Data\StoreBindingData;
 use Vented\Data\StoreBlockStorageData;
 use Vented\Data\StoreDeployData;
 use Vented\Data\StoreDeployTriggerData;
-use Vented\Data\StoreEnvironmentData;
 use Vented\Data\StoreEnvironmentSshKeyData;
-use Vented\Data\StoreEnvironmentTransferData;
-use Vented\Data\StoreEnvironmentTransferPresetData;
 use Vented\Data\StoreFileData;
 use Vented\Data\StoreFileUploadData;
 use Vented\Data\StoreIntegrationData;
@@ -42,9 +39,6 @@ use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
 use Vented\Data\UpdateBindingPurposeData;
 use Vented\Data\UpdateDeployTriggerData;
-use Vented\Data\UpdateEnvironmentData;
-use Vented\Data\UpdateEnvironmentTransferData;
-use Vented\Data\UpdateEnvironmentTransferPresetData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateFileData;
 use Vented\Data\UpdateFileUploadData;
@@ -541,74 +535,6 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 zone: self::stringPath($path, 'zone'),
                 data: UpdateZoneData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environment-transfer-presets.destroy' => $client->environmentTransferPresets()->delete(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                transferPreset: self::stringPath($path, 'transferPreset'),
-                query: $query,
-            ),
-            'projects.environment-transfer-presets.store' => $client->environmentTransferPresets()->create(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                data: StoreEnvironmentTransferPresetData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environment-transfer-presets.update' => $client->environmentTransferPresets()->update(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                transferPreset: self::stringPath($path, 'transferPreset'),
-                data: UpdateEnvironmentTransferPresetData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environment-transfers.index' => $client->environmentTransfers()->list(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                query: $query,
-            ),
-            'projects.environment-transfers.show' => $client->environmentTransfers()->find(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                transfer: self::stringPath($path, 'transfer'),
-                query: $query,
-            ),
-            'projects.environment-transfers.store' => $client->environmentTransfers()->create(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                data: StoreEnvironmentTransferData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environment-transfers.update' => $client->environmentTransfers()->update(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                transfer: self::stringPath($path, 'transfer'),
-                data: UpdateEnvironmentTransferData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environments.destroy' => $client->environments()->delete(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                query: $query,
-            ),
-            'projects.environments.index' => $client->environments()->list(
-                project: self::stringPath($path, 'project'),
-                query: $query,
-            ),
-            'projects.environments.show' => $client->environments()->find(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                query: $query,
-            ),
-            'projects.environments.store' => $client->environments()->create(
-                project: self::stringPath($path, 'project'),
-                data: StoreEnvironmentData::fromArray($data),
-                query: $query,
-            ),
-            'projects.environments.update' => $client->environments()->update(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                data: UpdateEnvironmentData::fromArray($data),
                 query: $query,
             ),
             'projects.index' => $client->projects()->list(

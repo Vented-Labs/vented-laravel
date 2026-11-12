@@ -13,6 +13,7 @@ final readonly class FlowStepData
         public ?string $description,
         public array $fields,
         public string $id,
+        public string $stage,
         public string $title,
     ) {}
 
@@ -25,6 +26,7 @@ final readonly class FlowStepData
             description: $data['description'] === null ? null : (string) $data['description'],
             fields: array_map(static fn (mixed $value): FlowFieldData => FlowFieldData::fromArray(self::objectValue($value)), self::listValue($data['fields'])),
             id: (string) $data['id'],
+            stage: (string) $data['stage'],
             title: (string) $data['title'],
         );
     }
@@ -38,6 +40,7 @@ final readonly class FlowStepData
         $data['description'] = $this->description === null ? null : $this->description;
         $data['fields'] = array_map(static fn (FlowFieldData $value) => $value->toArray(), $this->fields);
         $data['id'] = $this->id;
+        $data['stage'] = $this->stage;
         $data['title'] = $this->title;
 
         return $data;

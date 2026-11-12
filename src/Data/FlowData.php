@@ -7,11 +7,13 @@ namespace Vented\Data;
 final readonly class FlowData
 {
     /**
+     * @param  list<string>  $committed_stages
      * @param  list<string>  $completed_steps
      * @param  list<FlowStepData>  $steps
      * @param  array<string, mixed>  $values
      */
     public function __construct(
+        public array $committed_stages,
         public array $completed_steps,
         public string $id,
         public array $steps,
@@ -25,6 +27,7 @@ final readonly class FlowData
     public static function fromArray(array $data): self
     {
         return new self(
+            committed_stages: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['committed_stages'])),
             completed_steps: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['completed_steps'])),
             id: (string) $data['id'],
             steps: array_map(static fn (mixed $value): FlowStepData => FlowStepData::fromArray(self::objectValue($value)), self::listValue($data['steps'])),
@@ -39,6 +42,7 @@ final readonly class FlowData
     public function toArray(): array
     {
         $data = [];
+        $data['committed_stages'] = $this->committed_stages;
         $data['completed_steps'] = $this->completed_steps;
         $data['id'] = $this->id;
         $data['steps'] = array_map(static fn (FlowStepData $value) => $value->toArray(), $this->steps);

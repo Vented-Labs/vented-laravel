@@ -30,9 +30,6 @@ use Vented\Resources\DevelopersResource;
 use Vented\Resources\DnsZoneBindingsResource;
 use Vented\Resources\DnsZoneRecordsResource;
 use Vented\Resources\DnsZonesResource;
-use Vented\Resources\EnvironmentsResource;
-use Vented\Resources\EnvironmentTransferPresetsResource;
-use Vented\Resources\EnvironmentTransfersResource;
 use Vented\Resources\FlowRunsResource;
 use Vented\Resources\FlowsResource;
 use Vented\Resources\GettingStartedResource;
@@ -195,21 +192,6 @@ trait ResourceAccessors
     public function dnsZones(): DnsZonesResource
     {
         return new DnsZonesResource($this);
-    }
-
-    public function environmentTransferPresets(): EnvironmentTransferPresetsResource
-    {
-        return new EnvironmentTransferPresetsResource($this);
-    }
-
-    public function environmentTransfers(): EnvironmentTransfersResource
-    {
-        return new EnvironmentTransfersResource($this);
-    }
-
-    public function environments(): EnvironmentsResource
-    {
-        return new EnvironmentsResource($this);
     }
 
     public function flowRuns(): FlowRunsResource

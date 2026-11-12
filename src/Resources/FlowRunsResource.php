@@ -13,7 +13,7 @@ final readonly class FlowRunsResource
     public function __construct(private Vented $client) {}
 
     /**
-     * Finish a flow
+     * Carry out the next stage of a flow
      *
      * Operation: account.flows.runs.store
      *

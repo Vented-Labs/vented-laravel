@@ -2,6 +2,14 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.34.0 - 2026-11-12
+
+- Removed `environments()`, `environmentTransfers()` and `environmentTransferPresets()`, their Data classes and the `vented:environments:*`, `vented:environment-transfers:*` and `vented:environment-transfer-presets:*` commands. Environments are hidden until they return; a project works on its `production` environment.
+
+## 0.33.0 - 2026-11-11
+
+- Flows save in stages. `FlowStepData` gains `stage`, `FlowData` gains `committed_stages`, and `FlowRunData` gains `stage` and `finished`: each `flowRuns()->create()` carries out the next stage, and `next_url` is set once the last one is done.
+
 ## 0.32.0 - 2026-11-11
 
 - Added `flows()` to read a guided flow (`find`), save one of its steps (`update` with `UpdateFlowData`) and discard the saved answers (`delete`), and `flowRuns()->create()` to carry a flow out, with `FlowData`, `FlowStepData`, `FlowFieldData` and `FlowRunData` and the `vented:account:flows:*` commands.
