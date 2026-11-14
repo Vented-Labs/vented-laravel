@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Vented\Generated;
 
+use Vented\Resources\AccountBillingResource;
+use Vented\Resources\AccountInvoicesResource;
+use Vented\Resources\AccountResource;
+use Vented\Resources\AccountSettingsResource;
+use Vented\Resources\AccountSshKeysResource;
 use Vented\Resources\ApiTokensResource;
 use Vented\Resources\AppBindingsResource;
 use Vented\Resources\AppDeployResource;
@@ -34,8 +39,10 @@ use Vented\Resources\FlowRunsResource;
 use Vented\Resources\FlowsResource;
 use Vented\Resources\GettingStartedResource;
 use Vented\Resources\IntegrationsResource;
+use Vented\Resources\KbSearchResource;
 use Vented\Resources\MemberInvitationsResource;
 use Vented\Resources\MembersResource;
+use Vented\Resources\NotificationsResource;
 use Vented\Resources\ObjectStorageBackupsResource;
 use Vented\Resources\ObjectStoragesResource;
 use Vented\Resources\OrganizationInvitationsResource;
@@ -46,6 +53,8 @@ use Vented\Resources\OrganizationTransferResource;
 use Vented\Resources\PlatformLocationsResource;
 use Vented\Resources\ProjectPinsResource;
 use Vented\Resources\ProjectsResource;
+use Vented\Resources\RealtimeResource;
+use Vented\Resources\SearchResource;
 use Vented\Resources\ServiceBackupsResource;
 use Vented\Resources\ServiceBindingOutputsResource;
 use Vented\Resources\ServiceBindingsResource;
@@ -60,10 +69,42 @@ use Vented\Resources\StorageFilesResource;
 use Vented\Resources\StorageFileTreesResource;
 use Vented\Resources\StorageFileUploadPartsResource;
 use Vented\Resources\StorageFileUploadsResource;
+use Vented\Resources\SupportKbResource;
+use Vented\Resources\SupportPlansResource;
+use Vented\Resources\SupportResource;
+use Vented\Resources\SupportTicketAccessResource;
+use Vented\Resources\SupportTicketRepliesResource;
+use Vented\Resources\SupportTicketsResource;
 use Vented\Resources\TunnelsResource;
+use Vented\Resources\TwoFactorResource;
 
 trait ResourceAccessors
 {
+    public function account(): AccountResource
+    {
+        return new AccountResource($this);
+    }
+
+    public function accountBilling(): AccountBillingResource
+    {
+        return new AccountBillingResource($this);
+    }
+
+    public function accountInvoices(): AccountInvoicesResource
+    {
+        return new AccountInvoicesResource($this);
+    }
+
+    public function accountSettings(): AccountSettingsResource
+    {
+        return new AccountSettingsResource($this);
+    }
+
+    public function accountSshKeys(): AccountSshKeysResource
+    {
+        return new AccountSshKeysResource($this);
+    }
+
     public function apiTokens(): ApiTokensResource
     {
         return new ApiTokensResource($this);
@@ -214,6 +255,11 @@ trait ResourceAccessors
         return new IntegrationsResource($this);
     }
 
+    public function kbSearch(): KbSearchResource
+    {
+        return new KbSearchResource($this);
+    }
+
     public function memberInvitations(): MemberInvitationsResource
     {
         return new MemberInvitationsResource($this);
@@ -222,6 +268,11 @@ trait ResourceAccessors
     public function members(): MembersResource
     {
         return new MembersResource($this);
+    }
+
+    public function notifications(): NotificationsResource
+    {
+        return new NotificationsResource($this);
     }
 
     public function objectStorageBackups(): ObjectStorageBackupsResource
@@ -272,6 +323,16 @@ trait ResourceAccessors
     public function projects(): ProjectsResource
     {
         return new ProjectsResource($this);
+    }
+
+    public function realtime(): RealtimeResource
+    {
+        return new RealtimeResource($this);
+    }
+
+    public function search(): SearchResource
+    {
+        return new SearchResource($this);
     }
 
     public function serviceBackups(): ServiceBackupsResource
@@ -344,8 +405,43 @@ trait ResourceAccessors
         return new StorageFilesResource($this);
     }
 
+    public function support(): SupportResource
+    {
+        return new SupportResource($this);
+    }
+
+    public function supportKb(): SupportKbResource
+    {
+        return new SupportKbResource($this);
+    }
+
+    public function supportPlans(): SupportPlansResource
+    {
+        return new SupportPlansResource($this);
+    }
+
+    public function supportTicketAccess(): SupportTicketAccessResource
+    {
+        return new SupportTicketAccessResource($this);
+    }
+
+    public function supportTicketReplies(): SupportTicketRepliesResource
+    {
+        return new SupportTicketRepliesResource($this);
+    }
+
+    public function supportTickets(): SupportTicketsResource
+    {
+        return new SupportTicketsResource($this);
+    }
+
     public function tunnels(): TunnelsResource
     {
         return new TunnelsResource($this);
+    }
+
+    public function twoFactor(): TwoFactorResource
+    {
+        return new TwoFactorResource($this);
     }
 }

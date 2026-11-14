@@ -28,6 +28,20 @@ use Vented\Commands\AccountOrganizationsTransferAcceptCommand;
 use Vented\Commands\AccountOrganizationsTransferCancelCommand;
 use Vented\Commands\AccountOrganizationsTransferCommand;
 use Vented\Commands\AccountOrganizationsUpdateCommand;
+use Vented\Commands\AccountOverviewCommand;
+use Vented\Commands\AccountSettingsShowCommand;
+use Vented\Commands\AccountSettingsUpdateCommand;
+use Vented\Commands\AccountSshKeysDestroyCommand;
+use Vented\Commands\AccountSshKeysIndexCommand;
+use Vented\Commands\AccountSshKeysStoreCommand;
+use Vented\Commands\AccountTwoFactorShowCommand;
+use Vented\Commands\BillingInvoicesDownloadCommand;
+use Vented\Commands\BillingInvoicesIndexCommand;
+use Vented\Commands\BillingOverviewCommand;
+use Vented\Commands\KbSearchIndexCommand;
+use Vented\Commands\NotificationsIndexCommand;
+use Vented\Commands\NotificationsReadAllCommand;
+use Vented\Commands\NotificationsReadCommand;
 use Vented\Commands\PlatformLocationsIndexCommand;
 use Vented\Commands\ProjectsAppsBindingsCommand;
 use Vented\Commands\ProjectsAppsBindingsDestroyCommand;
@@ -162,6 +176,21 @@ use Vented\Commands\ProjectsTunnelsShowCommand;
 use Vented\Commands\ProjectsTunnelsStartCommand;
 use Vented\Commands\ProjectsTunnelsStopCommand;
 use Vented\Commands\ProjectsTunnelsStoreCommand;
+use Vented\Commands\RealtimeShowCommand;
+use Vented\Commands\SearchIndexCommand;
+use Vented\Commands\SupportKbIndexCommand;
+use Vented\Commands\SupportKbShowCommand;
+use Vented\Commands\SupportOverviewCommand;
+use Vented\Commands\SupportPlansCommand;
+use Vented\Commands\SupportTicketsAccessDestroyCommand;
+use Vented\Commands\SupportTicketsAccessStoreCommand;
+use Vented\Commands\SupportTicketsCreateCommand;
+use Vented\Commands\SupportTicketsIndexCommand;
+use Vented\Commands\SupportTicketsRepliesDestroyCommand;
+use Vented\Commands\SupportTicketsRepliesStoreCommand;
+use Vented\Commands\SupportTicketsRepliesUpdateCommand;
+use Vented\Commands\SupportTicketsShowCommand;
+use Vented\Commands\SupportTicketsStoreCommand;
 
 final class CommandRegistry
 {
@@ -190,6 +219,20 @@ final class CommandRegistry
         AccountOrganizationsTransferAcceptCommand::class,
         AccountOrganizationsTransferCancelCommand::class,
         AccountOrganizationsUpdateCommand::class,
+        AccountOverviewCommand::class,
+        AccountSettingsShowCommand::class,
+        AccountSettingsUpdateCommand::class,
+        AccountSshKeysDestroyCommand::class,
+        AccountSshKeysIndexCommand::class,
+        AccountSshKeysStoreCommand::class,
+        AccountTwoFactorShowCommand::class,
+        BillingInvoicesDownloadCommand::class,
+        BillingInvoicesIndexCommand::class,
+        BillingOverviewCommand::class,
+        KbSearchIndexCommand::class,
+        NotificationsIndexCommand::class,
+        NotificationsReadCommand::class,
+        NotificationsReadAllCommand::class,
         PlatformLocationsIndexCommand::class,
         ProjectsAppsBindingsCommand::class,
         ProjectsAppsBindingsDestroyCommand::class,
@@ -324,6 +367,21 @@ final class CommandRegistry
         ProjectsTunnelsStartCommand::class,
         ProjectsTunnelsStopCommand::class,
         ProjectsTunnelsStoreCommand::class,
+        RealtimeShowCommand::class,
+        SearchIndexCommand::class,
+        SupportKbIndexCommand::class,
+        SupportKbShowCommand::class,
+        SupportOverviewCommand::class,
+        SupportPlansCommand::class,
+        SupportTicketsAccessDestroyCommand::class,
+        SupportTicketsAccessStoreCommand::class,
+        SupportTicketsCreateCommand::class,
+        SupportTicketsIndexCommand::class,
+        SupportTicketsRepliesDestroyCommand::class,
+        SupportTicketsRepliesStoreCommand::class,
+        SupportTicketsRepliesUpdateCommand::class,
+        SupportTicketsShowCommand::class,
+        SupportTicketsStoreCommand::class,
     ];
 
     /** @return list<class-string<Command>> */

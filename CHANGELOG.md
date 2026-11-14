@@ -2,6 +2,14 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.36.0 - 2026-11-14
+
+- `ResourceUsageData` gains `services`, a `ServiceMeterUsageData` for every managed service meter the plans include: its usage in the current period, or its current level, against the settled allowance.
+
+## 0.35.0 - 2026-11-13
+
+- Account, support, notifications, search and live-event endpoints accept personal access tokens and join the package: `accountSettings()`, `accountSshKeys()`, `accountBilling()`, `accountInvoices()`, `notifications()`, `realtime()`, the support, knowledge-base and search resources, their Data classes and `vented:*` commands. Saved cards and closing an account stay in the browser.
+
 ## 0.34.0 - 2026-11-12
 
 - Removed `environments()`, `environmentTransfers()` and `environmentTransferPresets()`, their Data classes and the `vented:environments:*`, `vented:environment-transfers:*` and `vented:environment-transfer-presets:*` commands. Environments are hidden until they return; a project works on its `production` environment.

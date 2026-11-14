@@ -30,10 +30,14 @@ use Vented\Data\StoreOrganizationData;
 use Vented\Data\StoreOrganizationInviteData;
 use Vented\Data\StoreProjectData;
 use Vented\Data\StoreRecordData;
+use Vented\Data\StoreReplyData;
 use Vented\Data\StoreServiceData;
+use Vented\Data\StoreSshKeyData;
+use Vented\Data\StoreTicketData;
 use Vented\Data\StoreTunnelData;
 use Vented\Data\StoreZoneData;
 use Vented\Data\TransferOrganizationData;
+use Vented\Data\UpdateAccountSettingsData;
 use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
@@ -52,6 +56,7 @@ use Vented\Data\UpdateOrganizationMemberData;
 use Vented\Data\UpdateProjectMemberData;
 use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
+use Vented\Data\UpdateReplyData;
 use Vented\Data\UpdateServiceData;
 use Vented\Data\UpdateZoneData;
 use Vented\Results\BinaryResult;
@@ -167,6 +172,53 @@ final class GeneratedCommandDispatcher
             'account.organizations.update' => $client->organizations()->update(
                 organization: self::stringPath($path, 'organization'),
                 data: UpdateOrganizationData::fromArray($data),
+                query: $query,
+            ),
+            'account.overview' => $client->account()->find(
+                query: $query,
+            ),
+            'account.settings.show' => $client->accountSettings()->get(
+                query: $query,
+            ),
+            'account.settings.update' => $client->accountSettings()->update(
+                data: UpdateAccountSettingsData::fromArray($data),
+                query: $query,
+            ),
+            'account.ssh-keys.destroy' => $client->accountSshKeys()->delete(
+                key: self::stringPath($path, 'key'),
+                query: $query,
+            ),
+            'account.ssh-keys.index' => $client->accountSshKeys()->list(
+                query: $query,
+            ),
+            'account.ssh-keys.store' => $client->accountSshKeys()->create(
+                data: StoreSshKeyData::fromArray($data),
+                query: $query,
+            ),
+            'account.two-factor.show' => $client->twoFactor()->find(
+                query: $query,
+            ),
+            'billing.invoices.download' => $client->accountInvoices()->download(
+                invoice: self::stringPath($path, 'invoice'),
+                query: $query,
+            ),
+            'billing.invoices.index' => $client->accountInvoices()->list(
+                query: $query,
+            ),
+            'billing.overview' => $client->accountBilling()->get(
+                query: $query,
+            ),
+            'kb.search.index' => $client->kbSearch()->list(
+                query: $query,
+            ),
+            'notifications.index' => $client->notifications()->list(
+                query: $query,
+            ),
+            'notifications.read' => $client->notifications()->read(
+                notification: self::stringPath($path, 'notification'),
+                query: $query,
+            ),
+            'notifications.read-all' => $client->notifications()->readAll(
                 query: $query,
             ),
             'platform-locations.index' => $client->platformLocations()->list(
@@ -942,6 +994,63 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreTunnelData::fromArray($data),
+                query: $query,
+            ),
+            'realtime.show' => $client->realtime()->get(
+                query: $query,
+            ),
+            'search.index' => $client->search()->list(
+                query: $query,
+            ),
+            'support.kb.index' => $client->supportKb()->list(
+                query: $query,
+            ),
+            'support.kb.show' => $client->supportKb()->find(
+                article: self::stringPath($path, 'article'),
+                query: $query,
+            ),
+            'support.overview' => $client->support()->find(
+                query: $query,
+            ),
+            'support.plans' => $client->supportPlans()->list(
+                query: $query,
+            ),
+            'support.tickets.access.destroy' => $client->supportTicketAccess()->delete(
+                ticket: self::stringPath($path, 'ticket'),
+                query: $query,
+            ),
+            'support.tickets.access.store' => $client->supportTicketAccess()->create(
+                ticket: self::stringPath($path, 'ticket'),
+                query: $query,
+            ),
+            'support.tickets.create' => $client->supportTickets()->formOptions(
+                query: $query,
+            ),
+            'support.tickets.index' => $client->supportTickets()->list(
+                query: $query,
+            ),
+            'support.tickets.replies.destroy' => $client->supportTicketReplies()->delete(
+                ticket: self::stringPath($path, 'ticket'),
+                reply: self::stringPath($path, 'reply'),
+                query: $query,
+            ),
+            'support.tickets.replies.store' => $client->supportTicketReplies()->create(
+                ticket: self::stringPath($path, 'ticket'),
+                data: StoreReplyData::fromArray($data),
+                query: $query,
+            ),
+            'support.tickets.replies.update' => $client->supportTicketReplies()->update(
+                ticket: self::stringPath($path, 'ticket'),
+                reply: self::stringPath($path, 'reply'),
+                data: UpdateReplyData::fromArray($data),
+                query: $query,
+            ),
+            'support.tickets.show' => $client->supportTickets()->find(
+                ticket: self::stringPath($path, 'ticket'),
+                query: $query,
+            ),
+            'support.tickets.store' => $client->supportTickets()->create(
+                data: StoreTicketData::fromArray($data),
                 query: $query,
             ),
             default => throw new \InvalidArgumentException("Unknown generated Vented operation [\{$operationId}]."),
