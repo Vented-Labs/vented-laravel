@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.38.0 - 2026-11-15
+
+- API tokens carry permissions and expire. `StoreApiTokenData` takes `abilities` (permission names such as `apps:write`; write and delete include read) and `expires_at` (at most two years out); `ApiTokenData` gains `expires_at` and `status`. `ApiTokensIndexMeta` lists every grantable permission (`permission_groups` of `ApiTokenScopeGroupData`, `ApiTokenScopeData` and `ApiTokenPermissionData`) and the expiry choices (`ApiTokenExpiryData`). `apiTokens()->update()` and `vented:api-tokens:update` replace a token's permissions with `UpdateApiTokenData`.
+
 ## 0.37.0 - 2026-11-15
 
 - `ResourceUsageData` gains `capacity`: apps plus services that take plan capacity (shared databases), against the settled plan plus Extra App/Service add-ons. `PlanCatalogTierData` gains `capacity_max`, the most a plan reaches with those add-ons.

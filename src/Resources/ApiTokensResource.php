@@ -6,6 +6,7 @@ namespace Vented\Resources;
 
 use Vented\Data\ApiTokenData;
 use Vented\Data\StoreApiTokenData;
+use Vented\Data\UpdateApiTokenData;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
 use Vented\Results\ResourceResult;
@@ -67,6 +68,29 @@ final readonly class ApiTokensResource
             ->withQuery($query);
 
         return $operation->collection(static fn (array $resource): ApiTokenData => ApiTokenData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Change an API token's permissions
+     *
+     * Operation: account.api-tokens.update
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<ApiTokenData>
+     */
+    public function update(string $token, UpdateApiTokenData $data, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('PATCH', '/account/api-tokens/{token}')
+            ->withPathParameters(['token' => $token])
+            ->withBody([
+                'data' => [
+                    'type' => 'api_tokens',
+                    'attributes' => $data->toArray(),
+                ],
+            ])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): ApiTokenData => ApiTokenData::fromArray(self::attributes($resource, true)));
     }
 
     /**

@@ -12,9 +12,11 @@ final readonly class ApiTokenData
     public function __construct(
         public array $abilities,
         public string $created_at,
+        public ?string $expires_at,
         public string $id,
         public ?string $last_used_at,
         public string $name,
+        public StatusData $status,
     ) {}
 
     /**
@@ -25,9 +27,11 @@ final readonly class ApiTokenData
         return new self(
             abilities: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['abilities'])),
             created_at: (string) $data['created_at'],
+            expires_at: $data['expires_at'] === null ? null : (string) $data['expires_at'],
             id: (string) $data['id'],
             last_used_at: $data['last_used_at'] === null ? null : (string) $data['last_used_at'],
             name: (string) $data['name'],
+            status: StatusData::fromArray(self::objectValue($data['status'])),
         );
     }
 
@@ -39,11 +43,26 @@ final readonly class ApiTokenData
         $data = [];
         $data['abilities'] = $this->abilities;
         $data['created_at'] = $this->created_at;
+        $data['expires_at'] = $this->expires_at === null ? null : $this->expires_at;
         $data['id'] = $this->id;
         $data['last_used_at'] = $this->last_used_at === null ? null : $this->last_used_at;
         $data['name'] = $this->name;
+        $data['status'] = $this->status->toArray();
 
         return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function objectValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an object value.');
+        }
+
+        /** @var array<string, mixed> $value */
+        return $value;
     }
 
     /**

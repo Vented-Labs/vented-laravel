@@ -38,6 +38,7 @@ use Vented\Data\StoreTunnelData;
 use Vented\Data\StoreZoneData;
 use Vented\Data\TransferOrganizationData;
 use Vented\Data\UpdateAccountSettingsData;
+use Vented\Data\UpdateApiTokenData;
 use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
@@ -86,6 +87,11 @@ final class GeneratedCommandDispatcher
             ),
             'account.api-tokens.store' => $client->apiTokens()->create(
                 data: StoreApiTokenData::fromArray($data),
+                query: $query,
+            ),
+            'account.api-tokens.update' => $client->apiTokens()->update(
+                token: self::stringPath($path, 'token'),
+                data: UpdateApiTokenData::fromArray($data),
                 query: $query,
             ),
             'account.flows.destroy' => $client->flows()->delete(

@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountApiTokensUpdateCommand;
 use Vented\Commands\AccountFlowsDestroyCommand;
 use Vented\Commands\AccountFlowsRunsStoreCommand;
 use Vented\Commands\AccountFlowsShowCommand;
@@ -225,6 +226,17 @@ final class OperationRegistry
             'commandName' => 'vented:api-tokens:create',
             'commandClass' => AccountApiTokensStoreCommand::class,
             'pathParameters' => [],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.api-tokens.update' => [
+            'operationId' => 'account.api-tokens.update',
+            'resource' => 'apiTokens',
+            'action' => 'update',
+            'commandName' => 'vented:api-tokens:update',
+            'commandClass' => AccountApiTokensUpdateCommand::class,
+            'pathParameters' => ['token'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

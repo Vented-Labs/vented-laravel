@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
+use Vented\Commands\AccountApiTokensUpdateCommand;
 use Vented\Commands\AccountFlowsDestroyCommand;
 use Vented\Commands\AccountFlowsRunsStoreCommand;
 use Vented\Commands\AccountFlowsShowCommand;
@@ -199,6 +200,7 @@ final class CommandRegistry
         AccountApiTokensDestroyCommand::class,
         AccountApiTokensIndexCommand::class,
         AccountApiTokensStoreCommand::class,
+        AccountApiTokensUpdateCommand::class,
         AccountFlowsDestroyCommand::class,
         AccountFlowsRunsStoreCommand::class,
         AccountFlowsShowCommand::class,
