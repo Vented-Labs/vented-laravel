@@ -12,6 +12,7 @@ final readonly class BindingData
      * @param  list<string>  $variables
      */
     public function __construct(
+        public bool $can_delete,
         public bool $can_rotate,
         public int $credentials_revision,
         public int $declaration_generation,
@@ -33,6 +34,7 @@ final readonly class BindingData
     public static function fromArray(array $data): self
     {
         return new self(
+            can_delete: (bool) $data['can_delete'],
             can_rotate: (bool) $data['can_rotate'],
             credentials_revision: (int) $data['credentials_revision'],
             declaration_generation: (int) $data['declaration_generation'],
@@ -55,6 +57,7 @@ final readonly class BindingData
     public function toArray(): array
     {
         $data = [];
+        $data['can_delete'] = $this->can_delete;
         $data['can_rotate'] = $this->can_rotate;
         $data['credentials_revision'] = $this->credentials_revision;
         $data['declaration_generation'] = $this->declaration_generation;

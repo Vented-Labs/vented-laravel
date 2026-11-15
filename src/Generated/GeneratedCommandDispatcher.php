@@ -595,6 +595,35 @@ final class GeneratedCommandDispatcher
                 data: UpdateZoneData::fromArray($data),
                 query: $query,
             ),
+            'projects.email.domains.access' => $client->emailDomainAccess()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                sendingDomain: self::stringPath($path, 'sendingDomain'),
+                query: $query,
+            ),
+            'projects.email.domains.destroy' => $client->emailDomains()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                sendingDomain: self::stringPath($path, 'sendingDomain'),
+                query: $query,
+            ),
+            'projects.email.domains.index' => $client->emailDomains()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.email.domains.show' => $client->emailDomains()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                sendingDomain: self::stringPath($path, 'sendingDomain'),
+                query: $query,
+            ),
+            'projects.email.domains.store' => $client->emailDomains()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreServiceData::fromArray($data),
+                query: $query,
+            ),
             'projects.index' => $client->projects()->list(
                 query: $query,
             ),

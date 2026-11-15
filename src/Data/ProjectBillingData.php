@@ -25,6 +25,7 @@ final readonly class ProjectBillingData
         public array $invoices,
         public array $items,
         public int $list_amount,
+        public ?int $monthly_email_messages,
         public ?int $net_amount,
         public string $owner_name,
         public ?PaymentCardData $payment_method,
@@ -68,6 +69,7 @@ final readonly class ProjectBillingData
             invoices: array_map(static fn (mixed $value): ProjectInvoiceData => ProjectInvoiceData::fromArray(self::objectValue($value)), self::listValue($data['invoices'])),
             items: array_map(static fn (mixed $value): BillingSubscriptionItemData => BillingSubscriptionItemData::fromArray(self::objectValue($value)), self::listValue($data['items'])),
             list_amount: (int) $data['list_amount'],
+            monthly_email_messages: $data['monthly_email_messages'] === null ? null : (int) $data['monthly_email_messages'],
             net_amount: $data['net_amount'] === null ? null : (int) $data['net_amount'],
             owner_name: (string) $data['owner_name'],
             payment_method: $data['payment_method'] === null ? null : PaymentCardData::fromArray(self::objectValue($data['payment_method'])),
@@ -112,6 +114,7 @@ final readonly class ProjectBillingData
         $data['invoices'] = array_map(static fn (ProjectInvoiceData $value) => $value->toArray(), $this->invoices);
         $data['items'] = array_map(static fn (BillingSubscriptionItemData $value) => $value->toArray(), $this->items);
         $data['list_amount'] = $this->list_amount;
+        $data['monthly_email_messages'] = $this->monthly_email_messages === null ? null : $this->monthly_email_messages;
         $data['net_amount'] = $this->net_amount === null ? null : $this->net_amount;
         $data['owner_name'] = $this->owner_name;
         $data['payment_method'] = $this->payment_method === null ? null : $this->payment_method->toArray();

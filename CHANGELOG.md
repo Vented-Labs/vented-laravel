@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.39.0 - 2026-11-15
+
+- Email Sending: `emailDomains()` lists, adds, shows and removes an environment's sending domains, and `emailDomainAccess()` lists the apps bound to one, with the `vented:email-domains:*` and `vented:email-domain-access:list` commands. `SendingDomainsIndexMeta` and `SendingDomainShowMeta` carry the allowance (`EmailAllowanceData`) and the domain's live state (`ServiceLiveData`: its waiting reason and `ServiceDnsRecordData` records).
+- `ProjectBillingData` gains `monthly_email_messages`, the month's pool left; `BindingsViewer` gains `email`.
+- `DomainService` drops `Email`: sending domains replace the zone's Email Sending service.
+
 ## 0.38.0 - 2026-11-15
 
 - API tokens carry permissions and expire. `StoreApiTokenData` takes `abilities` (permission names such as `apps:write`; write and delete include read) and `expires_at` (at most two years out); `ApiTokenData` gains `expires_at` and `status`. `ApiTokensIndexMeta` lists every grantable permission (`permission_groups` of `ApiTokenScopeGroupData`, `ApiTokenScopeData` and `ApiTokenPermissionData`) and the expiry choices (`ApiTokenExpiryData`). `apiTokens()->update()` and `vented:api-tokens:update` replace a token's permissions with `UpdateApiTokenData`.

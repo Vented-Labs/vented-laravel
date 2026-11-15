@@ -108,6 +108,11 @@ use Vented\Commands\ProjectsDnsZonesShowCommand;
 use Vented\Commands\ProjectsDnsZonesStatusCommand;
 use Vented\Commands\ProjectsDnsZonesStoreCommand;
 use Vented\Commands\ProjectsDnsZonesUpdateCommand;
+use Vented\Commands\ProjectsEmailDomainsAccessCommand;
+use Vented\Commands\ProjectsEmailDomainsDestroyCommand;
+use Vented\Commands\ProjectsEmailDomainsIndexCommand;
+use Vented\Commands\ProjectsEmailDomainsShowCommand;
+use Vented\Commands\ProjectsEmailDomainsStoreCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
 use Vented\Commands\ProjectsIntegrationsIndexCommand;
@@ -300,6 +305,11 @@ final class CommandRegistry
         ProjectsDnsZonesStatusCommand::class,
         ProjectsDnsZonesStoreCommand::class,
         ProjectsDnsZonesUpdateCommand::class,
+        ProjectsEmailDomainsAccessCommand::class,
+        ProjectsEmailDomainsDestroyCommand::class,
+        ProjectsEmailDomainsIndexCommand::class,
+        ProjectsEmailDomainsShowCommand::class,
+        ProjectsEmailDomainsStoreCommand::class,
         ProjectsIndexCommand::class,
         ProjectsIntegrationsDestroyCommand::class,
         ProjectsIntegrationsIndexCommand::class,

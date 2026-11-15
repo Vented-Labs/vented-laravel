@@ -108,6 +108,11 @@ use Vented\Commands\ProjectsDnsZonesShowCommand;
 use Vented\Commands\ProjectsDnsZonesStatusCommand;
 use Vented\Commands\ProjectsDnsZonesStoreCommand;
 use Vented\Commands\ProjectsDnsZonesUpdateCommand;
+use Vented\Commands\ProjectsEmailDomainsAccessCommand;
+use Vented\Commands\ProjectsEmailDomainsDestroyCommand;
+use Vented\Commands\ProjectsEmailDomainsIndexCommand;
+use Vented\Commands\ProjectsEmailDomainsShowCommand;
+use Vented\Commands\ProjectsEmailDomainsStoreCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
 use Vented\Commands\ProjectsIntegrationsIndexCommand;
@@ -1326,6 +1331,61 @@ final class OperationRegistry
             'commandName' => 'vented:dns-zones:update',
             'commandClass' => ProjectsDnsZonesUpdateCommand::class,
             'pathParameters' => ['project', 'zone'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.email.domains.access' => [
+            'operationId' => 'projects.email.domains.access',
+            'resource' => 'emailDomainAccess',
+            'action' => 'list',
+            'commandName' => 'vented:email-domain-access:list',
+            'commandClass' => ProjectsEmailDomainsAccessCommand::class,
+            'pathParameters' => ['project', 'environment', 'sendingDomain'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.email.domains.destroy' => [
+            'operationId' => 'projects.email.domains.destroy',
+            'resource' => 'emailDomains',
+            'action' => 'delete',
+            'commandName' => 'vented:email-domains:delete',
+            'commandClass' => ProjectsEmailDomainsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'sendingDomain'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.email.domains.index' => [
+            'operationId' => 'projects.email.domains.index',
+            'resource' => 'emailDomains',
+            'action' => 'list',
+            'commandName' => 'vented:email-domains:list',
+            'commandClass' => ProjectsEmailDomainsIndexCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.email.domains.show' => [
+            'operationId' => 'projects.email.domains.show',
+            'resource' => 'emailDomains',
+            'action' => 'find',
+            'commandName' => 'vented:email-domains:show',
+            'commandClass' => ProjectsEmailDomainsShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'sendingDomain'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.email.domains.store' => [
+            'operationId' => 'projects.email.domains.store',
+            'resource' => 'emailDomains',
+            'action' => 'create',
+            'commandName' => 'vented:email-domains:create',
+            'commandClass' => ProjectsEmailDomainsStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

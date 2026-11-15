@@ -35,6 +35,8 @@ use Vented\Resources\DevelopersResource;
 use Vented\Resources\DnsZoneBindingsResource;
 use Vented\Resources\DnsZoneRecordsResource;
 use Vented\Resources\DnsZonesResource;
+use Vented\Resources\EmailDomainAccessResource;
+use Vented\Resources\EmailDomainsResource;
 use Vented\Resources\FlowRunsResource;
 use Vented\Resources\FlowsResource;
 use Vented\Resources\GettingStartedResource;
@@ -233,6 +235,16 @@ trait ResourceAccessors
     public function dnsZones(): DnsZonesResource
     {
         return new DnsZonesResource($this);
+    }
+
+    public function emailDomainAccess(): EmailDomainAccessResource
+    {
+        return new EmailDomainAccessResource($this);
+    }
+
+    public function emailDomains(): EmailDomainsResource
+    {
+        return new EmailDomainsResource($this);
     }
 
     public function flowRuns(): FlowRunsResource
