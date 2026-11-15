@@ -10,6 +10,7 @@ final readonly class PlanCatalogTierData
      * @param  array<string, mixed>  $resources
      */
     public function __construct(
+        public ?int $capacity_max,
         public bool $featured,
         public string $id,
         public string $name,
@@ -24,6 +25,7 @@ final readonly class PlanCatalogTierData
     public static function fromArray(array $data): self
     {
         return new self(
+            capacity_max: $data['capacity_max'] === null ? null : (int) $data['capacity_max'],
             featured: (bool) $data['featured'],
             id: (string) $data['id'],
             name: (string) $data['name'],
@@ -39,6 +41,7 @@ final readonly class PlanCatalogTierData
     public function toArray(): array
     {
         $data = [];
+        $data['capacity_max'] = $this->capacity_max === null ? null : $this->capacity_max;
         $data['featured'] = $this->featured;
         $data['id'] = $this->id;
         $data['name'] = $this->name;

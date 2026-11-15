@@ -10,6 +10,7 @@ final readonly class ResourceUsageData
      * @param  list<ServiceMeterUsageData>  $services
      */
     public function __construct(
+        public ResourceUsageMetricData $capacity,
         public ResourceUsageMetricData $cpu,
         public ResourceUsageMetricData $disk,
         public ResourceUsageMetricData $memory,
@@ -26,6 +27,7 @@ final readonly class ResourceUsageData
     public static function fromArray(array $data): self
     {
         return new self(
+            capacity: ResourceUsageMetricData::fromArray(self::objectValue($data['capacity'])),
             cpu: ResourceUsageMetricData::fromArray(self::objectValue($data['cpu'])),
             disk: ResourceUsageMetricData::fromArray(self::objectValue($data['disk'])),
             memory: ResourceUsageMetricData::fromArray(self::objectValue($data['memory'])),
@@ -43,6 +45,7 @@ final readonly class ResourceUsageData
     public function toArray(): array
     {
         $data = [];
+        $data['capacity'] = $this->capacity->toArray();
         $data['cpu'] = $this->cpu->toArray();
         $data['disk'] = $this->disk->toArray();
         $data['memory'] = $this->memory->toArray();

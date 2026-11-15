@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.37.0 - 2026-11-15
+
+- `ResourceUsageData` gains `capacity`: apps plus services that take plan capacity (shared databases), against the settled plan plus Extra App/Service add-ons. `PlanCatalogTierData` gains `capacity_max`, the most a plan reaches with those add-ons.
+
 ## 0.36.0 - 2026-11-14
 
 - `ResourceUsageData` gains `services`, a `ServiceMeterUsageData` for every managed service meter the plans include: its usage in the current period, or its current level, against the settled allowance.
