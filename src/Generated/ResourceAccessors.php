@@ -29,6 +29,8 @@ use Vented\Resources\BillingResource;
 use Vented\Resources\BillingSetupIntentsResource;
 use Vented\Resources\BlockStorageBackupsResource;
 use Vented\Resources\BlockStoragesResource;
+use Vented\Resources\BucketAccessResource;
+use Vented\Resources\BucketsResource;
 use Vented\Resources\DeploysResource;
 use Vented\Resources\DeployTriggersResource;
 use Vented\Resources\DevelopersResource;
@@ -205,6 +207,16 @@ trait ResourceAccessors
     public function blockStorages(): BlockStoragesResource
     {
         return new BlockStoragesResource($this);
+    }
+
+    public function bucketAccess(): BucketAccessResource
+    {
+        return new BucketAccessResource($this);
+    }
+
+    public function buckets(): BucketsResource
+    {
+        return new BucketsResource($this);
     }
 
     public function deployTriggers(): DeployTriggersResource

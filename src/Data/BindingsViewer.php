@@ -9,6 +9,7 @@ use Vented\Enums\BindableType;
 final readonly class BindingsViewer
 {
     public function __construct(
+        public bool $bucket,
         public bool $email,
         public ?string $icon,
         public string $id,
@@ -23,6 +24,7 @@ final readonly class BindingsViewer
     public static function fromArray(array $data): self
     {
         return new self(
+            bucket: (bool) $data['bucket'],
             email: (bool) $data['email'],
             icon: $data['icon'] === null ? null : (string) $data['icon'],
             id: (string) $data['id'],
@@ -38,6 +40,7 @@ final readonly class BindingsViewer
     public function toArray(): array
     {
         $data = [];
+        $data['bucket'] = $this->bucket;
         $data['email'] = $this->email;
         $data['icon'] = $this->icon === null ? null : $this->icon;
         $data['id'] = $this->id;

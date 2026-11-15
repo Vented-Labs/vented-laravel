@@ -12,6 +12,7 @@ final readonly class ServiceCatalogEntry
     public function __construct(
         public ?string $area,
         public bool $available,
+        public bool $beta,
         public ?string $icon,
         public string $identifier,
         public ?string $kind,
@@ -29,6 +30,7 @@ final readonly class ServiceCatalogEntry
         return new self(
             area: $data['area'] === null ? null : (string) $data['area'],
             available: (bool) $data['available'],
+            beta: (bool) $data['beta'],
             icon: $data['icon'] === null ? null : (string) $data['icon'],
             identifier: (string) $data['identifier'],
             kind: $data['kind'] === null ? null : (string) $data['kind'],
@@ -47,6 +49,7 @@ final readonly class ServiceCatalogEntry
         $data = [];
         $data['area'] = $this->area === null ? null : $this->area;
         $data['available'] = $this->available;
+        $data['beta'] = $this->beta;
         $data['icon'] = $this->icon === null ? null : $this->icon;
         $data['identifier'] = $this->identifier;
         $data['kind'] = $this->kind === null ? null : $this->kind;

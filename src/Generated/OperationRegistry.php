@@ -85,6 +85,11 @@ use Vented\Commands\ProjectsBlockStoragesDestroyCommand;
 use Vented\Commands\ProjectsBlockStoragesIndexCommand;
 use Vented\Commands\ProjectsBlockStoragesShowCommand;
 use Vented\Commands\ProjectsBlockStoragesStoreCommand;
+use Vented\Commands\ProjectsBucketsAccessCommand;
+use Vented\Commands\ProjectsBucketsDestroyCommand;
+use Vented\Commands\ProjectsBucketsIndexCommand;
+use Vented\Commands\ProjectsBucketsShowCommand;
+use Vented\Commands\ProjectsBucketsStoreCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
 use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
@@ -1077,6 +1082,61 @@ final class OperationRegistry
             'action' => 'create',
             'commandName' => 'vented:block-storages:create',
             'commandClass' => ProjectsBlockStoragesStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.buckets.access' => [
+            'operationId' => 'projects.buckets.access',
+            'resource' => 'bucketAccess',
+            'action' => 'list',
+            'commandName' => 'vented:bucket-access:list',
+            'commandClass' => ProjectsBucketsAccessCommand::class,
+            'pathParameters' => ['project', 'environment', 'bucket'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.buckets.destroy' => [
+            'operationId' => 'projects.buckets.destroy',
+            'resource' => 'buckets',
+            'action' => 'delete',
+            'commandName' => 'vented:buckets:delete',
+            'commandClass' => ProjectsBucketsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'bucket'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.buckets.index' => [
+            'operationId' => 'projects.buckets.index',
+            'resource' => 'buckets',
+            'action' => 'list',
+            'commandName' => 'vented:buckets:list',
+            'commandClass' => ProjectsBucketsIndexCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.buckets.show' => [
+            'operationId' => 'projects.buckets.show',
+            'resource' => 'buckets',
+            'action' => 'find',
+            'commandName' => 'vented:buckets:show',
+            'commandClass' => ProjectsBucketsShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'bucket'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.buckets.store' => [
+            'operationId' => 'projects.buckets.store',
+            'resource' => 'buckets',
+            'action' => 'create',
+            'commandName' => 'vented:buckets:create',
+            'commandClass' => ProjectsBucketsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,

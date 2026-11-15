@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.40.0 - 2026-11-15
+
+- Added `buckets()` to list, create, read and delete Vented Object Storage buckets (`list`, `create` with `StoreServiceData`, `find`, `delete`) and `bucketAccess()->list()` for a bucket's bindings, with `BucketsIndexMeta` and the `vented:buckets:*` commands. Each bucket's endpoint is read through `services()->outputs()`; apps receive keys through bindings.
+- `BucketShowMeta` carries a bucket's live state (`ServiceLiveData`) and `rejected`, true when Vented refused the bucket.
+- `BindingsViewer` gains `bucket`, true when the listed resource is an Object Storage bucket.
+
 ## 0.39.0 - 2026-11-15
 
 - Email Sending: `emailDomains()` lists, adds, shows and removes an environment's sending domains, and `emailDomainAccess()` lists the apps bound to one, with the `vented:email-domains:*` and `vented:email-domain-access:list` commands. `SendingDomainsIndexMeta` and `SendingDomainShowMeta` carry the allowance (`EmailAllowanceData`) and the domain's live state (`ServiceLiveData`: its waiting reason and `ServiceDnsRecordData` records).

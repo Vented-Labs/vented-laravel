@@ -8,6 +8,7 @@ final readonly class ServiceData
 {
     public function __construct(
         public bool $available,
+        public bool $beta,
         public bool $can_delete,
         public string $created_at,
         public ?string $icon,
@@ -28,6 +29,7 @@ final readonly class ServiceData
     {
         return new self(
             available: (bool) $data['available'],
+            beta: (bool) $data['beta'],
             can_delete: (bool) $data['can_delete'],
             created_at: (string) $data['created_at'],
             icon: $data['icon'] === null ? null : (string) $data['icon'],
@@ -49,6 +51,7 @@ final readonly class ServiceData
     {
         $data = [];
         $data['available'] = $this->available;
+        $data['beta'] = $this->beta;
         $data['can_delete'] = $this->can_delete;
         $data['created_at'] = $this->created_at;
         $data['icon'] = $this->icon === null ? null : $this->icon;

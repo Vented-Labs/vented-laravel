@@ -85,6 +85,11 @@ use Vented\Commands\ProjectsBlockStoragesDestroyCommand;
 use Vented\Commands\ProjectsBlockStoragesIndexCommand;
 use Vented\Commands\ProjectsBlockStoragesShowCommand;
 use Vented\Commands\ProjectsBlockStoragesStoreCommand;
+use Vented\Commands\ProjectsBucketsAccessCommand;
+use Vented\Commands\ProjectsBucketsDestroyCommand;
+use Vented\Commands\ProjectsBucketsIndexCommand;
+use Vented\Commands\ProjectsBucketsShowCommand;
+use Vented\Commands\ProjectsBucketsStoreCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
 use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
@@ -282,6 +287,11 @@ final class CommandRegistry
         ProjectsBlockStoragesIndexCommand::class,
         ProjectsBlockStoragesShowCommand::class,
         ProjectsBlockStoragesStoreCommand::class,
+        ProjectsBucketsAccessCommand::class,
+        ProjectsBucketsDestroyCommand::class,
+        ProjectsBucketsIndexCommand::class,
+        ProjectsBucketsShowCommand::class,
+        ProjectsBucketsStoreCommand::class,
         ProjectsDeployTriggersDestroyCommand::class,
         ProjectsDeployTriggersIndexCommand::class,
         ProjectsDeployTriggersStoreCommand::class,

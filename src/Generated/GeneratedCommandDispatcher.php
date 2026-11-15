@@ -468,6 +468,35 @@ final class GeneratedCommandDispatcher
                 data: StoreBlockStorageData::fromArray($data),
                 query: $query,
             ),
+            'projects.buckets.access' => $client->bucketAccess()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                bucket: self::stringPath($path, 'bucket'),
+                query: $query,
+            ),
+            'projects.buckets.destroy' => $client->buckets()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                bucket: self::stringPath($path, 'bucket'),
+                query: $query,
+            ),
+            'projects.buckets.index' => $client->buckets()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.buckets.show' => $client->buckets()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                bucket: self::stringPath($path, 'bucket'),
+                query: $query,
+            ),
+            'projects.buckets.store' => $client->buckets()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreServiceData::fromArray($data),
+                query: $query,
+            ),
             'projects.deploy-triggers.destroy' => $client->deployTriggers()->delete(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
