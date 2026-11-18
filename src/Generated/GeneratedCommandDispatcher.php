@@ -85,6 +85,9 @@ final class GeneratedCommandDispatcher
     public static function dispatch(string $operationId, Vented $client, array $path, array $data, array $query): ResourceResult|CollectionResult|PaginatedResult|NoContentResult|BinaryResult
     {
         return match ($operationId) {
+            'account.api-tokens.current' => $client->apiTokens()->current(
+                query: $query,
+            ),
             'account.api-tokens.destroy' => $client->apiTokens()->delete(
                 token: self::stringPath($path, 'token'),
                 query: $query,

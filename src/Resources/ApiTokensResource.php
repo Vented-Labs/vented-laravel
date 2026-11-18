@@ -39,6 +39,22 @@ final readonly class ApiTokensResource
     }
 
     /**
+     * Show the API token making this request
+     *
+     * Operation: account.api-tokens.current
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<ApiTokenData>
+     */
+    public function current(array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/account/api-tokens/current')
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): ApiTokenData => ApiTokenData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
      * Revoke an API token
      *
      * Operation: account.api-tokens.destroy

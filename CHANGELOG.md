@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.47.0 - 2026-11-18
+
+- `ApiTokensResource::current()` returns the token making the request (`ApiTokenData`). Every token can read itself, whatever permissions it holds.
+
 ## 0.46.0 - 2026-11-18
 
 - Build configurations: `BuildConfigsResource` lists, creates, shows, updates and deletes them (`BuildConfigData`: repository, branch, root directory, `DeployType`, `BuildConfigStorage`, commands, group and latest build), with `BuildConfigsIndexMeta` (form options, presets and groups) and `BuildConfigShowMeta` (latest builds as `BuildData`, the live build, and the `DeployTargetOption` a deploy from it uses).
