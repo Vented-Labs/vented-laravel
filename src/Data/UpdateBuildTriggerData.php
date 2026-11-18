@@ -7,14 +7,17 @@ namespace Vented\Data;
 use Vented\Enums\DeployTriggerType;
 use Vented\OptionalValue;
 
-final readonly class UpdateDeployTriggerData
+final readonly class UpdateBuildTriggerData
 {
+    /**
+     * @param  list<string>|null|OptionalValue  $paths
+     */
     public function __construct(
-        public string|OptionalValue $app_id = OptionalValue::Missing,
+        public string|null|OptionalValue $branch = OptionalValue::Missing,
         public string|null|OptionalValue $cron_expression = OptionalValue::Missing,
         public bool|OptionalValue $enabled = OptionalValue::Missing,
-        public string|null|OptionalValue $integration_id = OptionalValue::Missing,
         public string|OptionalValue $name = OptionalValue::Missing,
+        public array|null|OptionalValue $paths = OptionalValue::Missing,
         public DeployTriggerType|OptionalValue $type = OptionalValue::Missing,
         public string|null|OptionalValue $webhook_secret = OptionalValue::Missing,
     ) {}
@@ -25,11 +28,11 @@ final readonly class UpdateDeployTriggerData
     public static function fromArray(array $data): self
     {
         return new self(
-            app_id: array_key_exists('app_id', $data) ? (string) $data['app_id'] : OptionalValue::Missing,
+            branch: array_key_exists('branch', $data) ? $data['branch'] === null ? null : (string) $data['branch'] : OptionalValue::Missing,
             cron_expression: array_key_exists('cron_expression', $data) ? $data['cron_expression'] === null ? null : (string) $data['cron_expression'] : OptionalValue::Missing,
             enabled: array_key_exists('enabled', $data) ? (bool) $data['enabled'] : OptionalValue::Missing,
-            integration_id: array_key_exists('integration_id', $data) ? $data['integration_id'] === null ? null : (string) $data['integration_id'] : OptionalValue::Missing,
             name: array_key_exists('name', $data) ? (string) $data['name'] : OptionalValue::Missing,
+            paths: array_key_exists('paths', $data) ? $data['paths'] === null ? null : array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['paths'])) : OptionalValue::Missing,
             type: array_key_exists('type', $data) ? DeployTriggerType::from((string) $data['type']) : OptionalValue::Missing,
             webhook_secret: array_key_exists('webhook_secret', $data) ? $data['webhook_secret'] === null ? null : (string) $data['webhook_secret'] : OptionalValue::Missing,
         );
@@ -41,8 +44,8 @@ final readonly class UpdateDeployTriggerData
     public function toArray(): array
     {
         $data = [];
-        if ($this->app_id !== OptionalValue::Missing) {
-            $data['app_id'] = $this->app_id;
+        if ($this->branch !== OptionalValue::Missing) {
+            $data['branch'] = $this->branch === null ? null : $this->branch;
         }
         if ($this->cron_expression !== OptionalValue::Missing) {
             $data['cron_expression'] = $this->cron_expression === null ? null : $this->cron_expression;
@@ -50,11 +53,11 @@ final readonly class UpdateDeployTriggerData
         if ($this->enabled !== OptionalValue::Missing) {
             $data['enabled'] = $this->enabled;
         }
-        if ($this->integration_id !== OptionalValue::Missing) {
-            $data['integration_id'] = $this->integration_id === null ? null : $this->integration_id;
-        }
         if ($this->name !== OptionalValue::Missing) {
             $data['name'] = $this->name;
+        }
+        if ($this->paths !== OptionalValue::Missing) {
+            $data['paths'] = $this->paths === null ? null : $this->paths;
         }
         if ($this->type !== OptionalValue::Missing) {
             $data['type'] = $this->type->value;
@@ -64,5 +67,17 @@ final readonly class UpdateDeployTriggerData
         }
 
         return $data;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

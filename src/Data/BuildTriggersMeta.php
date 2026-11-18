@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class DeployTriggersIndexMetaFormOptions
+final readonly class BuildTriggersMeta
 {
     /**
-     * @param  list<FormOption>  $integrations
-     * @param  list<FormOption>  $runtimes
      * @param  list<FormOption>  $types
      */
     public function __construct(
-        public array $integrations,
-        public array $runtimes,
+        public BuildConfigData $build_config,
         public array $types,
     ) {}
 
@@ -23,8 +20,7 @@ final readonly class DeployTriggersIndexMetaFormOptions
     public static function fromArray(array $data): self
     {
         return new self(
-            integrations: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['integrations'])),
-            runtimes: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['runtimes'])),
+            build_config: BuildConfigData::fromArray(self::objectValue($data['build_config'])),
             types: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['types'])),
         );
     }
@@ -35,8 +31,7 @@ final readonly class DeployTriggersIndexMetaFormOptions
     public function toArray(): array
     {
         $data = [];
-        $data['integrations'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->integrations);
-        $data['runtimes'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->runtimes);
+        $data['build_config'] = $this->build_config->toArray();
         $data['types'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->types);
 
         return $data;

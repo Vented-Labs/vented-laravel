@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class DeployTriggersIndexMeta
+final readonly class BuildConfigsIndexMeta
 {
+    /**
+     * @param  list<BuildGroupData>  $groups
+     */
     public function __construct(
         public ?FormOption $current_app,
-        public DeployTriggersIndexMetaFormOptions $form_options,
+        public BuildConfigFormOptions $form_options,
+        public array $groups,
     ) {}
 
     /**
@@ -18,7 +22,8 @@ final readonly class DeployTriggersIndexMeta
     {
         return new self(
             current_app: $data['current_app'] === null ? null : FormOption::fromArray(self::objectValue($data['current_app'])),
-            form_options: DeployTriggersIndexMetaFormOptions::fromArray(self::objectValue($data['form_options'])),
+            form_options: BuildConfigFormOptions::fromArray(self::objectValue($data['form_options'])),
+            groups: array_map(static fn (mixed $value): BuildGroupData => BuildGroupData::fromArray(self::objectValue($value)), self::listValue($data['groups'])),
         );
     }
 
@@ -30,6 +35,7 @@ final readonly class DeployTriggersIndexMeta
         $data = [];
         $data['current_app'] = $this->current_app === null ? null : $this->current_app->toArray();
         $data['form_options'] = $this->form_options->toArray();
+        $data['groups'] = array_map(static fn (BuildGroupData $value) => $value->toArray(), $this->groups);
 
         return $data;
     }
@@ -45,5 +51,17 @@ final readonly class DeployTriggersIndexMeta
 
         /** @var array<string, mixed> $value */
         return $value;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

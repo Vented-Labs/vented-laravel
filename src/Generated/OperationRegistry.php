@@ -90,12 +90,20 @@ use Vented\Commands\ProjectsBucketsDestroyCommand;
 use Vented\Commands\ProjectsBucketsIndexCommand;
 use Vented\Commands\ProjectsBucketsShowCommand;
 use Vented\Commands\ProjectsBucketsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsDestroyCommand;
+use Vented\Commands\ProjectsBuildConfigsIndexCommand;
+use Vented\Commands\ProjectsBuildConfigsShowCommand;
+use Vented\Commands\ProjectsBuildConfigsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersDestroyCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersIndexCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersUpdateCommand;
+use Vented\Commands\ProjectsBuildConfigsUpdateCommand;
+use Vented\Commands\ProjectsBuildGroupsDestroyCommand;
+use Vented\Commands\ProjectsBuildGroupsStoreCommand;
+use Vented\Commands\ProjectsBuildGroupsUpdateCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
-use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
-use Vented\Commands\ProjectsDeployTriggersIndexCommand;
-use Vented\Commands\ProjectsDeployTriggersStoreCommand;
-use Vented\Commands\ProjectsDeployTriggersUpdateCommand;
 use Vented\Commands\ProjectsDestroyCommand;
 use Vented\Commands\ProjectsDevelopersIndexCommand;
 use Vented\Commands\ProjectsDnsCertificatesBindingsDestroyCommand;
@@ -1151,46 +1159,134 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
-        'projects.deploy-triggers.destroy' => [
-            'operationId' => 'projects.deploy-triggers.destroy',
-            'resource' => 'deployTriggers',
+        'projects.build-configs.destroy' => [
+            'operationId' => 'projects.build-configs.destroy',
+            'resource' => 'buildConfigs',
             'action' => 'delete',
-            'commandName' => 'vented:deploy-triggers:delete',
-            'commandClass' => ProjectsDeployTriggersDestroyCommand::class,
-            'pathParameters' => ['project', 'environment', 'deployTrigger'],
+            'commandName' => 'vented:build-configs:delete',
+            'commandClass' => ProjectsBuildConfigsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
             'hasBody' => false,
             'destructive' => true,
             'binary' => false,
         ],
-        'projects.deploy-triggers.index' => [
-            'operationId' => 'projects.deploy-triggers.index',
-            'resource' => 'deployTriggers',
+        'projects.build-configs.index' => [
+            'operationId' => 'projects.build-configs.index',
+            'resource' => 'buildConfigs',
             'action' => 'list',
-            'commandName' => 'vented:deploy-triggers:list',
-            'commandClass' => ProjectsDeployTriggersIndexCommand::class,
+            'commandName' => 'vented:build-configs:list',
+            'commandClass' => ProjectsBuildConfigsIndexCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],
-        'projects.deploy-triggers.store' => [
-            'operationId' => 'projects.deploy-triggers.store',
-            'resource' => 'deployTriggers',
+        'projects.build-configs.show' => [
+            'operationId' => 'projects.build-configs.show',
+            'resource' => 'buildConfigs',
+            'action' => 'find',
+            'commandName' => 'vented:build-configs:show',
+            'commandClass' => ProjectsBuildConfigsShowCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-configs.store' => [
+            'operationId' => 'projects.build-configs.store',
+            'resource' => 'buildConfigs',
             'action' => 'create',
-            'commandName' => 'vented:deploy-triggers:create',
-            'commandClass' => ProjectsDeployTriggersStoreCommand::class,
+            'commandName' => 'vented:build-configs:create',
+            'commandClass' => ProjectsBuildConfigsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
         ],
-        'projects.deploy-triggers.update' => [
-            'operationId' => 'projects.deploy-triggers.update',
-            'resource' => 'deployTriggers',
+        'projects.build-configs.triggers.destroy' => [
+            'operationId' => 'projects.build-configs.triggers.destroy',
+            'resource' => 'buildConfigTriggers',
+            'action' => 'delete',
+            'commandName' => 'vented:build-config-triggers:delete',
+            'commandClass' => ProjectsBuildConfigsTriggersDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig', 'deployTrigger'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.build-configs.triggers.index' => [
+            'operationId' => 'projects.build-configs.triggers.index',
+            'resource' => 'buildConfigTriggers',
+            'action' => 'list',
+            'commandName' => 'vented:build-config-triggers:list',
+            'commandClass' => ProjectsBuildConfigsTriggersIndexCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-configs.triggers.store' => [
+            'operationId' => 'projects.build-configs.triggers.store',
+            'resource' => 'buildConfigTriggers',
+            'action' => 'create',
+            'commandName' => 'vented:build-config-triggers:create',
+            'commandClass' => ProjectsBuildConfigsTriggersStoreCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-configs.triggers.update' => [
+            'operationId' => 'projects.build-configs.triggers.update',
+            'resource' => 'buildConfigTriggers',
             'action' => 'update',
-            'commandName' => 'vented:deploy-triggers:update',
-            'commandClass' => ProjectsDeployTriggersUpdateCommand::class,
-            'pathParameters' => ['project', 'environment', 'deployTrigger'],
+            'commandName' => 'vented:build-config-triggers:update',
+            'commandClass' => ProjectsBuildConfigsTriggersUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig', 'deployTrigger'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-configs.update' => [
+            'operationId' => 'projects.build-configs.update',
+            'resource' => 'buildConfigs',
+            'action' => 'update',
+            'commandName' => 'vented:build-configs:update',
+            'commandClass' => ProjectsBuildConfigsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-groups.destroy' => [
+            'operationId' => 'projects.build-groups.destroy',
+            'resource' => 'buildGroups',
+            'action' => 'delete',
+            'commandName' => 'vented:build-groups:delete',
+            'commandClass' => ProjectsBuildGroupsDestroyCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildGroup'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.build-groups.store' => [
+            'operationId' => 'projects.build-groups.store',
+            'resource' => 'buildGroups',
+            'action' => 'create',
+            'commandName' => 'vented:build-groups:create',
+            'commandClass' => ProjectsBuildGroupsStoreCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-groups.update' => [
+            'operationId' => 'projects.build-groups.update',
+            'resource' => 'buildGroups',
+            'action' => 'update',
+            'commandName' => 'vented:build-groups:update',
+            'commandClass' => ProjectsBuildGroupsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildGroup'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

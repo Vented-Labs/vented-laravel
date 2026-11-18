@@ -31,8 +31,10 @@ use Vented\Resources\BlockStorageBackupsResource;
 use Vented\Resources\BlockStoragesResource;
 use Vented\Resources\BucketAccessResource;
 use Vented\Resources\BucketsResource;
+use Vented\Resources\BuildConfigsResource;
+use Vented\Resources\BuildConfigTriggersResource;
+use Vented\Resources\BuildGroupsResource;
 use Vented\Resources\DeploysResource;
-use Vented\Resources\DeployTriggersResource;
 use Vented\Resources\DevelopersResource;
 use Vented\Resources\DnsCertificateBindingsResource;
 use Vented\Resources\DnsCertificatesResource;
@@ -222,9 +224,19 @@ trait ResourceAccessors
         return new BucketsResource($this);
     }
 
-    public function deployTriggers(): DeployTriggersResource
+    public function buildConfigTriggers(): BuildConfigTriggersResource
     {
-        return new DeployTriggersResource($this);
+        return new BuildConfigTriggersResource($this);
+    }
+
+    public function buildConfigs(): BuildConfigsResource
+    {
+        return new BuildConfigsResource($this);
+    }
+
+    public function buildGroups(): BuildGroupsResource
+    {
+        return new BuildGroupsResource($this);
     }
 
     public function deploys(): DeploysResource

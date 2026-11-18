@@ -7,10 +7,10 @@ namespace Vented\Data;
 final readonly class DeploysIndexMetaFormOptions
 {
     /**
-     * @param  list<FormOption>  $runtimes
+     * @param  list<DeployTargetOption>  $targets
      */
     public function __construct(
-        public array $runtimes,
+        public array $targets,
     ) {}
 
     /**
@@ -19,7 +19,7 @@ final readonly class DeploysIndexMetaFormOptions
     public static function fromArray(array $data): self
     {
         return new self(
-            runtimes: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['runtimes'])),
+            targets: array_map(static fn (mixed $value): DeployTargetOption => DeployTargetOption::fromArray(self::objectValue($value)), self::listValue($data['targets'])),
         );
     }
 
@@ -29,7 +29,7 @@ final readonly class DeploysIndexMetaFormOptions
     public function toArray(): array
     {
         $data = [];
-        $data['runtimes'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->runtimes);
+        $data['targets'] = array_map(static fn (DeployTargetOption $value) => $value->toArray(), $this->targets);
 
         return $data;
     }

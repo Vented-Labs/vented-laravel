@@ -7,13 +7,16 @@ namespace Vented\Data;
 use Vented\Enums\DeployTriggerType;
 use Vented\OptionalValue;
 
-final readonly class StoreDeployTriggerData
+final readonly class StoreBuildTriggerData
 {
+    /**
+     * @param  list<string>|null  $paths
+     */
     public function __construct(
-        public string $app_id,
+        public ?string $branch,
         public ?string $cron_expression,
-        public ?string $integration_id,
         public string $name,
+        public ?array $paths,
         public DeployTriggerType $type,
         public ?string $webhook_secret,
         public bool|OptionalValue $enabled = OptionalValue::Missing,
@@ -25,10 +28,10 @@ final readonly class StoreDeployTriggerData
     public static function fromArray(array $data): self
     {
         return new self(
-            app_id: (string) $data['app_id'],
+            branch: $data['branch'] === null ? null : (string) $data['branch'],
             cron_expression: $data['cron_expression'] === null ? null : (string) $data['cron_expression'],
-            integration_id: $data['integration_id'] === null ? null : (string) $data['integration_id'],
             name: (string) $data['name'],
+            paths: $data['paths'] === null ? null : array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['paths'])),
             type: DeployTriggerType::from((string) $data['type']),
             webhook_secret: $data['webhook_secret'] === null ? null : (string) $data['webhook_secret'],
             enabled: array_key_exists('enabled', $data) ? (bool) $data['enabled'] : OptionalValue::Missing,
@@ -41,10 +44,10 @@ final readonly class StoreDeployTriggerData
     public function toArray(): array
     {
         $data = [];
-        $data['app_id'] = $this->app_id;
+        $data['branch'] = $this->branch === null ? null : $this->branch;
         $data['cron_expression'] = $this->cron_expression === null ? null : $this->cron_expression;
-        $data['integration_id'] = $this->integration_id === null ? null : $this->integration_id;
         $data['name'] = $this->name;
+        $data['paths'] = $this->paths === null ? null : $this->paths;
         $data['type'] = $this->type->value;
         $data['webhook_secret'] = $this->webhook_secret === null ? null : $this->webhook_secret;
         if ($this->enabled !== OptionalValue::Missing) {
@@ -52,5 +55,17 @@ final readonly class StoreDeployTriggerData
         }
 
         return $data;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

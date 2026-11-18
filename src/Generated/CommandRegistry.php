@@ -90,12 +90,20 @@ use Vented\Commands\ProjectsBucketsDestroyCommand;
 use Vented\Commands\ProjectsBucketsIndexCommand;
 use Vented\Commands\ProjectsBucketsShowCommand;
 use Vented\Commands\ProjectsBucketsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsDestroyCommand;
+use Vented\Commands\ProjectsBuildConfigsIndexCommand;
+use Vented\Commands\ProjectsBuildConfigsShowCommand;
+use Vented\Commands\ProjectsBuildConfigsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersDestroyCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersIndexCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsTriggersUpdateCommand;
+use Vented\Commands\ProjectsBuildConfigsUpdateCommand;
+use Vented\Commands\ProjectsBuildGroupsDestroyCommand;
+use Vented\Commands\ProjectsBuildGroupsStoreCommand;
+use Vented\Commands\ProjectsBuildGroupsUpdateCommand;
 use Vented\Commands\ProjectsDeploysIndexCommand;
 use Vented\Commands\ProjectsDeploysStoreCommand;
-use Vented\Commands\ProjectsDeployTriggersDestroyCommand;
-use Vented\Commands\ProjectsDeployTriggersIndexCommand;
-use Vented\Commands\ProjectsDeployTriggersStoreCommand;
-use Vented\Commands\ProjectsDeployTriggersUpdateCommand;
 use Vented\Commands\ProjectsDestroyCommand;
 use Vented\Commands\ProjectsDevelopersIndexCommand;
 use Vented\Commands\ProjectsDnsCertificatesBindingsDestroyCommand;
@@ -301,10 +309,18 @@ final class CommandRegistry
         ProjectsBucketsIndexCommand::class,
         ProjectsBucketsShowCommand::class,
         ProjectsBucketsStoreCommand::class,
-        ProjectsDeployTriggersDestroyCommand::class,
-        ProjectsDeployTriggersIndexCommand::class,
-        ProjectsDeployTriggersStoreCommand::class,
-        ProjectsDeployTriggersUpdateCommand::class,
+        ProjectsBuildConfigsDestroyCommand::class,
+        ProjectsBuildConfigsIndexCommand::class,
+        ProjectsBuildConfigsShowCommand::class,
+        ProjectsBuildConfigsStoreCommand::class,
+        ProjectsBuildConfigsTriggersDestroyCommand::class,
+        ProjectsBuildConfigsTriggersIndexCommand::class,
+        ProjectsBuildConfigsTriggersStoreCommand::class,
+        ProjectsBuildConfigsTriggersUpdateCommand::class,
+        ProjectsBuildConfigsUpdateCommand::class,
+        ProjectsBuildGroupsDestroyCommand::class,
+        ProjectsBuildGroupsStoreCommand::class,
+        ProjectsBuildGroupsUpdateCommand::class,
         ProjectsDeploysIndexCommand::class,
         ProjectsDeploysStoreCommand::class,
         ProjectsDestroyCommand::class,

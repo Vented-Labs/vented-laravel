@@ -2,6 +2,14 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.46.0 - 2026-11-18
+
+- Build configurations: `BuildConfigsResource` lists, creates, shows, updates and deletes them (`BuildConfigData`: repository, branch, root directory, `DeployType`, `BuildConfigStorage`, commands, group and latest build), with `BuildConfigsIndexMeta` (form options, presets and groups) and `BuildConfigShowMeta` (latest builds as `BuildData`, the live build, and the `DeployTargetOption` a deploy from it uses).
+- Triggers move under build configurations: `BuildConfigTriggersResource` with `StoreBuildTriggerData` / `UpdateBuildTriggerData` (git push branch and watch paths, webhook, schedule). The environment-level deploy-trigger commands and resource are removed, and `DeployTriggerData` names its `build_config` instead of an app.
+- `BuildGroupsResource` creates, updates and deletes groups (`BuildGroupData`); a group's builds switch traffic together, only when all of them pass.
+- `DeployData.app` is nullable and `DeployData` gains `build_config`, `build_group`, `builds` (`DeployBuildRef` with `BuildStepData` steps) and `outcome`. `StoreDeployData` takes one of `build_group_id`, `build_config_id` or `app_id`. `DeploysIndexMetaFormOptions` lists `targets` instead of `runtimes`.
+- The app deploy endpoint (`AppDeployResource`) returns the build configurations that deploy into the app.
+
 ## 0.45.0 - 2026-11-18
 
 - Added `LiveSubscriptionData` (`event`, `channels`): Portal's reads name the private channels they follow in `meta.realtime`, for clients that keep a page current over the websocket.

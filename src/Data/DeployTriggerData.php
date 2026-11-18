@@ -12,7 +12,7 @@ final readonly class DeployTriggerData
      * @param  list<string>|null  $config
      */
     public function __construct(
-        public InstallableRef $app,
+        public ?NamedOption $build_config,
         public ?array $config,
         public string $created_at,
         public bool $enabled,
@@ -30,7 +30,7 @@ final readonly class DeployTriggerData
     public static function fromArray(array $data): self
     {
         return new self(
-            app: InstallableRef::fromArray(self::objectValue($data['app'])),
+            build_config: $data['build_config'] === null ? null : NamedOption::fromArray(self::objectValue($data['build_config'])),
             config: $data['config'] === null ? null : array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['config'])),
             created_at: (string) $data['created_at'],
             enabled: (bool) $data['enabled'],
@@ -49,7 +49,7 @@ final readonly class DeployTriggerData
     public function toArray(): array
     {
         $data = [];
-        $data['app'] = $this->app->toArray();
+        $data['build_config'] = $this->build_config === null ? null : $this->build_config->toArray();
         $data['config'] = $this->config === null ? null : $this->config;
         $data['created_at'] = $this->created_at;
         $data['enabled'] = $this->enabled;

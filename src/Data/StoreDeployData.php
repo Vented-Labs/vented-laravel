@@ -7,7 +7,9 @@ namespace Vented\Data;
 final readonly class StoreDeployData
 {
     public function __construct(
-        public string $app_id,
+        public ?string $app_id,
+        public ?string $build_config_id,
+        public ?string $build_group_id,
         public ?string $commit_sha,
         public ?string $message,
         public ?string $ref,
@@ -20,7 +22,9 @@ final readonly class StoreDeployData
     public static function fromArray(array $data): self
     {
         return new self(
-            app_id: (string) $data['app_id'],
+            app_id: $data['app_id'] === null ? null : (string) $data['app_id'],
+            build_config_id: $data['build_config_id'] === null ? null : (string) $data['build_config_id'],
+            build_group_id: $data['build_group_id'] === null ? null : (string) $data['build_group_id'],
             commit_sha: $data['commit_sha'] === null ? null : (string) $data['commit_sha'],
             message: $data['message'] === null ? null : (string) $data['message'],
             ref: $data['ref'] === null ? null : (string) $data['ref'],
@@ -34,7 +38,9 @@ final readonly class StoreDeployData
     public function toArray(): array
     {
         $data = [];
-        $data['app_id'] = $this->app_id;
+        $data['app_id'] = $this->app_id === null ? null : $this->app_id;
+        $data['build_config_id'] = $this->build_config_id === null ? null : $this->build_config_id;
+        $data['build_group_id'] = $this->build_group_id === null ? null : $this->build_group_id;
         $data['commit_sha'] = $this->commit_sha === null ? null : $this->commit_sha;
         $data['message'] = $this->message === null ? null : $this->message;
         $data['ref'] = $this->ref === null ? null : $this->ref;

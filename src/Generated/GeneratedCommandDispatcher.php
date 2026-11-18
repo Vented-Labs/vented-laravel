@@ -15,9 +15,11 @@ use Vented\Data\StoreAppData;
 use Vented\Data\StoreBackupData;
 use Vented\Data\StoreBindingData;
 use Vented\Data\StoreBlockStorageData;
+use Vented\Data\StoreBuildConfigData;
+use Vented\Data\StoreBuildGroupData;
+use Vented\Data\StoreBuildTriggerData;
 use Vented\Data\StoreCertificateData;
 use Vented\Data\StoreDeployData;
-use Vented\Data\StoreDeployTriggerData;
 use Vented\Data\StoreEnvironmentSshKeyData;
 use Vented\Data\StoreFileData;
 use Vented\Data\StoreFileUploadData;
@@ -45,8 +47,10 @@ use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
 use Vented\Data\UpdateBindingPurposeData;
 use Vented\Data\UpdateBindingTlsData;
+use Vented\Data\UpdateBuildConfigData;
+use Vented\Data\UpdateBuildGroupData;
+use Vented\Data\UpdateBuildTriggerData;
 use Vented\Data\UpdateCertificateData;
-use Vented\Data\UpdateDeployTriggerData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateFileData;
 use Vented\Data\UpdateFileUploadData;
@@ -500,28 +504,81 @@ final class GeneratedCommandDispatcher
                 data: StoreServiceData::fromArray($data),
                 query: $query,
             ),
-            'projects.deploy-triggers.destroy' => $client->deployTriggers()->delete(
+            'projects.build-configs.destroy' => $client->buildConfigs()->delete(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
+                query: $query,
+            ),
+            'projects.build-configs.index' => $client->buildConfigs()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.build-configs.show' => $client->buildConfigs()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
+                query: $query,
+            ),
+            'projects.build-configs.store' => $client->buildConfigs()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreBuildConfigData::fromArray($data),
+                query: $query,
+            ),
+            'projects.build-configs.triggers.destroy' => $client->buildConfigTriggers()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
                 deployTrigger: self::stringPath($path, 'deployTrigger'),
                 query: $query,
             ),
-            'projects.deploy-triggers.index' => $client->deployTriggers()->list(
+            'projects.build-configs.triggers.index' => $client->buildConfigTriggers()->list(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
                 query: $query,
             ),
-            'projects.deploy-triggers.store' => $client->deployTriggers()->create(
+            'projects.build-configs.triggers.store' => $client->buildConfigTriggers()->create(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
-                data: StoreDeployTriggerData::fromArray($data),
+                buildConfig: self::stringPath($path, 'buildConfig'),
+                data: StoreBuildTriggerData::fromArray($data),
                 query: $query,
             ),
-            'projects.deploy-triggers.update' => $client->deployTriggers()->update(
+            'projects.build-configs.triggers.update' => $client->buildConfigTriggers()->update(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
                 deployTrigger: self::stringPath($path, 'deployTrigger'),
-                data: UpdateDeployTriggerData::fromArray($data),
+                data: UpdateBuildTriggerData::fromArray($data),
+                query: $query,
+            ),
+            'projects.build-configs.update' => $client->buildConfigs()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
+                data: UpdateBuildConfigData::fromArray($data),
+                query: $query,
+            ),
+            'projects.build-groups.destroy' => $client->buildGroups()->delete(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildGroup: self::stringPath($path, 'buildGroup'),
+                query: $query,
+            ),
+            'projects.build-groups.store' => $client->buildGroups()->create(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: StoreBuildGroupData::fromArray($data),
+                query: $query,
+            ),
+            'projects.build-groups.update' => $client->buildGroups()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildGroup: self::stringPath($path, 'buildGroup'),
+                data: UpdateBuildGroupData::fromArray($data),
                 query: $query,
             ),
             'projects.deploys.index' => $client->deploys()->list(
