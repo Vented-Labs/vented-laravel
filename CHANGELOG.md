@@ -2,6 +2,11 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.44.0 - 2026-11-18
+
+- Apps without an HTTP probe of their own (PHP-FPM, or HTTP behind an exec probe) get domains through the project's Vented Router: `AppBindingsForAppIndexMeta` gains `routing` (`AppDomainRoutingMeta`: the environment's Router, or the component to add when it has none).
+- `AppConfigurationMeta` gains `option_providers`, the choices for fields that name another resource, and `origins`, a Router's approved URLs. `UpdateAppData` takes `origins`.
+
 ## 0.43.0 - 2026-11-18
 
 - `DomainService` gains `Email` again: a zone lists `email` while the project sends from its domain, and adding or removing it on a zone adds or removes that domain's sending domain in the production environment.

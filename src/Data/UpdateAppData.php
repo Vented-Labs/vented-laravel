@@ -11,11 +11,13 @@ final readonly class UpdateAppData
     /**
      * @param  list<StoreAppBlockStorageAttachmentData>|OptionalValue  $block_storage_attachments
      * @param  array<string, mixed>|OptionalValue  $configuration
+     * @param  list<array<string, mixed>>|OptionalValue  $origins
      */
     public function __construct(
         public array|OptionalValue $block_storage_attachments = OptionalValue::Missing,
         public array|OptionalValue $configuration = OptionalValue::Missing,
         public string|OptionalValue $name = OptionalValue::Missing,
+        public array|OptionalValue $origins = OptionalValue::Missing,
         public string|OptionalValue $version = OptionalValue::Missing,
     ) {}
 
@@ -28,6 +30,7 @@ final readonly class UpdateAppData
             block_storage_attachments: array_key_exists('block_storage_attachments', $data) ? array_map(static fn (mixed $value): StoreAppBlockStorageAttachmentData => StoreAppBlockStorageAttachmentData::fromArray(self::objectValue($value)), self::listValue($data['block_storage_attachments'])) : OptionalValue::Missing,
             configuration: array_key_exists('configuration', $data) ? self::objectValue($data['configuration']) : OptionalValue::Missing,
             name: array_key_exists('name', $data) ? (string) $data['name'] : OptionalValue::Missing,
+            origins: array_key_exists('origins', $data) ? array_map(static fn (mixed $value): array => self::objectValue($value), self::listValue($data['origins'])) : OptionalValue::Missing,
             version: array_key_exists('version', $data) ? (string) $data['version'] : OptionalValue::Missing,
         );
     }
@@ -46,6 +49,9 @@ final readonly class UpdateAppData
         }
         if ($this->name !== OptionalValue::Missing) {
             $data['name'] = $this->name;
+        }
+        if ($this->origins !== OptionalValue::Missing) {
+            $data['origins'] = $this->origins;
         }
         if ($this->version !== OptionalValue::Missing) {
             $data['version'] = $this->version;

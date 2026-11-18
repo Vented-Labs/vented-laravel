@@ -9,6 +9,7 @@ final readonly class AppBindingsForAppIndexMeta
     public function __construct(
         public ?FormOption $current_app,
         public AppBindingsForAppIndexMetaFormOptions $form_options,
+        public ?AppDomainRoutingMeta $routing,
     ) {}
 
     /**
@@ -19,6 +20,7 @@ final readonly class AppBindingsForAppIndexMeta
         return new self(
             current_app: $data['current_app'] === null ? null : FormOption::fromArray(self::objectValue($data['current_app'])),
             form_options: AppBindingsForAppIndexMetaFormOptions::fromArray(self::objectValue($data['form_options'])),
+            routing: $data['routing'] === null ? null : AppDomainRoutingMeta::fromArray(self::objectValue($data['routing'])),
         );
     }
 
@@ -30,6 +32,7 @@ final readonly class AppBindingsForAppIndexMeta
         $data = [];
         $data['current_app'] = $this->current_app === null ? null : $this->current_app->toArray();
         $data['form_options'] = $this->form_options->toArray();
+        $data['routing'] = $this->routing === null ? null : $this->routing->toArray();
 
         return $data;
     }

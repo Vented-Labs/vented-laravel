@@ -55,6 +55,8 @@ it('hydrates configured credential paths without mistaking null placeholders for
         ]],
         'current_configuration' => ['policy' => ['database' => ['password' => null]]],
         'configured_secrets' => ['policy.database.password'],
+        'option_providers' => [],
+        'origins' => null,
     ]);
 
     expect($meta->configured_secrets)->toBe(['policy.database.password'])
