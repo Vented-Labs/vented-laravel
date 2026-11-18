@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.45.0 - 2026-11-18
+
+- Added `LiveSubscriptionData` (`event`, `channels`): Portal's reads name the private channels they follow in `meta.realtime`, for clients that keep a page current over the websocket.
+
 ## 0.44.0 - 2026-11-18
 
 - Apps without an HTTP probe of their own (PHP-FPM, or HTTP behind an exec probe) get domains through the project's Vented Router: `AppBindingsForAppIndexMeta` gains `routing` (`AppDomainRoutingMeta`: the environment's Router, or the component to add when it has none).
