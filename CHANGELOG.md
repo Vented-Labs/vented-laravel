@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.42.0 - 2026-11-18
+
+- `ServiceData` and `ServiceCatalogEntry` drop `beta`: no service is labelled Beta.
+
 ## 0.41.0 - 2026-11-17
 
 - Domain bindings carry TLS: `AppBindingData` gains `tls_mode` (`TlsMode`: AutoTLS or Custom Certificate), `certificate` (`CertificateRef`) and `tls` (`BindingTlsData`: status, reason, expiry, issuer and the actions it allows). Store and update requests take `tls_mode` and `certificate_id`, and `UpdateBindingTlsData` changes or retries one binding's TLS.
