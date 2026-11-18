@@ -8,4 +8,5 @@ enum DomainService: string
 {
     case Dns = 'dns';
     case Web = 'web';
+    case Email = 'email';
 }

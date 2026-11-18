@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.43.0 - 2026-11-18
+
+- `DomainService` gains `Email` again: a zone lists `email` while the project sends from its domain, and adding or removing it on a zone adds or removes that domain's sending domain in the production environment.
+
 ## 0.42.0 - 2026-11-18
 
 - `ServiceData` and `ServiceCatalogEntry` drop `beta`: no service is labelled Beta.
