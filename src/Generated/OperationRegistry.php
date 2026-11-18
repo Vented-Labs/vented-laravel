@@ -98,9 +98,17 @@ use Vented\Commands\ProjectsDeployTriggersStoreCommand;
 use Vented\Commands\ProjectsDeployTriggersUpdateCommand;
 use Vented\Commands\ProjectsDestroyCommand;
 use Vented\Commands\ProjectsDevelopersIndexCommand;
+use Vented\Commands\ProjectsDnsCertificatesBindingsDestroyCommand;
+use Vented\Commands\ProjectsDnsCertificatesBindingsUpdateCommand;
+use Vented\Commands\ProjectsDnsCertificatesDestroyCommand;
+use Vented\Commands\ProjectsDnsCertificatesIndexCommand;
+use Vented\Commands\ProjectsDnsCertificatesShowCommand;
+use Vented\Commands\ProjectsDnsCertificatesStoreCommand;
+use Vented\Commands\ProjectsDnsCertificatesUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsDestroyCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsIndexCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsStoreCommand;
+use Vented\Commands\ProjectsDnsZonesBindingsTlsUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesDestroyCommand;
 use Vented\Commands\ProjectsDnsZonesExportCommand;
@@ -183,6 +191,7 @@ use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsDestroyCommand;
 use Vented\Commands\ProjectsTunnelsIndexCommand;
+use Vented\Commands\ProjectsTunnelsPublicAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsShowCommand;
 use Vented\Commands\ProjectsTunnelsStartCommand;
 use Vented\Commands\ProjectsTunnelsStopCommand;
@@ -1230,6 +1239,83 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
+        'projects.dns.certificates.bindings.destroy' => [
+            'operationId' => 'projects.dns.certificates.bindings.destroy',
+            'resource' => 'dnsCertificateBindings',
+            'action' => 'delete',
+            'commandName' => 'vented:dns-certificate-bindings:delete',
+            'commandClass' => ProjectsDnsCertificatesBindingsDestroyCommand::class,
+            'pathParameters' => ['project', 'certificate', 'binding'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.bindings.update' => [
+            'operationId' => 'projects.dns.certificates.bindings.update',
+            'resource' => 'dnsCertificateBindings',
+            'action' => 'update',
+            'commandName' => 'vented:dns-certificate-bindings:update',
+            'commandClass' => ProjectsDnsCertificatesBindingsUpdateCommand::class,
+            'pathParameters' => ['project', 'certificate', 'binding'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.destroy' => [
+            'operationId' => 'projects.dns.certificates.destroy',
+            'resource' => 'dnsCertificates',
+            'action' => 'delete',
+            'commandName' => 'vented:dns-certificates:delete',
+            'commandClass' => ProjectsDnsCertificatesDestroyCommand::class,
+            'pathParameters' => ['project', 'certificate'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.index' => [
+            'operationId' => 'projects.dns.certificates.index',
+            'resource' => 'dnsCertificates',
+            'action' => 'list',
+            'commandName' => 'vented:dns-certificates:list',
+            'commandClass' => ProjectsDnsCertificatesIndexCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.show' => [
+            'operationId' => 'projects.dns.certificates.show',
+            'resource' => 'dnsCertificates',
+            'action' => 'find',
+            'commandName' => 'vented:dns-certificates:show',
+            'commandClass' => ProjectsDnsCertificatesShowCommand::class,
+            'pathParameters' => ['project', 'certificate'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.store' => [
+            'operationId' => 'projects.dns.certificates.store',
+            'resource' => 'dnsCertificates',
+            'action' => 'create',
+            'commandName' => 'vented:dns-certificates:create',
+            'commandClass' => ProjectsDnsCertificatesStoreCommand::class,
+            'pathParameters' => ['project'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.dns.certificates.update' => [
+            'operationId' => 'projects.dns.certificates.update',
+            'resource' => 'dnsCertificates',
+            'action' => 'update',
+            'commandName' => 'vented:dns-certificates:update',
+            'commandClass' => ProjectsDnsCertificatesUpdateCommand::class,
+            'pathParameters' => ['project', 'certificate'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'projects.dns.zones.bindings.destroy' => [
             'operationId' => 'projects.dns.zones.bindings.destroy',
             'resource' => 'dnsZoneBindings',
@@ -1259,6 +1345,17 @@ final class OperationRegistry
             'commandName' => 'vented:dns-zone-bindings:create',
             'commandClass' => ProjectsDnsZonesBindingsStoreCommand::class,
             'pathParameters' => ['project', 'zone'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.dns.zones.bindings.tls.update' => [
+            'operationId' => 'projects.dns.zones.bindings.tls.update',
+            'resource' => 'dnsZoneBindingTls',
+            'action' => 'update',
+            'commandName' => 'vented:dns-zone-binding-tls:update',
+            'commandClass' => ProjectsDnsZonesBindingsTlsUpdateCommand::class,
+            'pathParameters' => ['project', 'zone', 'binding'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
@@ -2161,6 +2258,17 @@ final class OperationRegistry
             'commandName' => 'vented:tunnels:list',
             'commandClass' => ProjectsTunnelsIndexCommand::class,
             'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.public-agent-setup' => [
+            'operationId' => 'projects.tunnels.public-agent-setup',
+            'resource' => 'tunnels',
+            'action' => 'publicAgentSetup',
+            'commandName' => 'vented:tunnels:public-agent-setup',
+            'commandClass' => ProjectsTunnelsPublicAgentSetupCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
             'hasBody' => false,
             'destructive' => false,
             'binary' => false,

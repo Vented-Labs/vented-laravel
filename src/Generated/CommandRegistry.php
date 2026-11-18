@@ -98,9 +98,17 @@ use Vented\Commands\ProjectsDeployTriggersStoreCommand;
 use Vented\Commands\ProjectsDeployTriggersUpdateCommand;
 use Vented\Commands\ProjectsDestroyCommand;
 use Vented\Commands\ProjectsDevelopersIndexCommand;
+use Vented\Commands\ProjectsDnsCertificatesBindingsDestroyCommand;
+use Vented\Commands\ProjectsDnsCertificatesBindingsUpdateCommand;
+use Vented\Commands\ProjectsDnsCertificatesDestroyCommand;
+use Vented\Commands\ProjectsDnsCertificatesIndexCommand;
+use Vented\Commands\ProjectsDnsCertificatesShowCommand;
+use Vented\Commands\ProjectsDnsCertificatesStoreCommand;
+use Vented\Commands\ProjectsDnsCertificatesUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsDestroyCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsIndexCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsStoreCommand;
+use Vented\Commands\ProjectsDnsZonesBindingsTlsUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesBindingsUpdateCommand;
 use Vented\Commands\ProjectsDnsZonesDestroyCommand;
 use Vented\Commands\ProjectsDnsZonesExportCommand;
@@ -183,6 +191,7 @@ use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsDestroyCommand;
 use Vented\Commands\ProjectsTunnelsIndexCommand;
+use Vented\Commands\ProjectsTunnelsPublicAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsShowCommand;
 use Vented\Commands\ProjectsTunnelsStartCommand;
 use Vented\Commands\ProjectsTunnelsStopCommand;
@@ -300,9 +309,17 @@ final class CommandRegistry
         ProjectsDeploysStoreCommand::class,
         ProjectsDestroyCommand::class,
         ProjectsDevelopersIndexCommand::class,
+        ProjectsDnsCertificatesBindingsDestroyCommand::class,
+        ProjectsDnsCertificatesBindingsUpdateCommand::class,
+        ProjectsDnsCertificatesDestroyCommand::class,
+        ProjectsDnsCertificatesIndexCommand::class,
+        ProjectsDnsCertificatesShowCommand::class,
+        ProjectsDnsCertificatesStoreCommand::class,
+        ProjectsDnsCertificatesUpdateCommand::class,
         ProjectsDnsZonesBindingsDestroyCommand::class,
         ProjectsDnsZonesBindingsIndexCommand::class,
         ProjectsDnsZonesBindingsStoreCommand::class,
+        ProjectsDnsZonesBindingsTlsUpdateCommand::class,
         ProjectsDnsZonesBindingsUpdateCommand::class,
         ProjectsDnsZonesDestroyCommand::class,
         ProjectsDnsZonesExportCommand::class,
@@ -385,6 +402,7 @@ final class CommandRegistry
         ProjectsTunnelsAgentSetupCommand::class,
         ProjectsTunnelsDestroyCommand::class,
         ProjectsTunnelsIndexCommand::class,
+        ProjectsTunnelsPublicAgentSetupCommand::class,
         ProjectsTunnelsShowCommand::class,
         ProjectsTunnelsStartCommand::class,
         ProjectsTunnelsStopCommand::class,

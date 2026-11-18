@@ -2,6 +2,13 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.41.0 - 2026-11-17
+
+- Domain bindings carry TLS: `AppBindingData` gains `tls_mode` (`TlsMode`: AutoTLS or Custom Certificate), `certificate` (`CertificateRef`) and `tls` (`BindingTlsData`: status, reason, expiry, issuer and the actions it allows). Store and update requests take `tls_mode` and `certificate_id`, and `UpdateBindingTlsData` changes or retries one binding's TLS.
+- Project certificates (`CertificateData`, with the parsed common name, organisations, issuer, serial number, signature algorithm, key size, `chain` of `CertificateChainEntry` and `expiry_tone`) can be listed, uploaded with `StoreCertificateData` (the private key is sent once and never returned), shown with `CertificateShowMeta` (the domains each covers, as `CertificateDomainData`), renamed or replaced with `UpdateCertificateData`, deleted, and installed on or removed from a binding.
+- DNS record writes return `DnsRecordWriteMeta` with `warnings`, such as a CAA set that blocks AutoTLS for bound hostnames.
+- Public tunnels: `TunnelData` gains `hostnames`, the tunnel availability reasons gain `gateway`, and a public tunnel's agent setup (`TunnelPublicAgentSetupData`) names the shared gateway.
+
 ## 0.40.0 - 2026-11-15
 
 - Added `buckets()` to list, create, read and delete Vented Object Storage buckets (`list`, `create` with `StoreServiceData`, `find`, `delete`) and `bucketAccess()->list()` for a bucket's bindings, with `BucketsIndexMeta` and the `vented:buckets:*` commands. Each bucket's endpoint is read through `services()->outputs()`; apps receive keys through bindings.

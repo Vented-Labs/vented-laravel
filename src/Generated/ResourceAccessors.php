@@ -34,7 +34,10 @@ use Vented\Resources\BucketsResource;
 use Vented\Resources\DeploysResource;
 use Vented\Resources\DeployTriggersResource;
 use Vented\Resources\DevelopersResource;
+use Vented\Resources\DnsCertificateBindingsResource;
+use Vented\Resources\DnsCertificatesResource;
 use Vented\Resources\DnsZoneBindingsResource;
+use Vented\Resources\DnsZoneBindingTlsResource;
 use Vented\Resources\DnsZoneRecordsResource;
 use Vented\Resources\DnsZonesResource;
 use Vented\Resources\EmailDomainAccessResource;
@@ -232,6 +235,21 @@ trait ResourceAccessors
     public function developers(): DevelopersResource
     {
         return new DevelopersResource($this);
+    }
+
+    public function dnsCertificateBindings(): DnsCertificateBindingsResource
+    {
+        return new DnsCertificateBindingsResource($this);
+    }
+
+    public function dnsCertificates(): DnsCertificatesResource
+    {
+        return new DnsCertificatesResource($this);
+    }
+
+    public function dnsZoneBindingTls(): DnsZoneBindingTlsResource
+    {
+        return new DnsZoneBindingTlsResource($this);
     }
 
     public function dnsZoneBindings(): DnsZoneBindingsResource

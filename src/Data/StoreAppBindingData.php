@@ -6,16 +6,19 @@ namespace Vented\Data;
 
 use Vented\Enums\BindableType;
 use Vented\Enums\PortType;
+use Vented\Enums\TlsMode;
 
 final readonly class StoreAppBindingData
 {
     public function __construct(
         public string $bindable_id,
         public BindableType $bindable_type,
+        public ?string $certificate_id,
         public string $environment_id,
         public string $hostname,
         public ?int $port,
         public PortType $port_type,
+        public TlsMode $tls_mode,
     ) {}
 
     /**
@@ -26,10 +29,12 @@ final readonly class StoreAppBindingData
         return new self(
             bindable_id: (string) $data['bindable_id'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            certificate_id: $data['certificate_id'] === null ? null : (string) $data['certificate_id'],
             environment_id: (string) $data['environment_id'],
             hostname: (string) $data['hostname'],
             port: $data['port'] === null ? null : (int) $data['port'],
             port_type: PortType::from((string) $data['port_type']),
+            tls_mode: TlsMode::from((string) $data['tls_mode']),
         );
     }
 
@@ -41,10 +46,12 @@ final readonly class StoreAppBindingData
         $data = [];
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['certificate_id'] = $this->certificate_id === null ? null : $this->certificate_id;
         $data['environment_id'] = $this->environment_id;
         $data['hostname'] = $this->hostname;
         $data['port'] = $this->port === null ? null : $this->port;
         $data['port_type'] = $this->port_type->value;
+        $data['tls_mode'] = $this->tls_mode->value;
 
         return $data;
     }

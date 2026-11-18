@@ -6,6 +6,8 @@ namespace Vented\Data;
 
 use Vented\Enums\BindableType;
 use Vented\Enums\PortType;
+use Vented\Enums\TlsMode;
+use Vented\OptionalValue;
 
 final readonly class UpdateAppBindingData
 {
@@ -16,6 +18,8 @@ final readonly class UpdateAppBindingData
         public string $hostname,
         public ?int $port,
         public PortType $port_type,
+        public string|null|OptionalValue $certificate_id = OptionalValue::Missing,
+        public TlsMode|OptionalValue $tls_mode = OptionalValue::Missing,
     ) {}
 
     /**
@@ -30,6 +34,8 @@ final readonly class UpdateAppBindingData
             hostname: (string) $data['hostname'],
             port: $data['port'] === null ? null : (int) $data['port'],
             port_type: PortType::from((string) $data['port_type']),
+            certificate_id: array_key_exists('certificate_id', $data) ? $data['certificate_id'] === null ? null : (string) $data['certificate_id'] : OptionalValue::Missing,
+            tls_mode: array_key_exists('tls_mode', $data) ? TlsMode::from((string) $data['tls_mode']) : OptionalValue::Missing,
         );
     }
 
@@ -45,6 +51,12 @@ final readonly class UpdateAppBindingData
         $data['hostname'] = $this->hostname;
         $data['port'] = $this->port === null ? null : $this->port;
         $data['port_type'] = $this->port_type->value;
+        if ($this->certificate_id !== OptionalValue::Missing) {
+            $data['certificate_id'] = $this->certificate_id === null ? null : $this->certificate_id;
+        }
+        if ($this->tls_mode !== OptionalValue::Missing) {
+            $data['tls_mode'] = $this->tls_mode->value;
+        }
 
         return $data;
     }

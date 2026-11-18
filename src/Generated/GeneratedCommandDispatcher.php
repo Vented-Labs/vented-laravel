@@ -15,6 +15,7 @@ use Vented\Data\StoreAppData;
 use Vented\Data\StoreBackupData;
 use Vented\Data\StoreBindingData;
 use Vented\Data\StoreBlockStorageData;
+use Vented\Data\StoreCertificateData;
 use Vented\Data\StoreDeployData;
 use Vented\Data\StoreDeployTriggerData;
 use Vented\Data\StoreEnvironmentSshKeyData;
@@ -43,6 +44,8 @@ use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
 use Vented\Data\UpdateBackupSettingsData;
 use Vented\Data\UpdateBindingPurposeData;
+use Vented\Data\UpdateBindingTlsData;
+use Vented\Data\UpdateCertificateData;
 use Vented\Data\UpdateDeployTriggerData;
 use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateFileData;
@@ -541,6 +544,43 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
+            'projects.dns.certificates.bindings.destroy' => $client->dnsCertificateBindings()->delete(
+                project: self::stringPath($path, 'project'),
+                certificate: self::stringPath($path, 'certificate'),
+                binding: self::stringPath($path, 'binding'),
+                query: $query,
+            ),
+            'projects.dns.certificates.bindings.update' => $client->dnsCertificateBindings()->update(
+                project: self::stringPath($path, 'project'),
+                certificate: self::stringPath($path, 'certificate'),
+                binding: self::stringPath($path, 'binding'),
+                query: $query,
+            ),
+            'projects.dns.certificates.destroy' => $client->dnsCertificates()->delete(
+                project: self::stringPath($path, 'project'),
+                certificate: self::stringPath($path, 'certificate'),
+                query: $query,
+            ),
+            'projects.dns.certificates.index' => $client->dnsCertificates()->list(
+                project: self::stringPath($path, 'project'),
+                query: $query,
+            ),
+            'projects.dns.certificates.show' => $client->dnsCertificates()->find(
+                project: self::stringPath($path, 'project'),
+                certificate: self::stringPath($path, 'certificate'),
+                query: $query,
+            ),
+            'projects.dns.certificates.store' => $client->dnsCertificates()->create(
+                project: self::stringPath($path, 'project'),
+                data: StoreCertificateData::fromArray($data),
+                query: $query,
+            ),
+            'projects.dns.certificates.update' => $client->dnsCertificates()->update(
+                project: self::stringPath($path, 'project'),
+                certificate: self::stringPath($path, 'certificate'),
+                data: UpdateCertificateData::fromArray($data),
+                query: $query,
+            ),
             'projects.dns.zones.bindings.destroy' => $client->dnsZoneBindings()->delete(
                 project: self::stringPath($path, 'project'),
                 zone: self::stringPath($path, 'zone'),
@@ -556,6 +596,13 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 zone: self::stringPath($path, 'zone'),
                 data: StoreAppBindingData::fromArray($data),
+                query: $query,
+            ),
+            'projects.dns.zones.bindings.tls.update' => $client->dnsZoneBindingTls()->update(
+                project: self::stringPath($path, 'project'),
+                zone: self::stringPath($path, 'zone'),
+                binding: self::stringPath($path, 'binding'),
+                data: UpdateBindingTlsData::fromArray($data),
                 query: $query,
             ),
             'projects.dns.zones.bindings.update' => $client->dnsZoneBindings()->update(
@@ -1034,6 +1081,12 @@ final class GeneratedCommandDispatcher
             'projects.tunnels.index' => $client->tunnels()->list(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.tunnels.public-agent-setup' => $client->tunnels()->publicAgentSetup(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
                 query: $query,
             ),
             'projects.tunnels.show' => $client->tunnels()->find(

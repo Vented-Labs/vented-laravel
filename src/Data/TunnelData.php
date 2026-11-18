@@ -9,6 +9,9 @@ use Vented\Enums\TunnelType;
 
 final readonly class TunnelData
 {
+    /**
+     * @param  list<string>  $hostnames
+     */
     public function __construct(
         public TunnelAccess $access,
         public TunnelActions $actions,
@@ -16,6 +19,7 @@ final readonly class TunnelData
         public string $created_at,
         public ?string $endpoint,
         public ?string $expires_at,
+        public array $hostnames,
         public string $id,
         public string $name,
         public ?int $port,
@@ -38,6 +42,7 @@ final readonly class TunnelData
             created_at: (string) $data['created_at'],
             endpoint: $data['endpoint'] === null ? null : (string) $data['endpoint'],
             expires_at: $data['expires_at'] === null ? null : (string) $data['expires_at'],
+            hostnames: array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['hostnames'])),
             id: (string) $data['id'],
             name: (string) $data['name'],
             port: $data['port'] === null ? null : (int) $data['port'],
@@ -61,6 +66,7 @@ final readonly class TunnelData
         $data['created_at'] = $this->created_at;
         $data['endpoint'] = $this->endpoint === null ? null : $this->endpoint;
         $data['expires_at'] = $this->expires_at === null ? null : $this->expires_at;
+        $data['hostnames'] = $this->hostnames;
         $data['id'] = $this->id;
         $data['name'] = $this->name;
         $data['port'] = $this->port === null ? null : $this->port;
@@ -84,5 +90,17 @@ final readonly class TunnelData
 
         /** @var array<string, mixed> $value */
         return $value;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

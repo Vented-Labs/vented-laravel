@@ -9,14 +9,18 @@ final readonly class AppBindingsIndexMetaFormOptions
     /**
      * @param  list<AppBindingsTargetOption>  $apps
      * @param  list<FormOption>  $bindable_types
+     * @param  list<CertificateOption>  $certificates
      * @param  list<FormOption>  $port_types
      * @param  list<AppBindingsTargetOption>  $services
+     * @param  list<FormOption>  $tls_modes
      */
     public function __construct(
         public array $apps,
         public array $bindable_types,
+        public array $certificates,
         public array $port_types,
         public array $services,
+        public array $tls_modes,
     ) {}
 
     /**
@@ -27,8 +31,10 @@ final readonly class AppBindingsIndexMetaFormOptions
         return new self(
             apps: array_map(static fn (mixed $value): AppBindingsTargetOption => AppBindingsTargetOption::fromArray(self::objectValue($value)), self::listValue($data['apps'])),
             bindable_types: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['bindable_types'])),
+            certificates: array_map(static fn (mixed $value): CertificateOption => CertificateOption::fromArray(self::objectValue($value)), self::listValue($data['certificates'])),
             port_types: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['port_types'])),
             services: array_map(static fn (mixed $value): AppBindingsTargetOption => AppBindingsTargetOption::fromArray(self::objectValue($value)), self::listValue($data['services'])),
+            tls_modes: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['tls_modes'])),
         );
     }
 
@@ -40,8 +46,10 @@ final readonly class AppBindingsIndexMetaFormOptions
         $data = [];
         $data['apps'] = array_map(static fn (AppBindingsTargetOption $value) => $value->toArray(), $this->apps);
         $data['bindable_types'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->bindable_types);
+        $data['certificates'] = array_map(static fn (CertificateOption $value) => $value->toArray(), $this->certificates);
         $data['port_types'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->port_types);
         $data['services'] = array_map(static fn (AppBindingsTargetOption $value) => $value->toArray(), $this->services);
+        $data['tls_modes'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->tls_modes);
 
         return $data;
     }

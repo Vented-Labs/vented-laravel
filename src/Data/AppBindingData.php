@@ -6,18 +6,22 @@ namespace Vented\Data;
 
 use Vented\Enums\BindableType;
 use Vented\Enums\PortType;
+use Vented\Enums\TlsMode;
 
 final readonly class AppBindingData
 {
     public function __construct(
         public string $bindable_id,
         public BindableType $bindable_type,
+        public ?CertificateRef $certificate,
         public ?string $dns_target,
         public EnvironmentRef $environment,
         public string $hostname,
         public string $id,
         public ?int $port,
         public PortType $port_type,
+        public BindingTlsData $tls,
+        public TlsMode $tls_mode,
         public string $zone_domain,
         public string $zone_id,
     ) {}
@@ -30,12 +34,15 @@ final readonly class AppBindingData
         return new self(
             bindable_id: (string) $data['bindable_id'],
             bindable_type: BindableType::from((string) $data['bindable_type']),
+            certificate: $data['certificate'] === null ? null : CertificateRef::fromArray(self::objectValue($data['certificate'])),
             dns_target: $data['dns_target'] === null ? null : (string) $data['dns_target'],
             environment: EnvironmentRef::fromArray(self::objectValue($data['environment'])),
             hostname: (string) $data['hostname'],
             id: (string) $data['id'],
             port: $data['port'] === null ? null : (int) $data['port'],
             port_type: PortType::from((string) $data['port_type']),
+            tls: BindingTlsData::fromArray(self::objectValue($data['tls'])),
+            tls_mode: TlsMode::from((string) $data['tls_mode']),
             zone_domain: (string) $data['zone_domain'],
             zone_id: (string) $data['zone_id'],
         );
@@ -49,12 +56,15 @@ final readonly class AppBindingData
         $data = [];
         $data['bindable_id'] = $this->bindable_id;
         $data['bindable_type'] = $this->bindable_type->value;
+        $data['certificate'] = $this->certificate === null ? null : $this->certificate->toArray();
         $data['dns_target'] = $this->dns_target === null ? null : $this->dns_target;
         $data['environment'] = $this->environment->toArray();
         $data['hostname'] = $this->hostname;
         $data['id'] = $this->id;
         $data['port'] = $this->port === null ? null : $this->port;
         $data['port_type'] = $this->port_type->value;
+        $data['tls'] = $this->tls->toArray();
+        $data['tls_mode'] = $this->tls_mode->value;
         $data['zone_domain'] = $this->zone_domain;
         $data['zone_id'] = $this->zone_id;
 
