@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.48.0 - 2026-11-18
+
+- API tokens can be limited to one organization and, inside it, to some projects and environments: `StoreApiTokenData` and `UpdateApiTokenData` take `organization_id`, `project_ids` and `environment_ids`, `ApiTokenData` returns them, and `ApiTokensIndexMeta.reachable` lists what a token can be limited to (`ApiTokenReachableOrganizationData`, `ApiTokenReachableProjectData`). `UpdateApiTokenData.abilities` is optional; leaving it out keeps the token's permissions.
+
 ## 0.47.0 - 2026-11-18
 
 - `ApiTokensResource::current()` returns the token making the request (`ApiTokenData`). Every token can read itself, whatever permissions it holds.

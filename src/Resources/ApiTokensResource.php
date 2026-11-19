@@ -87,7 +87,7 @@ final readonly class ApiTokensResource
     }
 
     /**
-     * Change an API token's permissions
+     * Change an API token's permissions or reach
      *
      * Operation: account.api-tokens.update
      *
