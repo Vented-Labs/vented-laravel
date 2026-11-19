@@ -43,6 +43,7 @@ use Vented\Resources\DnsZoneBindingTlsResource;
 use Vented\Resources\DnsZoneRecordsResource;
 use Vented\Resources\DnsZonesResource;
 use Vented\Resources\EmailDomainAccessResource;
+use Vented\Resources\EmailDomainLogsResource;
 use Vented\Resources\EmailDomainsResource;
 use Vented\Resources\FlowRunsResource;
 use Vented\Resources\FlowsResource;
@@ -282,6 +283,11 @@ trait ResourceAccessors
     public function emailDomainAccess(): EmailDomainAccessResource
     {
         return new EmailDomainAccessResource($this);
+    }
+
+    public function emailDomainLogs(): EmailDomainLogsResource
+    {
+        return new EmailDomainLogsResource($this);
     }
 
     public function emailDomains(): EmailDomainsResource

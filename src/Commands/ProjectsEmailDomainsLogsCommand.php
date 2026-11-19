@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Vented\Commands;
+
+use Vented\Console\GeneratedCommand;
+
+final class ProjectsEmailDomainsLogsCommand extends GeneratedCommand
+{
+    protected $signature = 'vented:email-domain-logs:list {project : project path parameter} {environment : environment path parameter} {sendingDomain : sendingDomain path parameter} {--query=* : Query parameter in key=value form (repeatable)} {--json : Print the raw JSON response}';
+
+    protected $description = 'List the emails sent through a sending domain';
+
+    protected function operationId(): string
+    {
+        return 'projects.email.domains.logs';
+    }
+}

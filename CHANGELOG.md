@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.49.0 - 2026-11-19
+
+- Sending domains show what they sent: the domain's logs endpoint lists its emails (`EmailMessageData`: subject, recipients, the app that sent it as `EmailMessageAppData`, time and a status of sent, retrying, failed or refused) with `EmailLogsIndexMeta` (windows, statuses, bound apps, availability and retention), and `SendingDomainShowMeta.activity` (`EmailActivityData`, `EmailActivityDayData`, `EmailActivityAppData`) sums up the last two weeks.
+
 ## 0.48.0 - 2026-11-18
 
 - API tokens can be limited to one organization and, inside it, to some projects and environments: `StoreApiTokenData` and `UpdateApiTokenData` take `organization_id`, `project_ids` and `environment_ids`, `ApiTokenData` returns them, and `ApiTokensIndexMeta.reachable` lists what a token can be limited to (`ApiTokenReachableOrganizationData`, `ApiTokenReachableProjectData`). `UpdateApiTokenData.abilities` is optional; leaving it out keeps the token's permissions.

@@ -133,6 +133,7 @@ use Vented\Commands\ProjectsDnsZonesUpdateCommand;
 use Vented\Commands\ProjectsEmailDomainsAccessCommand;
 use Vented\Commands\ProjectsEmailDomainsDestroyCommand;
 use Vented\Commands\ProjectsEmailDomainsIndexCommand;
+use Vented\Commands\ProjectsEmailDomainsLogsCommand;
 use Vented\Commands\ProjectsEmailDomainsShowCommand;
 use Vented\Commands\ProjectsEmailDomainsStoreCommand;
 use Vented\Commands\ProjectsIndexCommand;
@@ -1629,6 +1630,17 @@ final class OperationRegistry
             'commandName' => 'vented:email-domains:list',
             'commandClass' => ProjectsEmailDomainsIndexCommand::class,
             'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.email.domains.logs' => [
+            'operationId' => 'projects.email.domains.logs',
+            'resource' => 'emailDomainLogs',
+            'action' => 'list',
+            'commandName' => 'vented:email-domain-logs:list',
+            'commandClass' => ProjectsEmailDomainsLogsCommand::class,
+            'pathParameters' => ['project', 'environment', 'sendingDomain'],
             'hasBody' => false,
             'destructive' => false,
             'binary' => false,

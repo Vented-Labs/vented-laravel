@@ -10,6 +10,7 @@ final readonly class SendingDomainShowMeta
      * @param  list<BindingData>  $bindings
      */
     public function __construct(
+        public ?EmailActivityData $activity,
         public ?EmailAllowanceData $allowance,
         public array $bindings,
         public bool $can_update,
@@ -23,6 +24,7 @@ final readonly class SendingDomainShowMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            activity: $data['activity'] === null ? null : EmailActivityData::fromArray(self::objectValue($data['activity'])),
             allowance: $data['allowance'] === null ? null : EmailAllowanceData::fromArray(self::objectValue($data['allowance'])),
             bindings: array_map(static fn (mixed $value): BindingData => BindingData::fromArray(self::objectValue($value)), self::listValue($data['bindings'])),
             can_update: (bool) $data['can_update'],
@@ -37,6 +39,7 @@ final readonly class SendingDomainShowMeta
     public function toArray(): array
     {
         $data = [];
+        $data['activity'] = $this->activity === null ? null : $this->activity->toArray();
         $data['allowance'] = $this->allowance === null ? null : $this->allowance->toArray();
         $data['bindings'] = array_map(static fn (BindingData $value) => $value->toArray(), $this->bindings);
         $data['can_update'] = $this->can_update;

@@ -748,6 +748,12 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
+            'projects.email.domains.logs' => $client->emailDomainLogs()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                sendingDomain: self::stringPath($path, 'sendingDomain'),
+                query: $query,
+            ),
             'projects.email.domains.show' => $client->emailDomains()->find(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
