@@ -66,8 +66,6 @@ use Vented\Commands\ProjectsAppsStoreCommand;
 use Vented\Commands\ProjectsAppsTerminalCommand;
 use Vented\Commands\ProjectsAppsUpdateCommand;
 use Vented\Commands\ProjectsBackupsDestroyCommand;
-use Vented\Commands\ProjectsBackupSettingsShowCommand;
-use Vented\Commands\ProjectsBackupSettingsUpdateCommand;
 use Vented\Commands\ProjectsBackupsIndexCommand;
 use Vented\Commands\ProjectsBackupsStoreCommand;
 use Vented\Commands\ProjectsBillingCancellationsStoreCommand;
@@ -183,6 +181,8 @@ use Vented\Commands\ProjectsStacksIndexCommand;
 use Vented\Commands\ProjectsStacksShowCommand;
 use Vented\Commands\ProjectsStacksStoreCommand;
 use Vented\Commands\ProjectsStacksUpdateCommand;
+use Vented\Commands\ProjectsStorageSettingsShowCommand;
+use Vented\Commands\ProjectsStorageSettingsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFileContentsShowCommand;
 use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
@@ -286,8 +286,6 @@ final class CommandRegistry
         ProjectsAppsStoreCommand::class,
         ProjectsAppsTerminalCommand::class,
         ProjectsAppsUpdateCommand::class,
-        ProjectsBackupSettingsShowCommand::class,
-        ProjectsBackupSettingsUpdateCommand::class,
         ProjectsBackupsDestroyCommand::class,
         ProjectsBackupsIndexCommand::class,
         ProjectsBackupsStoreCommand::class,
@@ -404,6 +402,8 @@ final class CommandRegistry
         ProjectsStacksShowCommand::class,
         ProjectsStacksStoreCommand::class,
         ProjectsStacksUpdateCommand::class,
+        ProjectsStorageSettingsShowCommand::class,
+        ProjectsStorageSettingsUpdateCommand::class,
         ProjectsStoragesFileContentsShowCommand::class,
         ProjectsStoragesFileContentsUpdateCommand::class,
         ProjectsStoragesFileTreesIndexCommand::class,

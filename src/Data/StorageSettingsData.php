@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class BackupSettingsShowMeta
+final readonly class StorageSettingsData
 {
     /**
-     * @param  list<SettingsGroup>  $settings_groups
+     * @param  array<string, mixed>  $settings
      */
     public function __construct(
-        public array $settings_groups,
+        public string $id,
+        public string $project_id,
+        public array $settings,
     ) {}
 
     /**
@@ -19,7 +21,9 @@ final readonly class BackupSettingsShowMeta
     public static function fromArray(array $data): self
     {
         return new self(
-            settings_groups: array_map(static fn (mixed $value): SettingsGroup => SettingsGroup::fromArray(self::objectValue($value)), self::listValue($data['settings_groups'])),
+            id: (string) $data['id'],
+            project_id: (string) $data['project_id'],
+            settings: self::objectValue($data['settings']),
         );
     }
 
@@ -29,7 +33,9 @@ final readonly class BackupSettingsShowMeta
     public function toArray(): array
     {
         $data = [];
-        $data['settings_groups'] = array_map(static fn (SettingsGroup $value) => $value->toArray(), $this->settings_groups);
+        $data['id'] = $this->id;
+        $data['project_id'] = $this->project_id;
+        $data['settings'] = $this->settings;
 
         return $data;
     }
@@ -45,17 +51,5 @@ final readonly class BackupSettingsShowMeta
 
         /** @var array<string, mixed> $value */
         return $value;
-    }
-
-    /**
-     * @return list<mixed>
-     */
-    private static function listValue(mixed $value): array
-    {
-        if (! is_array($value)) {
-            throw new \InvalidArgumentException('Expected an array value.');
-        }
-
-        return array_values($value);
     }
 }

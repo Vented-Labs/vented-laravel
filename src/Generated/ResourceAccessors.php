@@ -15,7 +15,6 @@ use Vented\Resources\AppDeployResource;
 use Vented\Resources\AppDomainsResource;
 use Vented\Resources\AppLogsResource;
 use Vented\Resources\AppsResource;
-use Vented\Resources\BackupSettingsResource;
 use Vented\Resources\BackupsResource;
 use Vented\Resources\BillingCancellationsResource;
 use Vented\Resources\BillingChangesResource;
@@ -79,6 +78,7 @@ use Vented\Resources\StorageFilesResource;
 use Vented\Resources\StorageFileTreesResource;
 use Vented\Resources\StorageFileUploadPartsResource;
 use Vented\Resources\StorageFileUploadsResource;
+use Vented\Resources\StorageSettingsResource;
 use Vented\Resources\SupportKbResource;
 use Vented\Resources\SupportPlansResource;
 use Vented\Resources\SupportResource;
@@ -143,11 +143,6 @@ trait ResourceAccessors
     public function apps(): AppsResource
     {
         return new AppsResource($this);
-    }
-
-    public function backupSettings(): BackupSettingsResource
-    {
-        return new BackupSettingsResource($this);
     }
 
     public function backups(): BackupsResource
@@ -463,6 +458,11 @@ trait ResourceAccessors
     public function storageFiles(): StorageFilesResource
     {
         return new StorageFilesResource($this);
+    }
+
+    public function storageSettings(): StorageSettingsResource
+    {
+        return new StorageSettingsResource($this);
     }
 
     public function support(): SupportResource

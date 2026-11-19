@@ -44,7 +44,6 @@ use Vented\Data\UpdateAccountSettingsData;
 use Vented\Data\UpdateApiTokenData;
 use Vented\Data\UpdateAppBindingData;
 use Vented\Data\UpdateAppData;
-use Vented\Data\UpdateBackupSettingsData;
 use Vented\Data\UpdateBindingPurposeData;
 use Vented\Data\UpdateBindingTlsData;
 use Vented\Data\UpdateBuildConfigData;
@@ -66,6 +65,7 @@ use Vented\Data\UpdateProjectSettingsData;
 use Vented\Data\UpdateRecordData;
 use Vented\Data\UpdateReplyData;
 use Vented\Data\UpdateServiceData;
+use Vented\Data\UpdateStorageSettingsData;
 use Vented\Data\UpdateZoneData;
 use Vented\Results\BinaryResult;
 use Vented\Results\CollectionResult;
@@ -366,17 +366,6 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 app: self::stringPath($path, 'app'),
                 data: UpdateAppData::fromArray($data),
-                query: $query,
-            ),
-            'projects.backup-settings.show' => $client->backupSettings()->find(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                query: $query,
-            ),
-            'projects.backup-settings.update' => $client->backupSettings()->update(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                data: UpdateBackupSettingsData::fromArray($data),
                 query: $query,
             ),
             'projects.backups.destroy' => $client->backups()->delete(
@@ -1027,6 +1016,17 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 stack: self::stringPath($path, 'stack'),
                 data: UpdateManagedStackData::fromArray($data),
+                query: $query,
+            ),
+            'projects.storage-settings.show' => $client->storageSettings()->find(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                query: $query,
+            ),
+            'projects.storage-settings.update' => $client->storageSettings()->update(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                data: UpdateStorageSettingsData::fromArray($data),
                 query: $query,
             ),
             'projects.storages.file-contents.show' => $client->storageFileContents()->find(

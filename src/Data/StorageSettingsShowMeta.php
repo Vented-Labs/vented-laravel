@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class UpdateBackupSettingsData
+final readonly class StorageSettingsShowMeta
 {
     /**
-     * @param  array<string, mixed>  $settings
+     * @param  list<SettingsGroup>  $settings_groups
      */
     public function __construct(
-        public array $settings,
+        public array $settings_groups,
     ) {}
 
     /**
@@ -19,7 +19,7 @@ final readonly class UpdateBackupSettingsData
     public static function fromArray(array $data): self
     {
         return new self(
-            settings: self::objectValue($data['settings']),
+            settings_groups: array_map(static fn (mixed $value): SettingsGroup => SettingsGroup::fromArray(self::objectValue($value)), self::listValue($data['settings_groups'])),
         );
     }
 
@@ -29,7 +29,7 @@ final readonly class UpdateBackupSettingsData
     public function toArray(): array
     {
         $data = [];
-        $data['settings'] = $this->settings;
+        $data['settings_groups'] = array_map(static fn (SettingsGroup $value) => $value->toArray(), $this->settings_groups);
 
         return $data;
     }
@@ -45,5 +45,17 @@ final readonly class UpdateBackupSettingsData
 
         /** @var array<string, mixed> $value */
         return $value;
+    }
+
+    /**
+     * @return list<mixed>
+     */
+    private static function listValue(mixed $value): array
+    {
+        if (! is_array($value)) {
+            throw new \InvalidArgumentException('Expected an array value.');
+        }
+
+        return array_values($value);
     }
 }

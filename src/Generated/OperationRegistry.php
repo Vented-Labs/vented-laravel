@@ -66,8 +66,6 @@ use Vented\Commands\ProjectsAppsStoreCommand;
 use Vented\Commands\ProjectsAppsTerminalCommand;
 use Vented\Commands\ProjectsAppsUpdateCommand;
 use Vented\Commands\ProjectsBackupsDestroyCommand;
-use Vented\Commands\ProjectsBackupSettingsShowCommand;
-use Vented\Commands\ProjectsBackupSettingsUpdateCommand;
 use Vented\Commands\ProjectsBackupsIndexCommand;
 use Vented\Commands\ProjectsBackupsStoreCommand;
 use Vented\Commands\ProjectsBillingCancellationsStoreCommand;
@@ -183,6 +181,8 @@ use Vented\Commands\ProjectsStacksIndexCommand;
 use Vented\Commands\ProjectsStacksShowCommand;
 use Vented\Commands\ProjectsStacksStoreCommand;
 use Vented\Commands\ProjectsStacksUpdateCommand;
+use Vented\Commands\ProjectsStorageSettingsShowCommand;
+use Vented\Commands\ProjectsStorageSettingsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFileContentsShowCommand;
 use Vented\Commands\ProjectsStoragesFileContentsUpdateCommand;
 use Vented\Commands\ProjectsStoragesFilesDestroyCommand;
@@ -882,28 +882,6 @@ final class OperationRegistry
             'commandName' => 'vented:apps:update',
             'commandClass' => ProjectsAppsUpdateCommand::class,
             'pathParameters' => ['project', 'environment', 'app'],
-            'hasBody' => true,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.backup-settings.show' => [
-            'operationId' => 'projects.backup-settings.show',
-            'resource' => 'backupSettings',
-            'action' => 'find',
-            'commandName' => 'vented:backup-settings:show',
-            'commandClass' => ProjectsBackupSettingsShowCommand::class,
-            'pathParameters' => ['project', 'environment'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.backup-settings.update' => [
-            'operationId' => 'projects.backup-settings.update',
-            'resource' => 'backupSettings',
-            'action' => 'update',
-            'commandName' => 'vented:backup-settings:update',
-            'commandClass' => ProjectsBackupSettingsUpdateCommand::class,
-            'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,
@@ -2180,6 +2158,28 @@ final class OperationRegistry
             'commandName' => 'vented:stacks:update',
             'commandClass' => ProjectsStacksUpdateCommand::class,
             'pathParameters' => ['project', 'environment', 'stack'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storage-settings.show' => [
+            'operationId' => 'projects.storage-settings.show',
+            'resource' => 'storageSettings',
+            'action' => 'find',
+            'commandName' => 'vented:storage-settings:show',
+            'commandClass' => ProjectsStorageSettingsShowCommand::class,
+            'pathParameters' => ['project', 'environment'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.storage-settings.update' => [
+            'operationId' => 'projects.storage-settings.update',
+            'resource' => 'storageSettings',
+            'action' => 'update',
+            'commandName' => 'vented:storage-settings:update',
+            'commandClass' => ProjectsStorageSettingsUpdateCommand::class,
+            'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

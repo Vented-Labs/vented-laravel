@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
-final readonly class BackupSettingsData
+final readonly class UpdateStorageSettingsData
 {
     /**
      * @param  array<string, mixed>  $settings
      */
     public function __construct(
-        public string $id,
-        public string $project_id,
         public array $settings,
     ) {}
 
@@ -21,8 +19,6 @@ final readonly class BackupSettingsData
     public static function fromArray(array $data): self
     {
         return new self(
-            id: (string) $data['id'],
-            project_id: (string) $data['project_id'],
             settings: self::objectValue($data['settings']),
         );
     }
@@ -33,8 +29,6 @@ final readonly class BackupSettingsData
     public function toArray(): array
     {
         $data = [];
-        $data['id'] = $this->id;
-        $data['project_id'] = $this->project_id;
         $data['settings'] = $this->settings;
 
         return $data;

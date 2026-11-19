@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.50.0 - 2026-11-19
+
+- Backup settings are now storage settings: `StorageSettingsResource` reads and updates `…/storage-settings` (`StorageSettingsData`, `StorageSettingsShowMeta`, `UpdateStorageSettingsData`) with the `vented:storage-settings:show` and `vented:storage-settings:update` commands. `BackupSettingsResource`, its data classes and commands are removed.
+
 ## 0.49.0 - 2026-11-19
 
 - Sending domains show what they sent: the domain's logs endpoint lists its emails (`EmailMessageData`: subject, recipients, the app that sent it as `EmailMessageAppData`, time and a status of sent, retrying, failed or refused) with `EmailLogsIndexMeta` (windows, statuses, bound apps, availability and retention), and `SendingDomainShowMeta.activity` (`EmailActivityData`, `EmailActivityDayData`, `EmailActivityAppData`) sums up the last two weeks.

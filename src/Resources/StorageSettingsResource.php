@@ -4,53 +4,53 @@ declare(strict_types=1);
 
 namespace Vented\Resources;
 
-use Vented\Data\BackupSettingsData;
-use Vented\Data\UpdateBackupSettingsData;
+use Vented\Data\StorageSettingsData;
+use Vented\Data\UpdateStorageSettingsData;
 use Vented\Results\ResourceResult;
 use Vented\Vented;
 
-final readonly class BackupSettingsResource
+final readonly class StorageSettingsResource
 {
     public function __construct(private Vented $client) {}
 
     /**
-     * Read backup settings
+     * Read storage settings
      *
-     * Operation: projects.backup-settings.show
+     * Operation: projects.storage-settings.show
      *
      * @param  array<string, mixed>  $query
-     * @return ResourceResult<BackupSettingsData>
+     * @return ResourceResult<StorageSettingsData>
      */
     public function find(string $project, string $environment, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/backup-settings')
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/storage-settings')
             ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withQuery($query);
 
-        return $operation->resource(static fn (array $resource): BackupSettingsData => BackupSettingsData::fromArray(self::attributes($resource, true)));
+        return $operation->resource(static fn (array $resource): StorageSettingsData => StorageSettingsData::fromArray(self::attributes($resource, true)));
     }
 
     /**
-     * Update backup settings
+     * Update storage settings
      *
-     * Operation: projects.backup-settings.update
+     * Operation: projects.storage-settings.update
      *
      * @param  array<string, mixed>  $query
-     * @return ResourceResult<BackupSettingsData>
+     * @return ResourceResult<StorageSettingsData>
      */
-    public function update(string $project, string $environment, UpdateBackupSettingsData $data, array $query = []): ResourceResult
+    public function update(string $project, string $environment, UpdateStorageSettingsData $data, array $query = []): ResourceResult
     {
-        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/backup-settings')
+        $operation = $this->client->operation('PATCH', '/projects/{project}/{environment}/storage-settings')
             ->withPathParameters(['project' => $project, 'environment' => $environment])
             ->withBody([
                 'data' => [
-                    'type' => 'backup_settings',
+                    'type' => 'storage_settings',
                     'attributes' => $data->toArray(),
                 ],
             ])
             ->withQuery($query);
 
-        return $operation->resource(static fn (array $resource): BackupSettingsData => BackupSettingsData::fromArray(self::attributes($resource, true)));
+        return $operation->resource(static fn (array $resource): StorageSettingsData => StorageSettingsData::fromArray(self::attributes($resource, true)));
     }
 
     /**
