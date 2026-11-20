@@ -9,6 +9,7 @@ use Vented\Resources\AccountInvoicesResource;
 use Vented\Resources\AccountResource;
 use Vented\Resources\AccountSettingsResource;
 use Vented\Resources\AccountSshKeysResource;
+use Vented\Resources\AiAgentsResource;
 use Vented\Resources\ApiTokensResource;
 use Vented\Resources\AppBindingsResource;
 use Vented\Resources\AppDeployResource;
@@ -113,6 +114,11 @@ trait ResourceAccessors
     public function accountSshKeys(): AccountSshKeysResource
     {
         return new AccountSshKeysResource($this);
+    }
+
+    public function aiAgents(): AiAgentsResource
+    {
+        return new AiAgentsResource($this);
     }
 
     public function apiTokens(): ApiTokensResource

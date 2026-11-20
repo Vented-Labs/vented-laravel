@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.52.0 - 2026-11-20
+
+- `AiAgentsResource::list()` lists the AI agents connected over MCP (`AiAgentConnectionData`), with the approval requests waiting in `AiAgentsIndexMeta.approvals`, each carrying the `url` to decide it in the browser.
+
 ## 0.51.0 - 2026-11-20
 
 - `ProjectsHomeMeta` gains `ai_agents`, the number of AI agents the person has connected over MCP.

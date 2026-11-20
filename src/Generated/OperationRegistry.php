@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Generated;
 
 use Illuminate\Console\Command;
+use Vented\Commands\AccountAiAgentsIndexCommand;
 use Vented\Commands\AccountApiTokensCurrentCommand;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
@@ -226,6 +227,17 @@ final class OperationRegistry
 {
     /** @var array<string, array{operationId: string, resource: string, action: string, commandName: string, commandClass: class-string<Command>, pathParameters: list<string>, hasBody: bool, destructive: bool, binary: bool}> */
     public const OPERATIONS = [
+        'account.ai-agents.index' => [
+            'operationId' => 'account.ai-agents.index',
+            'resource' => 'aiAgents',
+            'action' => 'list',
+            'commandName' => 'vented:ai-agents:list',
+            'commandClass' => AccountAiAgentsIndexCommand::class,
+            'pathParameters' => [],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
         'account.api-tokens.current' => [
             'operationId' => 'account.api-tokens.current',
             'resource' => 'apiTokens',

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Generated;
 
 use Illuminate\Console\Command;
+use Vented\Commands\AccountAiAgentsIndexCommand;
 use Vented\Commands\AccountApiTokensCurrentCommand;
 use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
@@ -226,6 +227,7 @@ final class CommandRegistry
 {
     /** @var list<class-string<Command>> */
     public const COMMANDS = [
+        AccountAiAgentsIndexCommand::class,
         AccountApiTokensCurrentCommand::class,
         AccountApiTokensDestroyCommand::class,
         AccountApiTokensIndexCommand::class,
