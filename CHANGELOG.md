@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.51.0 - 2026-11-20
+
+- `ProjectsHomeMeta` gains `ai_agents`, the number of AI agents the person has connected over MCP.
+
 ## 0.50.0 - 2026-11-19
 
 - Backup settings are now storage settings: `StorageSettingsResource` reads and updates `…/storage-settings` (`StorageSettingsData`, `StorageSettingsShowMeta`, `UpdateStorageSettingsData`) with the `vented:storage-settings:show` and `vented:storage-settings:update` commands. `BackupSettingsResource`, its data classes and commands are removed.

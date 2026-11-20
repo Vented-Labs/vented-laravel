@@ -10,6 +10,7 @@ final readonly class ProjectsHomeMeta
      * @param  list<DashboardProjectData>  $projects
      */
     public function __construct(
+        public int $ai_agents,
         public GettingStartedData $getting_started,
         public string $greeting,
         public array $projects,
@@ -22,6 +23,7 @@ final readonly class ProjectsHomeMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            ai_agents: (int) $data['ai_agents'],
             getting_started: GettingStartedData::fromArray(self::objectValue($data['getting_started'])),
             greeting: (string) $data['greeting'],
             projects: array_map(static fn (mixed $value): DashboardProjectData => DashboardProjectData::fromArray(self::objectValue($value)), self::listValue($data['projects'])),
@@ -35,6 +37,7 @@ final readonly class ProjectsHomeMeta
     public function toArray(): array
     {
         $data = [];
+        $data['ai_agents'] = $this->ai_agents;
         $data['getting_started'] = $this->getting_started->toArray();
         $data['greeting'] = $this->greeting;
         $data['projects'] = array_map(static fn (DashboardProjectData $value) => $value->toArray(), $this->projects);
