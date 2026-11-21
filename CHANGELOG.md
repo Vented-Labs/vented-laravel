@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.53.0 - 2026-11-20
+
+- Phones can approve agent requests: `ApprovalDevicesResource` enrolls a phone's public key (`StoreApprovalDeviceData`, returning the code to show in `ApprovalDeviceStoreMeta.confirmation_code`), shows it (`ApprovalDeviceData`, with `confirm_url` until its owner confirms it in the browser) and removes it, and `ApprovalDeviceDecisionsResource::create()` sends a signed decision (`ApprovalDecisionData`). `AiAgentsIndexMeta` gains `devices`.
+
 ## 0.52.0 - 2026-11-20
 
 - `AiAgentsResource::list()` lists the AI agents connected over MCP (`AiAgentConnectionData`), with the approval requests waiting in `AiAgentsIndexMeta.approvals`, each carrying the `url` to decide it in the browser.

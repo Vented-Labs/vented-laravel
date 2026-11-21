@@ -15,6 +15,8 @@ use Vented\Resources\AppBindingsResource;
 use Vented\Resources\AppDeployResource;
 use Vented\Resources\AppDomainsResource;
 use Vented\Resources\AppLogsResource;
+use Vented\Resources\ApprovalDeviceDecisionsResource;
+use Vented\Resources\ApprovalDevicesResource;
 use Vented\Resources\AppsResource;
 use Vented\Resources\BackupsResource;
 use Vented\Resources\BillingCancellationsResource;
@@ -144,6 +146,16 @@ trait ResourceAccessors
     public function appLogs(): AppLogsResource
     {
         return new AppLogsResource($this);
+    }
+
+    public function approvalDeviceDecisions(): ApprovalDeviceDecisionsResource
+    {
+        return new ApprovalDeviceDecisionsResource($this);
+    }
+
+    public function approvalDevices(): ApprovalDevicesResource
+    {
+        return new ApprovalDevicesResource($this);
     }
 
     public function apps(): AppsResource

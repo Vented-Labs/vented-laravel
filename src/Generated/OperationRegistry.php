@@ -11,6 +11,10 @@ use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountApiTokensUpdateCommand;
+use Vented\Commands\AccountApprovalDevicesDecisionsStoreCommand;
+use Vented\Commands\AccountApprovalDevicesDestroyCommand;
+use Vented\Commands\AccountApprovalDevicesShowCommand;
+use Vented\Commands\AccountApprovalDevicesStoreCommand;
 use Vented\Commands\AccountFlowsDestroyCommand;
 use Vented\Commands\AccountFlowsRunsStoreCommand;
 use Vented\Commands\AccountFlowsShowCommand;
@@ -289,6 +293,50 @@ final class OperationRegistry
             'commandName' => 'vented:api-tokens:update',
             'commandClass' => AccountApiTokensUpdateCommand::class,
             'pathParameters' => ['token'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.approval-devices.decisions.store' => [
+            'operationId' => 'account.approval-devices.decisions.store',
+            'resource' => 'approvalDeviceDecisions',
+            'action' => 'create',
+            'commandName' => 'vented:approval-device-decisions:create',
+            'commandClass' => AccountApprovalDevicesDecisionsStoreCommand::class,
+            'pathParameters' => ['device'],
+            'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.approval-devices.destroy' => [
+            'operationId' => 'account.approval-devices.destroy',
+            'resource' => 'approvalDevices',
+            'action' => 'delete',
+            'commandName' => 'vented:approval-devices:delete',
+            'commandClass' => AccountApprovalDevicesDestroyCommand::class,
+            'pathParameters' => ['device'],
+            'hasBody' => false,
+            'destructive' => true,
+            'binary' => false,
+        ],
+        'account.approval-devices.show' => [
+            'operationId' => 'account.approval-devices.show',
+            'resource' => 'approvalDevices',
+            'action' => 'find',
+            'commandName' => 'vented:approval-devices:show',
+            'commandClass' => AccountApprovalDevicesShowCommand::class,
+            'pathParameters' => ['device'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'account.approval-devices.store' => [
+            'operationId' => 'account.approval-devices.store',
+            'resource' => 'approvalDevices',
+            'action' => 'create',
+            'commandName' => 'vented:approval-devices:create',
+            'commandClass' => AccountApprovalDevicesStoreCommand::class,
+            'pathParameters' => [],
             'hasBody' => true,
             'destructive' => false,
             'binary' => false,

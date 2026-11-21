@@ -11,6 +11,10 @@ use Vented\Commands\AccountApiTokensDestroyCommand;
 use Vented\Commands\AccountApiTokensIndexCommand;
 use Vented\Commands\AccountApiTokensStoreCommand;
 use Vented\Commands\AccountApiTokensUpdateCommand;
+use Vented\Commands\AccountApprovalDevicesDecisionsStoreCommand;
+use Vented\Commands\AccountApprovalDevicesDestroyCommand;
+use Vented\Commands\AccountApprovalDevicesShowCommand;
+use Vented\Commands\AccountApprovalDevicesStoreCommand;
 use Vented\Commands\AccountFlowsDestroyCommand;
 use Vented\Commands\AccountFlowsRunsStoreCommand;
 use Vented\Commands\AccountFlowsShowCommand;
@@ -233,6 +237,10 @@ final class CommandRegistry
         AccountApiTokensIndexCommand::class,
         AccountApiTokensStoreCommand::class,
         AccountApiTokensUpdateCommand::class,
+        AccountApprovalDevicesDecisionsStoreCommand::class,
+        AccountApprovalDevicesDestroyCommand::class,
+        AccountApprovalDevicesShowCommand::class,
+        AccountApprovalDevicesStoreCommand::class,
         AccountFlowsDestroyCommand::class,
         AccountFlowsRunsStoreCommand::class,
         AccountFlowsShowCommand::class,

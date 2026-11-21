@@ -9,10 +9,12 @@ final readonly class AiAgentsIndexMeta
     /**
      * @param  list<AgentApprovalData>  $approvals
      * @param  list<array<string, mixed>>  $clients
+     * @param  list<ApprovalDeviceData>  $devices
      */
     public function __construct(
         public array $approvals,
         public array $clients,
+        public array $devices,
         public string $server_url,
     ) {}
 
@@ -24,6 +26,7 @@ final readonly class AiAgentsIndexMeta
         return new self(
             approvals: array_map(static fn (mixed $value): AgentApprovalData => AgentApprovalData::fromArray(self::objectValue($value)), self::listValue($data['approvals'])),
             clients: array_map(static fn (mixed $value): array => self::objectValue($value), self::listValue($data['clients'])),
+            devices: array_map(static fn (mixed $value): ApprovalDeviceData => ApprovalDeviceData::fromArray(self::objectValue($value)), self::listValue($data['devices'])),
             server_url: (string) $data['server_url'],
         );
     }
@@ -36,6 +39,7 @@ final readonly class AiAgentsIndexMeta
         $data = [];
         $data['approvals'] = array_map(static fn (AgentApprovalData $value) => $value->toArray(), $this->approvals);
         $data['clients'] = $this->clients;
+        $data['devices'] = array_map(static fn (ApprovalDeviceData $value) => $value->toArray(), $this->devices);
         $data['server_url'] = $this->server_url;
 
         return $data;

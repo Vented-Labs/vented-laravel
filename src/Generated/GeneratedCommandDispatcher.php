@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vented\Generated;
 
 use Vented\Data\AppLifecycleData;
+use Vented\Data\ApprovalDecisionData;
 use Vented\Data\BindPaymentMethodData;
 use Vented\Data\CancelSubscriptionData;
 use Vented\Data\CommitQuoteData;
@@ -12,6 +13,7 @@ use Vented\Data\CreateQuoteData;
 use Vented\Data\StoreApiTokenData;
 use Vented\Data\StoreAppBindingData;
 use Vented\Data\StoreAppData;
+use Vented\Data\StoreApprovalDeviceData;
 use Vented\Data\StoreBackupData;
 use Vented\Data\StoreBindingData;
 use Vented\Data\StoreBlockStorageData;
@@ -105,6 +107,23 @@ final class GeneratedCommandDispatcher
             'account.api-tokens.update' => $client->apiTokens()->update(
                 token: self::stringPath($path, 'token'),
                 data: UpdateApiTokenData::fromArray($data),
+                query: $query,
+            ),
+            'account.approval-devices.decisions.store' => $client->approvalDeviceDecisions()->create(
+                device: self::stringPath($path, 'device'),
+                data: ApprovalDecisionData::fromArray($data),
+                query: $query,
+            ),
+            'account.approval-devices.destroy' => $client->approvalDevices()->delete(
+                device: self::stringPath($path, 'device'),
+                query: $query,
+            ),
+            'account.approval-devices.show' => $client->approvalDevices()->find(
+                device: self::stringPath($path, 'device'),
+                query: $query,
+            ),
+            'account.approval-devices.store' => $client->approvalDevices()->create(
+                data: StoreApprovalDeviceData::fromArray($data),
                 query: $query,
             ),
             'account.flows.destroy' => $client->flows()->delete(
