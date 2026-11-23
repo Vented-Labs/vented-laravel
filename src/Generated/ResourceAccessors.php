@@ -59,6 +59,7 @@ use Vented\Resources\MembersResource;
 use Vented\Resources\NotificationsResource;
 use Vented\Resources\ObjectStorageBackupsResource;
 use Vented\Resources\ObjectStoragesResource;
+use Vented\Resources\OrganizationGitConnectionsResource;
 use Vented\Resources\OrganizationInvitationsResource;
 use Vented\Resources\OrganizationMembersResource;
 use Vented\Resources\OrganizationSettingsResource;
@@ -368,6 +369,11 @@ trait ResourceAccessors
     public function objectStorages(): ObjectStoragesResource
     {
         return new ObjectStoragesResource($this);
+    }
+
+    public function organizationGitConnections(): OrganizationGitConnectionsResource
+    {
+        return new OrganizationGitConnectionsResource($this);
     }
 
     public function organizationInvitations(): OrganizationInvitationsResource

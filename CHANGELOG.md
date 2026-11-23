@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.55.0 - 2026-11-23
+
+- `OrganizationGitConnectionsResource::list()` lists an organization's git connections (`GitConnectionData`, `GitConnectionsMeta`); sharing and disconnecting stay in the browser. `GitConnectionOption` gains `authorize_url`.
+
 ## 0.54.0 - 2026-11-23
 
 - Build configurations can pick their repository through a git connection shared with the project: `GitConnectionRepositoriesResource` and `GitConnectionBranchesResource` list what a connection reaches (`GitRemoteRepositoryData`, `GitRemoteBranchData`, `GitBrowseMeta.next_cursor`), `StoreBuildConfigData` and `UpdateBuildConfigData` take `git_connection_id` and `repository_id` (and `repository` becomes optional), `BuildConfigData` gains `git_repository` (`GitRepositoryRef`) and `BuildConfigFormOptions` gains `git_connections` (`GitConnectionOption`, with the provider mark in `icon`).

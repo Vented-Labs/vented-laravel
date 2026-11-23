@@ -22,6 +22,7 @@ use Vented\Commands\AccountFlowsUpdateCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\AccountOrganizationsDestroyCommand;
+use Vented\Commands\AccountOrganizationsGitConnectionsIndexCommand;
 use Vented\Commands\AccountOrganizationsIndexCommand;
 use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
@@ -418,6 +419,17 @@ final class OperationRegistry
             'pathParameters' => ['organization'],
             'hasBody' => false,
             'destructive' => true,
+            'binary' => false,
+        ],
+        'account.organizations.git-connections.index' => [
+            'operationId' => 'account.organizations.git-connections.index',
+            'resource' => 'organizationGitConnections',
+            'action' => 'list',
+            'commandName' => 'vented:organization-git-connections:list',
+            'commandClass' => AccountOrganizationsGitConnectionsIndexCommand::class,
+            'pathParameters' => ['organization'],
+            'hasBody' => false,
+            'destructive' => false,
             'binary' => false,
         ],
         'account.organizations.index' => [

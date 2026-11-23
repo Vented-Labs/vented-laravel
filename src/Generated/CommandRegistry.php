@@ -22,6 +22,7 @@ use Vented\Commands\AccountFlowsUpdateCommand;
 use Vented\Commands\AccountGettingStartedShowCommand;
 use Vented\Commands\AccountGettingStartedUpdateCommand;
 use Vented\Commands\AccountOrganizationsDestroyCommand;
+use Vented\Commands\AccountOrganizationsGitConnectionsIndexCommand;
 use Vented\Commands\AccountOrganizationsIndexCommand;
 use Vented\Commands\AccountOrganizationsInvitationsDestroyCommand;
 use Vented\Commands\AccountOrganizationsInvitationsStoreCommand;
@@ -250,6 +251,7 @@ final class CommandRegistry
         AccountGettingStartedShowCommand::class,
         AccountGettingStartedUpdateCommand::class,
         AccountOrganizationsDestroyCommand::class,
+        AccountOrganizationsGitConnectionsIndexCommand::class,
         AccountOrganizationsIndexCommand::class,
         AccountOrganizationsInvitationsDestroyCommand::class,
         AccountOrganizationsInvitationsStoreCommand::class,

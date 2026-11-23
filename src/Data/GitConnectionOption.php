@@ -7,6 +7,7 @@ namespace Vented\Data;
 final readonly class GitConnectionOption
 {
     public function __construct(
+        public ?string $authorize_url,
         public string $host,
         public string $icon,
         public string $label,
@@ -22,6 +23,7 @@ final readonly class GitConnectionOption
     public static function fromArray(array $data): self
     {
         return new self(
+            authorize_url: $data['authorize_url'] === null ? null : (string) $data['authorize_url'],
             host: (string) $data['host'],
             icon: (string) $data['icon'],
             label: (string) $data['label'],
@@ -38,6 +40,7 @@ final readonly class GitConnectionOption
     public function toArray(): array
     {
         $data = [];
+        $data['authorize_url'] = $this->authorize_url === null ? null : $this->authorize_url;
         $data['host'] = $this->host;
         $data['icon'] = $this->icon;
         $data['label'] = $this->label;

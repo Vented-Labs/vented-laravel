@@ -154,6 +154,10 @@ final class GeneratedCommandDispatcher
                 organization: self::stringPath($path, 'organization'),
                 query: $query,
             ),
+            'account.organizations.git-connections.index' => $client->organizationGitConnections()->list(
+                organization: self::stringPath($path, 'organization'),
+                query: $query,
+            ),
             'account.organizations.index' => $client->organizations()->list(
                 query: $query,
             ),
