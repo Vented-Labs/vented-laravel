@@ -13,6 +13,7 @@ final readonly class BuildPresetOption
         public ?string $build_command,
         public DeployType $deploy_type,
         public ?string $health_check_path,
+        public string $icon,
         public ?string $install_command,
         public string $label,
         public ?string $post_release_command,
@@ -29,6 +30,7 @@ final readonly class BuildPresetOption
             build_command: $data['build_command'] === null ? null : (string) $data['build_command'],
             deploy_type: DeployType::from((string) $data['deploy_type']),
             health_check_path: $data['health_check_path'] === null ? null : (string) $data['health_check_path'],
+            icon: (string) $data['icon'],
             install_command: $data['install_command'] === null ? null : (string) $data['install_command'],
             label: (string) $data['label'],
             post_release_command: $data['post_release_command'] === null ? null : (string) $data['post_release_command'],
@@ -46,6 +48,7 @@ final readonly class BuildPresetOption
         $data['build_command'] = $this->build_command === null ? null : $this->build_command;
         $data['deploy_type'] = $this->deploy_type->value;
         $data['health_check_path'] = $this->health_check_path === null ? null : $this->health_check_path;
+        $data['icon'] = $this->icon;
         $data['install_command'] = $this->install_command === null ? null : $this->install_command;
         $data['label'] = $this->label;
         $data['post_release_command'] = $this->post_release_command === null ? null : $this->post_release_command;

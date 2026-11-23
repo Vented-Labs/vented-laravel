@@ -141,6 +141,7 @@ use Vented\Commands\ProjectsEmailDomainsLogsCommand;
 use Vented\Commands\ProjectsEmailDomainsShowCommand;
 use Vented\Commands\ProjectsEmailDomainsStoreCommand;
 use Vented\Commands\ProjectsGitConnectionsBranchesCommand;
+use Vented\Commands\ProjectsGitConnectionsFrameworkCommand;
 use Vented\Commands\ProjectsGitConnectionsRepositoriesCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
@@ -1725,6 +1726,17 @@ final class OperationRegistry
             'action' => 'list',
             'commandName' => 'vented:git-connection-branches:list',
             'commandClass' => ProjectsGitConnectionsBranchesCommand::class,
+            'pathParameters' => ['project', 'gitConnection'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.git-connections.framework' => [
+            'operationId' => 'projects.git-connections.framework',
+            'resource' => 'gitConnections',
+            'action' => 'framework',
+            'commandName' => 'vented:git-connections:framework',
+            'commandClass' => ProjectsGitConnectionsFrameworkCommand::class,
             'pathParameters' => ['project', 'gitConnection'],
             'hasBody' => false,
             'destructive' => false,

@@ -786,6 +786,11 @@ final class GeneratedCommandDispatcher
                 gitConnection: self::stringPath($path, 'gitConnection'),
                 query: $query,
             ),
+            'projects.git-connections.framework' => $client->gitConnections()->framework(
+                project: self::stringPath($path, 'project'),
+                gitConnection: self::stringPath($path, 'gitConnection'),
+                query: $query,
+            ),
             'projects.git-connections.repositories' => $client->gitConnectionRepositories()->list(
                 project: self::stringPath($path, 'project'),
                 gitConnection: self::stringPath($path, 'gitConnection'),
