@@ -144,11 +144,6 @@ use Vented\Commands\ProjectsGitConnectionsBranchesCommand;
 use Vented\Commands\ProjectsGitConnectionsFrameworkCommand;
 use Vented\Commands\ProjectsGitConnectionsRepositoriesCommand;
 use Vented\Commands\ProjectsIndexCommand;
-use Vented\Commands\ProjectsIntegrationsDestroyCommand;
-use Vented\Commands\ProjectsIntegrationsIndexCommand;
-use Vented\Commands\ProjectsIntegrationsShowCommand;
-use Vented\Commands\ProjectsIntegrationsStoreCommand;
-use Vented\Commands\ProjectsIntegrationsUpdateCommand;
 use Vented\Commands\ProjectsMembersDestroyCommand;
 use Vented\Commands\ProjectsMembersIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsDestroyCommand;
@@ -374,11 +369,6 @@ final class CommandRegistry
         ProjectsGitConnectionsFrameworkCommand::class,
         ProjectsGitConnectionsRepositoriesCommand::class,
         ProjectsIndexCommand::class,
-        ProjectsIntegrationsDestroyCommand::class,
-        ProjectsIntegrationsIndexCommand::class,
-        ProjectsIntegrationsShowCommand::class,
-        ProjectsIntegrationsStoreCommand::class,
-        ProjectsIntegrationsUpdateCommand::class,
         ProjectsMembersDestroyCommand::class,
         ProjectsMembersIndexCommand::class,
         ProjectsMembersInvitationsDestroyCommand::class,

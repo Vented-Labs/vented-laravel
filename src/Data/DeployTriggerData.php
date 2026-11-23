@@ -17,7 +17,6 @@ final readonly class DeployTriggerData
         public string $created_at,
         public bool $enabled,
         public string $id,
-        public ?IntegrationRef $integration,
         public string $name,
         public DeployTriggerType $type,
         public ?string $webhook_secret,
@@ -35,7 +34,6 @@ final readonly class DeployTriggerData
             created_at: (string) $data['created_at'],
             enabled: (bool) $data['enabled'],
             id: (string) $data['id'],
-            integration: $data['integration'] === null ? null : IntegrationRef::fromArray(self::objectValue($data['integration'])),
             name: (string) $data['name'],
             type: DeployTriggerType::from((string) $data['type']),
             webhook_secret: $data['webhook_secret'] === null ? null : (string) $data['webhook_secret'],
@@ -54,7 +52,6 @@ final readonly class DeployTriggerData
         $data['created_at'] = $this->created_at;
         $data['enabled'] = $this->enabled;
         $data['id'] = $this->id;
-        $data['integration'] = $this->integration === null ? null : $this->integration->toArray();
         $data['name'] = $this->name;
         $data['type'] = $this->type->value;
         $data['webhook_secret'] = $this->webhook_secret === null ? null : $this->webhook_secret;

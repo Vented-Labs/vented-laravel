@@ -53,7 +53,6 @@ use Vented\Resources\GettingStartedResource;
 use Vented\Resources\GitConnectionBranchesResource;
 use Vented\Resources\GitConnectionRepositoriesResource;
 use Vented\Resources\GitConnectionsResource;
-use Vented\Resources\IntegrationsResource;
 use Vented\Resources\KbSearchResource;
 use Vented\Resources\MemberInvitationsResource;
 use Vented\Resources\MembersResource;
@@ -340,11 +339,6 @@ trait ResourceAccessors
     public function gitConnections(): GitConnectionsResource
     {
         return new GitConnectionsResource($this);
-    }
-
-    public function integrations(): IntegrationsResource
-    {
-        return new IntegrationsResource($this);
     }
 
     public function kbSearch(): KbSearchResource

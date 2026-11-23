@@ -144,11 +144,6 @@ use Vented\Commands\ProjectsGitConnectionsBranchesCommand;
 use Vented\Commands\ProjectsGitConnectionsFrameworkCommand;
 use Vented\Commands\ProjectsGitConnectionsRepositoriesCommand;
 use Vented\Commands\ProjectsIndexCommand;
-use Vented\Commands\ProjectsIntegrationsDestroyCommand;
-use Vented\Commands\ProjectsIntegrationsIndexCommand;
-use Vented\Commands\ProjectsIntegrationsShowCommand;
-use Vented\Commands\ProjectsIntegrationsStoreCommand;
-use Vented\Commands\ProjectsIntegrationsUpdateCommand;
 use Vented\Commands\ProjectsMembersDestroyCommand;
 use Vented\Commands\ProjectsMembersIndexCommand;
 use Vented\Commands\ProjectsMembersInvitationsDestroyCommand;
@@ -1761,61 +1756,6 @@ final class OperationRegistry
             'commandClass' => ProjectsIndexCommand::class,
             'pathParameters' => [],
             'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.integrations.destroy' => [
-            'operationId' => 'projects.integrations.destroy',
-            'resource' => 'integrations',
-            'action' => 'delete',
-            'commandName' => 'vented:integrations:delete',
-            'commandClass' => ProjectsIntegrationsDestroyCommand::class,
-            'pathParameters' => ['project', 'integration'],
-            'hasBody' => false,
-            'destructive' => true,
-            'binary' => false,
-        ],
-        'projects.integrations.index' => [
-            'operationId' => 'projects.integrations.index',
-            'resource' => 'integrations',
-            'action' => 'list',
-            'commandName' => 'vented:integrations:list',
-            'commandClass' => ProjectsIntegrationsIndexCommand::class,
-            'pathParameters' => ['project'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.integrations.show' => [
-            'operationId' => 'projects.integrations.show',
-            'resource' => 'integrations',
-            'action' => 'find',
-            'commandName' => 'vented:integrations:show',
-            'commandClass' => ProjectsIntegrationsShowCommand::class,
-            'pathParameters' => ['project', 'integration'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.integrations.store' => [
-            'operationId' => 'projects.integrations.store',
-            'resource' => 'integrations',
-            'action' => 'create',
-            'commandName' => 'vented:integrations:create',
-            'commandClass' => ProjectsIntegrationsStoreCommand::class,
-            'pathParameters' => ['project'],
-            'hasBody' => true,
-            'destructive' => false,
-            'binary' => false,
-        ],
-        'projects.integrations.update' => [
-            'operationId' => 'projects.integrations.update',
-            'resource' => 'integrations',
-            'action' => 'update',
-            'commandName' => 'vented:integrations:update',
-            'commandClass' => ProjectsIntegrationsUpdateCommand::class,
-            'pathParameters' => ['project', 'integration'],
-            'hasBody' => true,
             'destructive' => false,
             'binary' => false,
         ],

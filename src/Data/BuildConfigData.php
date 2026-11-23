@@ -24,7 +24,6 @@ final readonly class BuildConfigData
         public ?string $health_check_path,
         public string $id,
         public ?string $install_command,
-        public ?IntegrationRef $integration,
         public ?DeployBuildRef $latest_build,
         public string $name,
         public ?string $post_release_command,
@@ -52,7 +51,6 @@ final readonly class BuildConfigData
             health_check_path: $data['health_check_path'] === null ? null : (string) $data['health_check_path'],
             id: (string) $data['id'],
             install_command: $data['install_command'] === null ? null : (string) $data['install_command'],
-            integration: $data['integration'] === null ? null : IntegrationRef::fromArray(self::objectValue($data['integration'])),
             latest_build: $data['latest_build'] === null ? null : DeployBuildRef::fromArray(self::objectValue($data['latest_build'])),
             name: (string) $data['name'],
             post_release_command: $data['post_release_command'] === null ? null : (string) $data['post_release_command'],
@@ -81,7 +79,6 @@ final readonly class BuildConfigData
         $data['health_check_path'] = $this->health_check_path === null ? null : $this->health_check_path;
         $data['id'] = $this->id;
         $data['install_command'] = $this->install_command === null ? null : $this->install_command;
-        $data['integration'] = $this->integration === null ? null : $this->integration->toArray();
         $data['latest_build'] = $this->latest_build === null ? null : $this->latest_build->toArray();
         $data['name'] = $this->name;
         $data['post_release_command'] = $this->post_release_command === null ? null : $this->post_release_command;

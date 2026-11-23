@@ -19,7 +19,6 @@ final readonly class UpdateBuildConfigData
         public string|null|OptionalValue $git_connection_id = OptionalValue::Missing,
         public string|null|OptionalValue $health_check_path = OptionalValue::Missing,
         public string|null|OptionalValue $install_command = OptionalValue::Missing,
-        public string|null|OptionalValue $integration_id = OptionalValue::Missing,
         public string|OptionalValue $name = OptionalValue::Missing,
         public string|null|OptionalValue $post_release_command = OptionalValue::Missing,
         public string|null|OptionalValue $release_command = OptionalValue::Missing,
@@ -44,7 +43,6 @@ final readonly class UpdateBuildConfigData
             git_connection_id: array_key_exists('git_connection_id', $data) ? $data['git_connection_id'] === null ? null : (string) $data['git_connection_id'] : OptionalValue::Missing,
             health_check_path: array_key_exists('health_check_path', $data) ? $data['health_check_path'] === null ? null : (string) $data['health_check_path'] : OptionalValue::Missing,
             install_command: array_key_exists('install_command', $data) ? $data['install_command'] === null ? null : (string) $data['install_command'] : OptionalValue::Missing,
-            integration_id: array_key_exists('integration_id', $data) ? $data['integration_id'] === null ? null : (string) $data['integration_id'] : OptionalValue::Missing,
             name: array_key_exists('name', $data) ? (string) $data['name'] : OptionalValue::Missing,
             post_release_command: array_key_exists('post_release_command', $data) ? $data['post_release_command'] === null ? null : (string) $data['post_release_command'] : OptionalValue::Missing,
             release_command: array_key_exists('release_command', $data) ? $data['release_command'] === null ? null : (string) $data['release_command'] : OptionalValue::Missing,
@@ -87,9 +85,6 @@ final readonly class UpdateBuildConfigData
         }
         if ($this->install_command !== OptionalValue::Missing) {
             $data['install_command'] = $this->install_command === null ? null : $this->install_command;
-        }
-        if ($this->integration_id !== OptionalValue::Missing) {
-            $data['integration_id'] = $this->integration_id === null ? null : $this->integration_id;
         }
         if ($this->name !== OptionalValue::Missing) {
             $data['name'] = $this->name;

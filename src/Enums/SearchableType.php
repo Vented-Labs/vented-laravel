@@ -11,5 +11,4 @@ enum SearchableType: string
     case Storage = 'storage';
     case Member = 'member';
     case Ticket = 'ticket';
-    case Integration = 'integration';
 }

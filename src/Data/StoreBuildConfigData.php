@@ -18,7 +18,6 @@ final readonly class StoreBuildConfigData
         public ?string $git_connection_id,
         public ?string $health_check_path,
         public ?string $install_command,
-        public ?string $integration_id,
         public string $name,
         public ?string $post_release_command,
         public ?string $release_command,
@@ -43,7 +42,6 @@ final readonly class StoreBuildConfigData
             git_connection_id: $data['git_connection_id'] === null ? null : (string) $data['git_connection_id'],
             health_check_path: $data['health_check_path'] === null ? null : (string) $data['health_check_path'],
             install_command: $data['install_command'] === null ? null : (string) $data['install_command'],
-            integration_id: $data['integration_id'] === null ? null : (string) $data['integration_id'],
             name: (string) $data['name'],
             post_release_command: $data['post_release_command'] === null ? null : (string) $data['post_release_command'],
             release_command: $data['release_command'] === null ? null : (string) $data['release_command'],
@@ -69,7 +67,6 @@ final readonly class StoreBuildConfigData
         $data['git_connection_id'] = $this->git_connection_id === null ? null : $this->git_connection_id;
         $data['health_check_path'] = $this->health_check_path === null ? null : $this->health_check_path;
         $data['install_command'] = $this->install_command === null ? null : $this->install_command;
-        $data['integration_id'] = $this->integration_id === null ? null : $this->integration_id;
         $data['name'] = $this->name;
         $data['post_release_command'] = $this->post_release_command === null ? null : $this->post_release_command;
         $data['release_command'] = $this->release_command === null ? null : $this->release_command;

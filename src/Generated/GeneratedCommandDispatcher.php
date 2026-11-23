@@ -25,7 +25,6 @@ use Vented\Data\StoreDeployData;
 use Vented\Data\StoreEnvironmentSshKeyData;
 use Vented\Data\StoreFileData;
 use Vented\Data\StoreFileUploadData;
-use Vented\Data\StoreIntegrationData;
 use Vented\Data\StoreInviteData;
 use Vented\Data\StoreManagedStackCandidatesData;
 use Vented\Data\StoreManagedStackData;
@@ -56,7 +55,6 @@ use Vented\Data\UpdateFileContentData;
 use Vented\Data\UpdateFileData;
 use Vented\Data\UpdateFileUploadData;
 use Vented\Data\UpdateFlowData;
-use Vented\Data\UpdateIntegrationData;
 use Vented\Data\UpdateManagedStackData;
 use Vented\Data\UpdateManagedStackOperationData;
 use Vented\Data\UpdateOnboardingData;
@@ -797,31 +795,6 @@ final class GeneratedCommandDispatcher
                 query: $query,
             ),
             'projects.index' => $client->projects()->list(
-                query: $query,
-            ),
-            'projects.integrations.destroy' => $client->integrations()->delete(
-                project: self::stringPath($path, 'project'),
-                integration: self::stringPath($path, 'integration'),
-                query: $query,
-            ),
-            'projects.integrations.index' => $client->integrations()->list(
-                project: self::stringPath($path, 'project'),
-                query: $query,
-            ),
-            'projects.integrations.show' => $client->integrations()->find(
-                project: self::stringPath($path, 'project'),
-                integration: self::stringPath($path, 'integration'),
-                query: $query,
-            ),
-            'projects.integrations.store' => $client->integrations()->create(
-                project: self::stringPath($path, 'project'),
-                data: StoreIntegrationData::fromArray($data),
-                query: $query,
-            ),
-            'projects.integrations.update' => $client->integrations()->update(
-                project: self::stringPath($path, 'project'),
-                integration: self::stringPath($path, 'integration'),
-                data: UpdateIntegrationData::fromArray($data),
                 query: $query,
             ),
             'projects.members.destroy' => $client->members()->delete(

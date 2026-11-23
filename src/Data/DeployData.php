@@ -20,7 +20,6 @@ final readonly class DeployData
         public ?string $completed_at,
         public string $created_at,
         public string $id,
-        public ?IntegrationRef $integration,
         public ?string $message,
         public ?string $outcome,
         public ?string $ref,
@@ -45,7 +44,6 @@ final readonly class DeployData
             completed_at: $data['completed_at'] === null ? null : (string) $data['completed_at'],
             created_at: (string) $data['created_at'],
             id: (string) $data['id'],
-            integration: $data['integration'] === null ? null : IntegrationRef::fromArray(self::objectValue($data['integration'])),
             message: $data['message'] === null ? null : (string) $data['message'],
             outcome: $data['outcome'] === null ? null : (string) $data['outcome'],
             ref: $data['ref'] === null ? null : (string) $data['ref'],
@@ -71,7 +69,6 @@ final readonly class DeployData
         $data['completed_at'] = $this->completed_at === null ? null : $this->completed_at;
         $data['created_at'] = $this->created_at;
         $data['id'] = $this->id;
-        $data['integration'] = $this->integration === null ? null : $this->integration->toArray();
         $data['message'] = $this->message === null ? null : $this->message;
         $data['outcome'] = $this->outcome === null ? null : $this->outcome;
         $data['ref'] = $this->ref === null ? null : $this->ref;
