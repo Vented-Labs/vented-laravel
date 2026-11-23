@@ -10,6 +10,7 @@ final readonly class GitConnectionsMeta
      * @param  list<FormOption>  $projects
      */
     public function __construct(
+        public ?string $bitbucket_connect_url,
         public bool $can_manage,
         public ?string $github_connect_url,
         public ?string $gitlab_connect_url,
@@ -24,6 +25,7 @@ final readonly class GitConnectionsMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            bitbucket_connect_url: $data['bitbucket_connect_url'] === null ? null : (string) $data['bitbucket_connect_url'],
             can_manage: (bool) $data['can_manage'],
             github_connect_url: $data['github_connect_url'] === null ? null : (string) $data['github_connect_url'],
             gitlab_connect_url: $data['gitlab_connect_url'] === null ? null : (string) $data['gitlab_connect_url'],
@@ -39,6 +41,7 @@ final readonly class GitConnectionsMeta
     public function toArray(): array
     {
         $data = [];
+        $data['bitbucket_connect_url'] = $this->bitbucket_connect_url === null ? null : $this->bitbucket_connect_url;
         $data['can_manage'] = $this->can_manage;
         $data['github_connect_url'] = $this->github_connect_url === null ? null : $this->github_connect_url;
         $data['gitlab_connect_url'] = $this->gitlab_connect_url === null ? null : $this->gitlab_connect_url;

@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.60.0 - 2026-11-23
+
+- `GitConnectionsMeta` gains `bitbucket_connect_url` for connecting Bitbucket Cloud.
+
 ## 0.59.0 - 2026-11-23
 
 - Removed: `IntegrationsResource` and the `projects:integrations:*` commands, with `IntegrationData`, `IntegrationRef` and `IntegrationType`. Portal's project integrations were a pasted token nothing used; git connects through the organization's git connections. `BuildConfigData`, `DeployData` and `DeployTriggerData` lose `integration`, build configuration requests lose `integration_id`, and `DeveloperOverviewData` gains `git_connection_count`.
