@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.58.0 - 2026-11-23
+
+- `PlanCatalogTierData` gains `limits` (`PlanLimitsData`): each plan's CPU, memory, disk, transfer, apps, environments, tunnels, daily emails and backup ceiling as numbers, so nothing parses the display copy in `resources`.
+
 ## 0.57.0 - 2026-11-23
 
 - `GitConnectionData` gains `connect_mode` (the new `GitConnectMode` enum) and `failing_hooks`, and `GitConnectionsMeta` gains `gitlab_connect_url` for connecting GitLab.com.
