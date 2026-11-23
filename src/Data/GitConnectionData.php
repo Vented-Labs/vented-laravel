@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vented\Data;
 
+use Vented\Enums\GitConnectMode;
 use Vented\Enums\GitProvider;
 
 final readonly class GitConnectionData
@@ -14,8 +15,10 @@ final readonly class GitConnectionData
     public function __construct(
         public string $account_name,
         public string $account_type,
+        public GitConnectMode $connect_mode,
         public ?string $connected_by,
         public string $created_at,
+        public int $failing_hooks,
         public string $icon,
         public string $id,
         public ?string $manage_url,
@@ -33,8 +36,10 @@ final readonly class GitConnectionData
         return new self(
             account_name: (string) $data['account_name'],
             account_type: (string) $data['account_type'],
+            connect_mode: GitConnectMode::from((string) $data['connect_mode']),
             connected_by: $data['connected_by'] === null ? null : (string) $data['connected_by'],
             created_at: (string) $data['created_at'],
+            failing_hooks: (int) $data['failing_hooks'],
             icon: (string) $data['icon'],
             id: (string) $data['id'],
             manage_url: $data['manage_url'] === null ? null : (string) $data['manage_url'],
@@ -53,8 +58,10 @@ final readonly class GitConnectionData
         $data = [];
         $data['account_name'] = $this->account_name;
         $data['account_type'] = $this->account_type;
+        $data['connect_mode'] = $this->connect_mode->value;
         $data['connected_by'] = $this->connected_by === null ? null : $this->connected_by;
         $data['created_at'] = $this->created_at;
+        $data['failing_hooks'] = $this->failing_hooks;
         $data['icon'] = $this->icon;
         $data['id'] = $this->id;
         $data['manage_url'] = $this->manage_url === null ? null : $this->manage_url;

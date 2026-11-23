@@ -12,6 +12,7 @@ final readonly class GitConnectionsMeta
     public function __construct(
         public bool $can_manage,
         public ?string $github_connect_url,
+        public ?string $gitlab_connect_url,
         public string $organization_id,
         public string $organization_name,
         public array $projects,
@@ -25,6 +26,7 @@ final readonly class GitConnectionsMeta
         return new self(
             can_manage: (bool) $data['can_manage'],
             github_connect_url: $data['github_connect_url'] === null ? null : (string) $data['github_connect_url'],
+            gitlab_connect_url: $data['gitlab_connect_url'] === null ? null : (string) $data['gitlab_connect_url'],
             organization_id: (string) $data['organization_id'],
             organization_name: (string) $data['organization_name'],
             projects: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['projects'])),
@@ -39,6 +41,7 @@ final readonly class GitConnectionsMeta
         $data = [];
         $data['can_manage'] = $this->can_manage;
         $data['github_connect_url'] = $this->github_connect_url === null ? null : $this->github_connect_url;
+        $data['gitlab_connect_url'] = $this->gitlab_connect_url === null ? null : $this->gitlab_connect_url;
         $data['organization_id'] = $this->organization_id;
         $data['organization_name'] = $this->organization_name;
         $data['projects'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->projects);

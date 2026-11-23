@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.57.0 - 2026-11-23
+
+- `GitConnectionData` gains `connect_mode` (the new `GitConnectMode` enum) and `failing_hooks`, and `GitConnectionsMeta` gains `gitlab_connect_url` for connecting GitLab.com.
+
 ## 0.56.0 - 2026-11-23
 
 - `GitConnectionsResource::framework()` detects the framework of a repository a git connection shared with the project reaches (`GitFrameworkDetectionData.preset`). `BuildPreset` gains `nextjs` and `nuxt`, and `BuildPresetOption` gains `icon`.
