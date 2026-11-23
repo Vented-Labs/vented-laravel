@@ -16,13 +16,15 @@ final readonly class UpdateBuildConfigData
         public int|OptionalValue $builds_to_keep = OptionalValue::Missing,
         public string|null|OptionalValue $deploy_path = OptionalValue::Missing,
         public DeployType|OptionalValue $deploy_type = OptionalValue::Missing,
+        public string|null|OptionalValue $git_connection_id = OptionalValue::Missing,
         public string|null|OptionalValue $health_check_path = OptionalValue::Missing,
         public string|null|OptionalValue $install_command = OptionalValue::Missing,
         public string|null|OptionalValue $integration_id = OptionalValue::Missing,
         public string|OptionalValue $name = OptionalValue::Missing,
         public string|null|OptionalValue $post_release_command = OptionalValue::Missing,
         public string|null|OptionalValue $release_command = OptionalValue::Missing,
-        public string|OptionalValue $repository = OptionalValue::Missing,
+        public string|null|OptionalValue $repository = OptionalValue::Missing,
+        public string|null|OptionalValue $repository_id = OptionalValue::Missing,
         public string|null|OptionalValue $root_directory = OptionalValue::Missing,
         public string|OptionalValue $storage_id = OptionalValue::Missing,
     ) {}
@@ -39,13 +41,15 @@ final readonly class UpdateBuildConfigData
             builds_to_keep: array_key_exists('builds_to_keep', $data) ? (int) $data['builds_to_keep'] : OptionalValue::Missing,
             deploy_path: array_key_exists('deploy_path', $data) ? $data['deploy_path'] === null ? null : (string) $data['deploy_path'] : OptionalValue::Missing,
             deploy_type: array_key_exists('deploy_type', $data) ? DeployType::from((string) $data['deploy_type']) : OptionalValue::Missing,
+            git_connection_id: array_key_exists('git_connection_id', $data) ? $data['git_connection_id'] === null ? null : (string) $data['git_connection_id'] : OptionalValue::Missing,
             health_check_path: array_key_exists('health_check_path', $data) ? $data['health_check_path'] === null ? null : (string) $data['health_check_path'] : OptionalValue::Missing,
             install_command: array_key_exists('install_command', $data) ? $data['install_command'] === null ? null : (string) $data['install_command'] : OptionalValue::Missing,
             integration_id: array_key_exists('integration_id', $data) ? $data['integration_id'] === null ? null : (string) $data['integration_id'] : OptionalValue::Missing,
             name: array_key_exists('name', $data) ? (string) $data['name'] : OptionalValue::Missing,
             post_release_command: array_key_exists('post_release_command', $data) ? $data['post_release_command'] === null ? null : (string) $data['post_release_command'] : OptionalValue::Missing,
             release_command: array_key_exists('release_command', $data) ? $data['release_command'] === null ? null : (string) $data['release_command'] : OptionalValue::Missing,
-            repository: array_key_exists('repository', $data) ? (string) $data['repository'] : OptionalValue::Missing,
+            repository: array_key_exists('repository', $data) ? $data['repository'] === null ? null : (string) $data['repository'] : OptionalValue::Missing,
+            repository_id: array_key_exists('repository_id', $data) ? $data['repository_id'] === null ? null : (string) $data['repository_id'] : OptionalValue::Missing,
             root_directory: array_key_exists('root_directory', $data) ? $data['root_directory'] === null ? null : (string) $data['root_directory'] : OptionalValue::Missing,
             storage_id: array_key_exists('storage_id', $data) ? (string) $data['storage_id'] : OptionalValue::Missing,
         );
@@ -75,6 +79,9 @@ final readonly class UpdateBuildConfigData
         if ($this->deploy_type !== OptionalValue::Missing) {
             $data['deploy_type'] = $this->deploy_type->value;
         }
+        if ($this->git_connection_id !== OptionalValue::Missing) {
+            $data['git_connection_id'] = $this->git_connection_id === null ? null : $this->git_connection_id;
+        }
         if ($this->health_check_path !== OptionalValue::Missing) {
             $data['health_check_path'] = $this->health_check_path === null ? null : $this->health_check_path;
         }
@@ -94,7 +101,10 @@ final readonly class UpdateBuildConfigData
             $data['release_command'] = $this->release_command === null ? null : $this->release_command;
         }
         if ($this->repository !== OptionalValue::Missing) {
-            $data['repository'] = $this->repository;
+            $data['repository'] = $this->repository === null ? null : $this->repository;
+        }
+        if ($this->repository_id !== OptionalValue::Missing) {
+            $data['repository_id'] = $this->repository_id === null ? null : $this->repository_id;
         }
         if ($this->root_directory !== OptionalValue::Missing) {
             $data['root_directory'] = $this->root_directory === null ? null : $this->root_directory;

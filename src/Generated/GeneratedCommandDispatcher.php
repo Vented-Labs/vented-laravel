@@ -777,6 +777,16 @@ final class GeneratedCommandDispatcher
                 data: StoreServiceData::fromArray($data),
                 query: $query,
             ),
+            'projects.git-connections.branches' => $client->gitConnectionBranches()->list(
+                project: self::stringPath($path, 'project'),
+                gitConnection: self::stringPath($path, 'gitConnection'),
+                query: $query,
+            ),
+            'projects.git-connections.repositories' => $client->gitConnectionRepositories()->list(
+                project: self::stringPath($path, 'project'),
+                gitConnection: self::stringPath($path, 'gitConnection'),
+                query: $query,
+            ),
             'projects.index' => $client->projects()->list(
                 query: $query,
             ),

@@ -139,6 +139,8 @@ use Vented\Commands\ProjectsEmailDomainsIndexCommand;
 use Vented\Commands\ProjectsEmailDomainsLogsCommand;
 use Vented\Commands\ProjectsEmailDomainsShowCommand;
 use Vented\Commands\ProjectsEmailDomainsStoreCommand;
+use Vented\Commands\ProjectsGitConnectionsBranchesCommand;
+use Vented\Commands\ProjectsGitConnectionsRepositoriesCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
 use Vented\Commands\ProjectsIntegrationsIndexCommand;
@@ -1702,6 +1704,28 @@ final class OperationRegistry
             'commandClass' => ProjectsEmailDomainsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.git-connections.branches' => [
+            'operationId' => 'projects.git-connections.branches',
+            'resource' => 'gitConnectionBranches',
+            'action' => 'list',
+            'commandName' => 'vented:git-connection-branches:list',
+            'commandClass' => ProjectsGitConnectionsBranchesCommand::class,
+            'pathParameters' => ['project', 'gitConnection'],
+            'hasBody' => false,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.git-connections.repositories' => [
+            'operationId' => 'projects.git-connections.repositories',
+            'resource' => 'gitConnectionRepositories',
+            'action' => 'list',
+            'commandName' => 'vented:git-connection-repositories:list',
+            'commandClass' => ProjectsGitConnectionsRepositoriesCommand::class,
+            'pathParameters' => ['project', 'gitConnection'],
+            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],

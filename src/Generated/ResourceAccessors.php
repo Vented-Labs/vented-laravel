@@ -50,6 +50,8 @@ use Vented\Resources\EmailDomainsResource;
 use Vented\Resources\FlowRunsResource;
 use Vented\Resources\FlowsResource;
 use Vented\Resources\GettingStartedResource;
+use Vented\Resources\GitConnectionBranchesResource;
+use Vented\Resources\GitConnectionRepositoriesResource;
 use Vented\Resources\IntegrationsResource;
 use Vented\Resources\KbSearchResource;
 use Vented\Resources\MemberInvitationsResource;
@@ -321,6 +323,16 @@ trait ResourceAccessors
     public function gettingStarted(): GettingStartedResource
     {
         return new GettingStartedResource($this);
+    }
+
+    public function gitConnectionBranches(): GitConnectionBranchesResource
+    {
+        return new GitConnectionBranchesResource($this);
+    }
+
+    public function gitConnectionRepositories(): GitConnectionRepositoriesResource
+    {
+        return new GitConnectionRepositoriesResource($this);
     }
 
     public function integrations(): IntegrationsResource

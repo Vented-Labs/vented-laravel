@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.54.0 - 2026-11-23
+
+- Build configurations can pick their repository through a git connection shared with the project: `GitConnectionRepositoriesResource` and `GitConnectionBranchesResource` list what a connection reaches (`GitRemoteRepositoryData`, `GitRemoteBranchData`, `GitBrowseMeta.next_cursor`), `StoreBuildConfigData` and `UpdateBuildConfigData` take `git_connection_id` and `repository_id` (and `repository` becomes optional), `BuildConfigData` gains `git_repository` (`GitRepositoryRef`) and `BuildConfigFormOptions` gains `git_connections` (`GitConnectionOption`, with the provider mark in `icon`).
+
 ## 0.53.0 - 2026-11-20
 
 - Phones can approve agent requests: `ApprovalDevicesResource` enrolls a phone's public key (`StoreApprovalDeviceData`, returning the code to show in `ApprovalDeviceStoreMeta.confirmation_code`), shows it (`ApprovalDeviceData`, with `confirm_url` until its owner confirms it in the browser) and removes it, and `ApprovalDeviceDecisionsResource::create()` sends a signed decision (`ApprovalDecisionData`). `AiAgentsIndexMeta` gains `devices`.

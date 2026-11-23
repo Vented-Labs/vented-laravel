@@ -19,6 +19,7 @@ final readonly class BuildConfigData
         public string $created_at,
         public ?string $deploy_path,
         public DeployType $deploy_type,
+        public ?GitRepositoryRef $git_repository,
         public ?NamedOption $group,
         public ?string $health_check_path,
         public string $id,
@@ -46,6 +47,7 @@ final readonly class BuildConfigData
             created_at: (string) $data['created_at'],
             deploy_path: $data['deploy_path'] === null ? null : (string) $data['deploy_path'],
             deploy_type: DeployType::from((string) $data['deploy_type']),
+            git_repository: $data['git_repository'] === null ? null : GitRepositoryRef::fromArray(self::objectValue($data['git_repository'])),
             group: $data['group'] === null ? null : NamedOption::fromArray(self::objectValue($data['group'])),
             health_check_path: $data['health_check_path'] === null ? null : (string) $data['health_check_path'],
             id: (string) $data['id'],
@@ -74,6 +76,7 @@ final readonly class BuildConfigData
         $data['created_at'] = $this->created_at;
         $data['deploy_path'] = $this->deploy_path === null ? null : $this->deploy_path;
         $data['deploy_type'] = $this->deploy_type->value;
+        $data['git_repository'] = $this->git_repository === null ? null : $this->git_repository->toArray();
         $data['group'] = $this->group === null ? null : $this->group->toArray();
         $data['health_check_path'] = $this->health_check_path === null ? null : $this->health_check_path;
         $data['id'] = $this->id;

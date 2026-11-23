@@ -139,6 +139,8 @@ use Vented\Commands\ProjectsEmailDomainsIndexCommand;
 use Vented\Commands\ProjectsEmailDomainsLogsCommand;
 use Vented\Commands\ProjectsEmailDomainsShowCommand;
 use Vented\Commands\ProjectsEmailDomainsStoreCommand;
+use Vented\Commands\ProjectsGitConnectionsBranchesCommand;
+use Vented\Commands\ProjectsGitConnectionsRepositoriesCommand;
 use Vented\Commands\ProjectsIndexCommand;
 use Vented\Commands\ProjectsIntegrationsDestroyCommand;
 use Vented\Commands\ProjectsIntegrationsIndexCommand;
@@ -365,6 +367,8 @@ final class CommandRegistry
         ProjectsEmailDomainsLogsCommand::class,
         ProjectsEmailDomainsShowCommand::class,
         ProjectsEmailDomainsStoreCommand::class,
+        ProjectsGitConnectionsBranchesCommand::class,
+        ProjectsGitConnectionsRepositoriesCommand::class,
         ProjectsIndexCommand::class,
         ProjectsIntegrationsDestroyCommand::class,
         ProjectsIntegrationsIndexCommand::class,
