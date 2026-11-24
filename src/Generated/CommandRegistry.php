@@ -205,11 +205,11 @@ use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsDestroyCommand;
 use Vented\Commands\ProjectsTunnelsIndexCommand;
-use Vented\Commands\ProjectsTunnelsPublicAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsShowCommand;
 use Vented\Commands\ProjectsTunnelsStartCommand;
 use Vented\Commands\ProjectsTunnelsStopCommand;
 use Vented\Commands\ProjectsTunnelsStoreCommand;
+use Vented\Commands\ProjectsTunnelsTunnelAgentSetupCommand;
 use Vented\Commands\RealtimeShowCommand;
 use Vented\Commands\SearchIndexCommand;
 use Vented\Commands\SupportKbIndexCommand;
@@ -430,11 +430,11 @@ final class CommandRegistry
         ProjectsTunnelsAgentSetupCommand::class,
         ProjectsTunnelsDestroyCommand::class,
         ProjectsTunnelsIndexCommand::class,
-        ProjectsTunnelsPublicAgentSetupCommand::class,
         ProjectsTunnelsShowCommand::class,
         ProjectsTunnelsStartCommand::class,
         ProjectsTunnelsStopCommand::class,
         ProjectsTunnelsStoreCommand::class,
+        ProjectsTunnelsTunnelAgentSetupCommand::class,
         RealtimeShowCommand::class,
         SearchIndexCommand::class,
         SupportKbIndexCommand::class,

@@ -2,6 +2,12 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.65.0 - 2026-11-24
+
+- `TunnelData` gains `tls` (`BindingTlsData`, null for a private tunnel), a public tunnel's certificate status, and `setup_revision`, which changes whenever the agent must read the tunnel's setup again.
+- `TunnelAgentSetupData` gains `access`, `hostnames` and `setup_revision`; a public tunnel connects through the environment's tunnel server like a private one.
+- Removed: `TunnelPublicAgentSetupData`. `TunnelsResource::publicAgentSetup()` and `vented:tunnels:public-agent-setup` become `tunnelAgentSetup()` and `vented:tunnels:tunnel-agent-setup`, answering `TunnelAgentSetupData` for either kind.
+
 ## 0.64.0 - 2026-11-24
 
 - `DeployTriggerData.config` is a `DeployTriggerConfigData` (`branch`, `paths`, `cron_expression`) instead of an array, and is always present.

@@ -205,11 +205,11 @@ use Vented\Commands\ProjectsStoreCommand;
 use Vented\Commands\ProjectsTunnelsAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsDestroyCommand;
 use Vented\Commands\ProjectsTunnelsIndexCommand;
-use Vented\Commands\ProjectsTunnelsPublicAgentSetupCommand;
 use Vented\Commands\ProjectsTunnelsShowCommand;
 use Vented\Commands\ProjectsTunnelsStartCommand;
 use Vented\Commands\ProjectsTunnelsStopCommand;
 use Vented\Commands\ProjectsTunnelsStoreCommand;
+use Vented\Commands\ProjectsTunnelsTunnelAgentSetupCommand;
 use Vented\Commands\RealtimeShowCommand;
 use Vented\Commands\SearchIndexCommand;
 use Vented\Commands\SupportKbIndexCommand;
@@ -2430,17 +2430,6 @@ final class OperationRegistry
             'destructive' => false,
             'binary' => false,
         ],
-        'projects.tunnels.public-agent-setup' => [
-            'operationId' => 'projects.tunnels.public-agent-setup',
-            'resource' => 'tunnels',
-            'action' => 'publicAgentSetup',
-            'commandName' => 'vented:tunnels:public-agent-setup',
-            'commandClass' => ProjectsTunnelsPublicAgentSetupCommand::class,
-            'pathParameters' => ['project', 'environment', 'tunnel'],
-            'hasBody' => false,
-            'destructive' => false,
-            'binary' => false,
-        ],
         'projects.tunnels.show' => [
             'operationId' => 'projects.tunnels.show',
             'resource' => 'tunnels',
@@ -2482,6 +2471,17 @@ final class OperationRegistry
             'commandClass' => ProjectsTunnelsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.tunnels.tunnel-agent-setup' => [
+            'operationId' => 'projects.tunnels.tunnel-agent-setup',
+            'resource' => 'tunnels',
+            'action' => 'tunnelAgentSetup',
+            'commandName' => 'vented:tunnels:tunnel-agent-setup',
+            'commandClass' => ProjectsTunnelsTunnelAgentSetupCommand::class,
+            'pathParameters' => ['project', 'environment', 'tunnel'],
+            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],

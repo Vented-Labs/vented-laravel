@@ -1163,12 +1163,6 @@ final class GeneratedCommandDispatcher
                 environment: self::stringPath($path, 'environment'),
                 query: $query,
             ),
-            'projects.tunnels.public-agent-setup' => $client->tunnels()->publicAgentSetup(
-                project: self::stringPath($path, 'project'),
-                environment: self::stringPath($path, 'environment'),
-                tunnel: self::stringPath($path, 'tunnel'),
-                query: $query,
-            ),
             'projects.tunnels.show' => $client->tunnels()->find(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
@@ -1191,6 +1185,12 @@ final class GeneratedCommandDispatcher
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),
                 data: StoreTunnelData::fromArray($data),
+                query: $query,
+            ),
+            'projects.tunnels.tunnel-agent-setup' => $client->tunnels()->tunnelAgentSetup(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                tunnel: self::stringPath($path, 'tunnel'),
                 query: $query,
             ),
             'realtime.show' => $client->realtime()->get(

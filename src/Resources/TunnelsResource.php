@@ -7,7 +7,6 @@ namespace Vented\Resources;
 use Vented\Data\StoreTunnelData;
 use Vented\Data\TunnelAgentSetupData;
 use Vented\Data\TunnelData;
-use Vented\Data\TunnelPublicAgentSetupData;
 use Vented\Results\CollectionResult;
 use Vented\Results\NoContentResult;
 use Vented\Results\ResourceResult;
@@ -108,23 +107,6 @@ final readonly class TunnelsResource
     }
 
     /**
-     * Show how an agent serves a public tunnel
-     *
-     * Operation: projects.tunnels.public-agent-setup
-     *
-     * @param  array<string, mixed>  $query
-     * @return ResourceResult<TunnelPublicAgentSetupData>
-     */
-    public function publicAgentSetup(string $project, string $environment, string $tunnel, array $query = []): ResourceResult
-    {
-        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/tunnels/{tunnel}/agent-setup')
-            ->withPathParameters(['project' => $project, 'environment' => $environment, 'tunnel' => $tunnel])
-            ->withQuery($query);
-
-        return $operation->resource(static fn (array $resource): TunnelPublicAgentSetupData => TunnelPublicAgentSetupData::fromArray(self::attributes($resource, true)));
-    }
-
-    /**
      * Start a tunnel
      *
      * Operation: projects.tunnels.start
@@ -156,6 +138,23 @@ final readonly class TunnelsResource
             ->withQuery($query);
 
         return $operation->resource(static fn (array $resource): TunnelData => TunnelData::fromArray(self::attributes($resource, true)));
+    }
+
+    /**
+     * Show how an agent serves a tunnel
+     *
+     * Operation: projects.tunnels.tunnel-agent-setup
+     *
+     * @param  array<string, mixed>  $query
+     * @return ResourceResult<TunnelAgentSetupData>
+     */
+    public function tunnelAgentSetup(string $project, string $environment, string $tunnel, array $query = []): ResourceResult
+    {
+        $operation = $this->client->operation('GET', '/projects/{project}/{environment}/tunnels/{tunnel}/agent-setup')
+            ->withPathParameters(['project' => $project, 'environment' => $environment, 'tunnel' => $tunnel])
+            ->withQuery($query);
+
+        return $operation->resource(static fn (array $resource): TunnelAgentSetupData => TunnelAgentSetupData::fromArray(self::attributes($resource, true)));
     }
 
     /**

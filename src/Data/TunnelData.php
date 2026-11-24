@@ -23,8 +23,10 @@ final readonly class TunnelData
         public string $id,
         public string $name,
         public ?int $port,
+        public ?string $setup_revision,
         public StatusData $status,
         public string $target,
+        public ?BindingTlsData $tls,
         public ?int $transfer_bytes,
         public TunnelType $type,
         public string $updated_at,
@@ -46,8 +48,10 @@ final readonly class TunnelData
             id: (string) $data['id'],
             name: (string) $data['name'],
             port: $data['port'] === null ? null : (int) $data['port'],
+            setup_revision: $data['setup_revision'] === null ? null : (string) $data['setup_revision'],
             status: StatusData::fromArray(self::objectValue($data['status'])),
             target: (string) $data['target'],
+            tls: $data['tls'] === null ? null : BindingTlsData::fromArray(self::objectValue($data['tls'])),
             transfer_bytes: $data['transfer_bytes'] === null ? null : (int) $data['transfer_bytes'],
             type: TunnelType::from((string) $data['type']),
             updated_at: (string) $data['updated_at'],
@@ -70,8 +74,10 @@ final readonly class TunnelData
         $data['id'] = $this->id;
         $data['name'] = $this->name;
         $data['port'] = $this->port === null ? null : $this->port;
+        $data['setup_revision'] = $this->setup_revision === null ? null : $this->setup_revision;
         $data['status'] = $this->status->toArray();
         $data['target'] = $this->target;
+        $data['tls'] = $this->tls === null ? null : $this->tls->toArray();
         $data['transfer_bytes'] = $this->transfer_bytes === null ? null : $this->transfer_bytes;
         $data['type'] = $this->type->value;
         $data['updated_at'] = $this->updated_at;
