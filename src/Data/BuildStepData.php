@@ -6,6 +6,7 @@ namespace Vented\Data;
 
 use Vented\Enums\BuildStep;
 use Vented\Enums\BuildStepState;
+use Vented\Enums\StatusTone;
 
 final readonly class BuildStepData
 {
@@ -13,6 +14,7 @@ final readonly class BuildStepData
         public string $label,
         public BuildStepState $state,
         public BuildStep $step,
+        public StatusTone $tone,
     ) {}
 
     /**
@@ -24,6 +26,7 @@ final readonly class BuildStepData
             label: (string) $data['label'],
             state: BuildStepState::from((string) $data['state']),
             step: BuildStep::from((string) $data['step']),
+            tone: StatusTone::from((string) $data['tone']),
         );
     }
 
@@ -36,6 +39,7 @@ final readonly class BuildStepData
         $data['label'] = $this->label;
         $data['state'] = $this->state->value;
         $data['step'] = $this->step->value;
+        $data['tone'] = $this->tone->value;
 
         return $data;
     }
