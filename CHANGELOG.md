@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.63.0 - 2026-11-24
+
+- `AppLogsIndexMeta` gains `app_id` and `live_available`, whether the app's output can be followed live on its Logs tab.
+
 ## 0.62.0 - 2026-11-24
 
 - `BuildStepData` gains `tone`, the same `StatusTone` a build's status uses.

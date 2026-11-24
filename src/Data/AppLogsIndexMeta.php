@@ -11,9 +11,11 @@ final readonly class AppLogsIndexMeta
      * @param  list<FormOption>  $windows
      */
     public function __construct(
+        public string $app_id,
         public string $app_name,
         public bool $available,
         public array $events,
+        public bool $live_available,
         public int $retention_days,
         public int $window_hours,
         public array $windows,
@@ -25,9 +27,11 @@ final readonly class AppLogsIndexMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            app_id: (string) $data['app_id'],
             app_name: (string) $data['app_name'],
             available: (bool) $data['available'],
             events: array_map(static fn (mixed $value): AppEventData => AppEventData::fromArray(self::objectValue($value)), self::listValue($data['events'])),
+            live_available: (bool) $data['live_available'],
             retention_days: (int) $data['retention_days'],
             window_hours: (int) $data['window_hours'],
             windows: array_map(static fn (mixed $value): FormOption => FormOption::fromArray(self::objectValue($value)), self::listValue($data['windows'])),
@@ -40,9 +44,11 @@ final readonly class AppLogsIndexMeta
     public function toArray(): array
     {
         $data = [];
+        $data['app_id'] = $this->app_id;
         $data['app_name'] = $this->app_name;
         $data['available'] = $this->available;
         $data['events'] = array_map(static fn (AppEventData $value) => $value->toArray(), $this->events);
+        $data['live_available'] = $this->live_available;
         $data['retention_days'] = $this->retention_days;
         $data['window_hours'] = $this->window_hours;
         $data['windows'] = array_map(static fn (FormOption $value) => $value->toArray(), $this->windows);
