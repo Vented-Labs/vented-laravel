@@ -8,12 +8,9 @@ use Vented\Enums\DeployTriggerType;
 
 final readonly class DeployTriggerData
 {
-    /**
-     * @param  list<string>|null  $config
-     */
     public function __construct(
         public ?NamedOption $build_config,
-        public ?array $config,
+        public DeployTriggerConfigData $config,
         public string $created_at,
         public bool $enabled,
         public string $id,
@@ -30,7 +27,7 @@ final readonly class DeployTriggerData
     {
         return new self(
             build_config: $data['build_config'] === null ? null : NamedOption::fromArray(self::objectValue($data['build_config'])),
-            config: $data['config'] === null ? null : array_map(static fn (mixed $value): string => (string) $value, self::listValue($data['config'])),
+            config: DeployTriggerConfigData::fromArray(self::objectValue($data['config'])),
             created_at: (string) $data['created_at'],
             enabled: (bool) $data['enabled'],
             id: (string) $data['id'],
@@ -48,7 +45,7 @@ final readonly class DeployTriggerData
     {
         $data = [];
         $data['build_config'] = $this->build_config === null ? null : $this->build_config->toArray();
-        $data['config'] = $this->config === null ? null : $this->config;
+        $data['config'] = $this->config->toArray();
         $data['created_at'] = $this->created_at;
         $data['enabled'] = $this->enabled;
         $data['id'] = $this->id;
@@ -71,17 +68,5 @@ final readonly class DeployTriggerData
 
         /** @var array<string, mixed> $value */
         return $value;
-    }
-
-    /**
-     * @return list<mixed>
-     */
-    private static function listValue(mixed $value): array
-    {
-        if (! is_array($value)) {
-            throw new \InvalidArgumentException('Expected an array value.');
-        }
-
-        return array_values($value);
     }
 }
