@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.61.0 - 2026-11-24
+
+- `DeveloperOverviewData` drops `git_integration_count` and `integration_count`; read `git_connection_count`.
+
 ## 0.60.0 - 2026-11-23
 
 - `GitConnectionsMeta` gains `bitbucket_connect_url` for connecting Bitbucket Cloud.
