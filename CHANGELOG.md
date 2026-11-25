@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.66.0 - 2026-11-24
+
+- New `projects:build-configs:builds:index` command and `BuildConfigBuildsResource` for a build configuration's builds, paginated. `BuildConfigShowMeta` gains `builds_count`, and its `builds` now holds the ten latest.
+
 ## 0.65.0 - 2026-11-24
 
 - `TunnelData` gains `tls` (`BindingTlsData`, null for a private tunnel), a public tunnel's certificate status, and `setup_revision`, which changes whenever the agent must read the tunnel's setup again.

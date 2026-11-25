@@ -520,6 +520,12 @@ final class GeneratedCommandDispatcher
                 data: StoreServiceData::fromArray($data),
                 query: $query,
             ),
+            'projects.build-configs.builds.index' => $client->buildConfigBuilds()->list(
+                project: self::stringPath($path, 'project'),
+                environment: self::stringPath($path, 'environment'),
+                buildConfig: self::stringPath($path, 'buildConfig'),
+                query: $query,
+            ),
             'projects.build-configs.destroy' => $client->buildConfigs()->delete(
                 project: self::stringPath($path, 'project'),
                 environment: self::stringPath($path, 'environment'),

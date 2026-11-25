@@ -11,6 +11,7 @@ final readonly class BuildConfigShowMeta
      */
     public function __construct(
         public array $builds,
+        public int $builds_count,
         public DeployTargetOption $deploy_target,
         public ?BuildData $live_build,
     ) {}
@@ -22,6 +23,7 @@ final readonly class BuildConfigShowMeta
     {
         return new self(
             builds: array_map(static fn (mixed $value): BuildData => BuildData::fromArray(self::objectValue($value)), self::listValue($data['builds'])),
+            builds_count: (int) $data['builds_count'],
             deploy_target: DeployTargetOption::fromArray(self::objectValue($data['deploy_target'])),
             live_build: $data['live_build'] === null ? null : BuildData::fromArray(self::objectValue($data['live_build'])),
         );
@@ -34,6 +36,7 @@ final readonly class BuildConfigShowMeta
     {
         $data = [];
         $data['builds'] = array_map(static fn (BuildData $value) => $value->toArray(), $this->builds);
+        $data['builds_count'] = $this->builds_count;
         $data['deploy_target'] = $this->deploy_target->toArray();
         $data['live_build'] = $this->live_build === null ? null : $this->live_build->toArray();
 

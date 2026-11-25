@@ -95,6 +95,7 @@ use Vented\Commands\ProjectsBucketsDestroyCommand;
 use Vented\Commands\ProjectsBucketsIndexCommand;
 use Vented\Commands\ProjectsBucketsShowCommand;
 use Vented\Commands\ProjectsBucketsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsBuildsIndexCommand;
 use Vented\Commands\ProjectsBuildConfigsDestroyCommand;
 use Vented\Commands\ProjectsBuildConfigsIndexCommand;
 use Vented\Commands\ProjectsBuildConfigsShowCommand;
@@ -1217,6 +1218,17 @@ final class OperationRegistry
             'commandClass' => ProjectsBucketsStoreCommand::class,
             'pathParameters' => ['project', 'environment'],
             'hasBody' => true,
+            'destructive' => false,
+            'binary' => false,
+        ],
+        'projects.build-configs.builds.index' => [
+            'operationId' => 'projects.build-configs.builds.index',
+            'resource' => 'buildConfigBuilds',
+            'action' => 'list',
+            'commandName' => 'vented:build-config-builds:list',
+            'commandClass' => ProjectsBuildConfigsBuildsIndexCommand::class,
+            'pathParameters' => ['project', 'environment', 'buildConfig'],
+            'hasBody' => false,
             'destructive' => false,
             'binary' => false,
         ],

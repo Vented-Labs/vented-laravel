@@ -95,6 +95,7 @@ use Vented\Commands\ProjectsBucketsDestroyCommand;
 use Vented\Commands\ProjectsBucketsIndexCommand;
 use Vented\Commands\ProjectsBucketsShowCommand;
 use Vented\Commands\ProjectsBucketsStoreCommand;
+use Vented\Commands\ProjectsBuildConfigsBuildsIndexCommand;
 use Vented\Commands\ProjectsBuildConfigsDestroyCommand;
 use Vented\Commands\ProjectsBuildConfigsIndexCommand;
 use Vented\Commands\ProjectsBuildConfigsShowCommand;
@@ -320,6 +321,7 @@ final class CommandRegistry
         ProjectsBucketsIndexCommand::class,
         ProjectsBucketsShowCommand::class,
         ProjectsBucketsStoreCommand::class,
+        ProjectsBuildConfigsBuildsIndexCommand::class,
         ProjectsBuildConfigsDestroyCommand::class,
         ProjectsBuildConfigsIndexCommand::class,
         ProjectsBuildConfigsShowCommand::class,

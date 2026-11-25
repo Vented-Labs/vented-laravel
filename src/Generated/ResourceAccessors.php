@@ -33,6 +33,7 @@ use Vented\Resources\BlockStorageBackupsResource;
 use Vented\Resources\BlockStoragesResource;
 use Vented\Resources\BucketAccessResource;
 use Vented\Resources\BucketsResource;
+use Vented\Resources\BuildConfigBuildsResource;
 use Vented\Resources\BuildConfigsResource;
 use Vented\Resources\BuildConfigTriggersResource;
 use Vented\Resources\BuildGroupsResource;
@@ -239,6 +240,11 @@ trait ResourceAccessors
     public function buckets(): BucketsResource
     {
         return new BucketsResource($this);
+    }
+
+    public function buildConfigBuilds(): BuildConfigBuildsResource
+    {
+        return new BuildConfigBuildsResource($this);
     }
 
     public function buildConfigTriggers(): BuildConfigTriggersResource
