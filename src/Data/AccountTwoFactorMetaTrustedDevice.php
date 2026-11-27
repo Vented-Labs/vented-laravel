@@ -8,6 +8,7 @@ final readonly class AccountTwoFactorMetaTrustedDevice
 {
     public function __construct(
         public ?string $created_at,
+        public bool $current,
         public ?string $device_name,
         public string $id,
         public ?string $ip_address,
@@ -20,6 +21,7 @@ final readonly class AccountTwoFactorMetaTrustedDevice
     {
         return new self(
             created_at: $data['created_at'] === null ? null : (string) $data['created_at'],
+            current: (bool) $data['current'],
             device_name: $data['device_name'] === null ? null : (string) $data['device_name'],
             id: (string) $data['id'],
             ip_address: $data['ip_address'] === null ? null : (string) $data['ip_address'],
@@ -33,6 +35,7 @@ final readonly class AccountTwoFactorMetaTrustedDevice
     {
         $data = [];
         $data['created_at'] = $this->created_at === null ? null : $this->created_at;
+        $data['current'] = $this->current;
         $data['device_name'] = $this->device_name === null ? null : $this->device_name;
         $data['id'] = $this->id;
         $data['ip_address'] = $this->ip_address === null ? null : $this->ip_address;

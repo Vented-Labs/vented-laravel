@@ -12,6 +12,7 @@ final readonly class AccountTwoFactorMeta
      * @param  list<AccountTwoFactorMetaTrustedDevice>  $trusted_devices
      */
     public function __construct(
+        public string $confirm_with,
         public array $passkeys,
         public int $recovery_code_count,
         public array $totp_methods,
@@ -24,6 +25,7 @@ final readonly class AccountTwoFactorMeta
     public static function fromArray(array $data): self
     {
         return new self(
+            confirm_with: (string) $data['confirm_with'],
             passkeys: array_map(static fn (mixed $value): AccountTwoFactorMetaPasskey => AccountTwoFactorMetaPasskey::fromArray(self::objectValue($value)), self::listValue($data['passkeys'])),
             recovery_code_count: (int) $data['recovery_code_count'],
             totp_methods: array_map(static fn (mixed $value): AccountTwoFactorMetaTotpMethod => AccountTwoFactorMetaTotpMethod::fromArray(self::objectValue($value)), self::listValue($data['totp_methods'])),
@@ -37,6 +39,7 @@ final readonly class AccountTwoFactorMeta
     public function toArray(): array
     {
         $data = [];
+        $data['confirm_with'] = $this->confirm_with;
         $data['passkeys'] = array_map(static fn (AccountTwoFactorMetaPasskey $value) => $value->toArray(), $this->passkeys);
         $data['recovery_code_count'] = $this->recovery_code_count;
         $data['totp_methods'] = array_map(static fn (AccountTwoFactorMetaTotpMethod $value) => $value->toArray(), $this->totp_methods);

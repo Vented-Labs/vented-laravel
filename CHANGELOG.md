@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.68.0 - 2026-11-26
+
+- `AccountTwoFactorMeta` gains `confirm_with`, the proof a change to the two-factor setup asks for, and `AccountTwoFactorMetaTrustedDevice` gains `current`, whether the device is the browser asking.
+
 ## 0.67.0 - 2026-11-26
 
 - New `AccountSettingsMeta`, `SignInMethodsMeta` and `SignInMethodsMetaProvider` for the settings document's `meta.sign_in_methods`: whether the account has a password, what changing a sign-in method asks for, and which providers are connected.
