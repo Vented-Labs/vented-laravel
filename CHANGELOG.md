@@ -2,6 +2,10 @@
 
 All notable changes to `vented/vented-laravel` will be documented in this file.
 
+## 0.67.0 - 2026-11-26
+
+- New `AccountSettingsMeta`, `SignInMethodsMeta` and `SignInMethodsMetaProvider` for the settings document's `meta.sign_in_methods`: whether the account has a password, what changing a sign-in method asks for, and which providers are connected.
+
 ## 0.66.0 - 2026-11-24
 
 - New `projects:build-configs:builds:index` command and `BuildConfigBuildsResource` for a build configuration's builds, paginated. `BuildConfigShowMeta` gains `builds_count`, and its `builds` now holds the ten latest.
